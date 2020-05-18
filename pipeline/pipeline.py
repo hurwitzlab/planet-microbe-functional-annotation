@@ -14,6 +14,7 @@ import os
 import re
 import shutil
 import sys
+import configparser
 
 #TODO CHANGE BACK TO cluster_16S.
 from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list
@@ -29,36 +30,34 @@ def get_args():
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('-c', '--config', required=True,
                             help='path to config file containing parameters/arguments')
-    arg_parser.add_argument('-i', '--input_dir', default="data/in",
-                            help='path to directory containing input files')
-    arg_parser.add_argument('-w', '--work_dir', default="data/out",
-                            help='path to directory for output')
     return arg_parser.parse_args()
 
 
 class Pipeline:
     def __init__(self,
-                 config_fp,
-                 in_dir,
-                 work_dir):
+                 config_fp
+                 ):
         self.fastqc_executable_fp = os.environ.get('FASTQC', default='fastqc')
         self.trim_executable_fp = os.environ.get('TRIMMOMATIC', default='trimmomatic')
         self.frag_executable_fp = os.environ.get('FRAGGENESCAN', default='fraggenescan')
         self.interproscan_executable_fp = os.environ.get('INTERPROSCAN', default='interproscan')
         self.config_fp = config_fp
-        self.read_config(self.config_fp)
-        self.debug = True
-        self.in_dir = in_dir
-        self.work_dir = work_dir
+        self.read_config()
 
 
-
-    def read_config(self, fp):
+    def read_config(self):
         """
         Takes a path to a config file containing parameters for the pipeline
         :param fp: string path to config file
         :return:
         """
+        config = configparser.ConfigParser()
+        config.read(self.config_fp)
+        self.paired_ends = config["DEFAULT"]["paired_ends"]
+        self.debug = config["DEFAULT"]["debug"]
+        self.in_dir = config["DEFAULT"]["in_dir"]
+        self.out_dir = config["DEFAULT"]["out_dir"]
+        self.threads = config["DEFAULT"]["threads"]
         return
 
 
@@ -87,7 +86,7 @@ class Pipeline:
             log.setLevel(logging.DEBUG)
         else:
             log.setLevel(logging.WARNING)
-        output_dir = create_output_dir(output_dir_name=function_name, parent_dir=self.work_dir, debug=self.debug)
+        output_dir = create_output_dir(output_dir_name=function_name, parent_dir=self.out_dir, debug=self.debug)
         return log, output_dir
 
 
