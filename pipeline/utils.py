@@ -104,3 +104,27 @@ def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
         print(e)
         traceback.print_exc()
         raise e
+
+
+def get_forward_fastq_files(input_dir, debug=False):
+    log = logging.getLogger(name=__name__)
+    if debug is True:
+        log.setLevel(logging.DEBUG)
+    else:
+        log.setLevel(logging.WARNING)
+    input_glob = os.path.join(input_dir, '*_[R0]1*.fastq*')
+    log.info('searching for forward read files with glob "%s"', input_glob)
+    forward_fastq_files = glob.glob(input_glob)
+    if len(forward_fastq_files) == 0:
+        raise PipelineException('found no forward reads from glob "{}"'.format(input_glob))
+    return forward_fastq_files
+
+
+def get_associated_reverse_fastq_fp(forward_fp):
+    forward_input_dir, forward_basename = os.path.split(forward_fp)
+    reverse_fastq_basename = re.sub(
+        string=forward_basename,
+        pattern=r'_([0R])1',
+        repl=lambda m: '_{}2'.format(m.group(1)))
+    reverse_fastq_fp = os.path.join(forward_input_dir, reverse_fastq_basename)
+    return reverse_fastq_fp

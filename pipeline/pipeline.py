@@ -17,7 +17,8 @@ import sys
 import configparser
 
 #TODO CHANGE BACK TO cluster_16S.
-from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list
+from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list, \
+    get_forward_fastq_files, get_associated_reverse_fastq_fp
 
 
 def main():
@@ -37,6 +38,7 @@ class Pipeline:
     def __init__(self,
                  config_fp
                  ):
+        self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.fastqc_executable_fp = os.environ.get('FASTQC', default='fastqc')
         self.trim_executable_fp = os.environ.get('TRIMMOMATIC', default='trimmomatic')
         self.frag_executable_fp = os.environ.get('FRAGGENESCAN', default='fraggenescan')
@@ -58,6 +60,13 @@ class Pipeline:
         self.in_dir = config["DEFAULT"]["in_dir"]
         self.out_dir = config["DEFAULT"]["out_dir"]
         self.threads = config["DEFAULT"]["threads"]
+        self.trim_adapter_fasta = config["DEFAULT"]["adapter_fasta"]
+        self.trim_seed_mismatches = config["DEFAULT"]["seed_mismatches"]
+        self.trim_palindrom_clip_thresh = config["DEFAULT"]["palindrome_clip_thresh"]
+        self.trim_simple_clip_thresh = config["DEFAULT"]["simple_clip_thresh"]
+        self.trim_min_adapter_length = config["DEFAULT"]["min_adapter_length"]
+        self.trim_keep_both_reads = config["DEFAULT"]["keep_both_reads"]
+        self.trim_min_quality = config["DEFAULT"]["min_quality"]
         return
 
 
@@ -69,6 +78,7 @@ class Pipeline:
         """
         output_dir_list = []
         output_dir_list.append(self.step_01_trimming(input_dir=input_dir))
+        exit()
         output_dir_list.append(self.step_02_fastqc(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_03_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_04_get_orfs(input_dir=output_dir_list[-1]))
@@ -112,8 +122,11 @@ class Pipeline:
         log, output_dir = self.initialize_step()
         input_fps = []
         types = ['*.fastq*', '*.fq*']
-        for t in types:
-            input_fps.extend(glob.glob(os.path.join(input_dir, t)))
+        if self.paired_ends:
+            input_fps = get_forward_fastq_files(input_dir, self.debug)
+        else:
+            for t in types:
+                input_fps.extend(glob.glob(os.path.join(input_dir, t)))
         log.info(f"input files = {input_fps}")
         if len(input_fps) == 0:
             raise PipelineException(f'found no fastq files in directory "{input_dir}"')
@@ -122,12 +135,30 @@ class Pipeline:
                                                     string=os.path.basename(fp),
                                                     pattern='\.fq',
                                                     repl='.fastq'))
-            log.info(f"writing output of {fp} to {out_fp}")
+            run_str = f"{self.java_executable_fp} -jar {self.trim_executable_fp}"
+            if self.paired_ends:
+                run_str = f"{run_str} PE"
+            else:
+                run_str = f"{run_str} SE"
+            out_base = re.sub(
+                string=os.path.basename(fp),
+                pattern=r'_([0R])1',
+                repl="")
+            trim_log = f"{output_dir}/trim_log"
+            cmd_log = f"{output_dir}/cmd_log"
+            run_str = f"{run_str} -threads {self.threads} -trimlog {trim_log} -basein {fp} -baseout {output_dir}/{out_base}"
+            illuminaclip_str = f"ILLUMINACLIP:{self.trim_adapter_fasta}:{self.trim_seed_mismatches}:" \
+                              f"{self.trim_palindrom_clip_thresh}:{self.trim_simple_clip_thresh}:" \
+                              f"{self.trim_min_adapter_length}:{self.trim_keep_both_reads}"
+            leading_str = f"LEADING:{self.trim_min_quality}"
+            trailing_str = f"TRAILING:{self.trim_min_quality}"
+            minlen_str = f"MINLEN:{self.trim_min_len}"
+            run_str = f"{run_str} {illuminaclip_str} {leading_str} {trailing_str} {minlen_str}"
+            log.info(f"writing output of {fp} to {output_dir}/{out_base}")
             run_cmd([
-                    self.trim_executable_fp
-                    # INCLUDE MORE ARGS
+                    run_str
                 ],
-                log_file=os.path.join(output_dir, 'log'),
+                log_file=cmd_log,
                 debug=self.debug
             )
         self.complete_step(log, output_dir)

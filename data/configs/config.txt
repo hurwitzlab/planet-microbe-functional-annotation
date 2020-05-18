@@ -1,2 +1,14 @@
 [DEFAULT]
-in_dir = ""
+in_dir = data/in
+out_dir = data/out
+threads = 1
+debug = 1
+paired_ends = 1
+adapter_fasta = data/config/adapters.fa
+seed_mismatches = 2
+palindrome_clip_thresh = 30
+simple_clip_thresh = 10
+min_adapter_length = 2
+keep_both_reads = keepBothReads
+min_quality = 3
+min_length = 36
