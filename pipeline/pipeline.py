@@ -148,18 +148,22 @@ class Pipeline:
                 repl="")
             trim_log = f"{output_dir}/trim_log"
             cmd_log = f"{output_dir}/cmd_log"
-            run_arr = f"{run_str} -threads {self.threads} -trimlog {trim_log} -basein {fp} -baseout {output_dir}/{out_base}"
+            run_arr.extend(["-threads", self.threads, "-trimlog", trim_log, "-basein", fp, "-baseout",
+                            os.path.join(output_dir, out_base)])
             illuminaclip_str = f"ILLUMINACLIP:{self.trim_adapter_fasta}:{self.trim_seed_mismatches}:" \
                               f"{self.trim_palindrom_clip_thresh}:{self.trim_simple_clip_thresh}:" \
                               f"{self.trim_min_adapter_length}:{self.trim_keep_both_reads}"
             leading_str = f"LEADING:{self.trim_min_quality}"
             trailing_str = f"TRAILING:{self.trim_min_quality}"
             minlen_str = f"MINLEN:{self.trim_min_len}"
-            run_str = f"{run_str} {illuminaclip_str} {leading_str} {trailing_str} {minlen_str}"
+            run_arr.append(illuminaclip_str)
+            run_arr.append(leading_str)
+            run_arr.append(trailing_str)
+            run_arr.append(minlen_str)
             log.info(f"writing output of {fp} to {output_dir}/{out_base}")
-            run_str = f"{self.java_executable_fp} -jar {self.trim_executable_fp}"
+            run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
             run_cmd([
-                    run_str
+                    run_arr
                 ],
                 log_file=cmd_log,
                 debug=self.debug
