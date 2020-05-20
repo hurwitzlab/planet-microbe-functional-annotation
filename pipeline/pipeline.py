@@ -24,7 +24,7 @@ from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, Pipeline
 def main():
     logging.basicConfig(level=logging.INFO)
     args = get_args()
-    Pipeline(**args.__dict__).run(input_dir=args.input_dir)
+    Pipeline(**args.__dict__).run()
     return 0
 
 def get_args():
@@ -36,14 +36,15 @@ def get_args():
 
 class Pipeline:
     def __init__(self,
-                 config_fp
+                 config
                  ):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.fastqc_executable_fp = os.environ.get('FASTQC', default='fastqc')
-        self.trim_executable_fp = os.environ.get('TRIMMOMATIC', default='trimmomatic')
+        self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
+        print(f"trim = {self.trim_executable_fp}")
         self.frag_executable_fp = os.environ.get('FRAGGENESCAN', default='fraggenescan')
         self.interproscan_executable_fp = os.environ.get('INTERPROSCAN', default='interproscan')
-        self.config_fp = config_fp
+        self.config_fp = config
         self.read_config()
 
 
@@ -67,17 +68,18 @@ class Pipeline:
         self.trim_min_adapter_length = config["DEFAULT"]["min_adapter_length"]
         self.trim_keep_both_reads = config["DEFAULT"]["keep_both_reads"]
         self.trim_min_quality = config["DEFAULT"]["min_quality"]
+        self.trim_min_len = config["DEFAULT"]["min_length"]
         return
 
 
-    def run(self, input_dir):
+    def run(self):
         """
         Runs the entire pipeline
         :param input_dir: string path to input directory
         :return:
         """
         output_dir_list = []
-        output_dir_list.append(self.step_01_trimming(input_dir=input_dir))
+        output_dir_list.append(self.step_01_trimming(input_dir=self.in_dir))
         exit()
         output_dir_list.append(self.step_02_fastqc(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_03_get_gene_reads(input_dir=output_dir_list[-1]))
@@ -135,18 +137,18 @@ class Pipeline:
                                                     string=os.path.basename(fp),
                                                     pattern='\.fq',
                                                     repl='.fastq'))
-            run_str = f"{self.java_executable_fp} -jar {self.trim_executable_fp}"
+            run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
             if self.paired_ends:
-                run_str = f"{run_str} PE"
+                run_arr.append("PE")
             else:
-                run_str = f"{run_str} SE"
+                run_arr.append("SE")
             out_base = re.sub(
                 string=os.path.basename(fp),
                 pattern=r'_([0R])1',
                 repl="")
             trim_log = f"{output_dir}/trim_log"
             cmd_log = f"{output_dir}/cmd_log"
-            run_str = f"{run_str} -threads {self.threads} -trimlog {trim_log} -basein {fp} -baseout {output_dir}/{out_base}"
+            run_arr = f"{run_str} -threads {self.threads} -trimlog {trim_log} -basein {fp} -baseout {output_dir}/{out_base}"
             illuminaclip_str = f"ILLUMINACLIP:{self.trim_adapter_fasta}:{self.trim_seed_mismatches}:" \
                               f"{self.trim_palindrom_clip_thresh}:{self.trim_simple_clip_thresh}:" \
                               f"{self.trim_min_adapter_length}:{self.trim_keep_both_reads}"
@@ -155,6 +157,7 @@ class Pipeline:
             minlen_str = f"MINLEN:{self.trim_min_len}"
             run_str = f"{run_str} {illuminaclip_str} {leading_str} {trailing_str} {minlen_str}"
             log.info(f"writing output of {fp} to {output_dir}/{out_base}")
+            run_str = f"{self.java_executable_fp} -jar {self.trim_executable_fp}"
             run_cmd([
                     run_str
                 ],

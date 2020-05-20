@@ -84,12 +84,16 @@ def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
             cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
             log.info('executing "%s"', cmd_line_str)
             log_file.write('executing "{}"'.format(cmd_line_str))
+            """
             output = subprocess.run(
                 cmd_line_list,
                 stdout=log_file,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
                 **kwargs)
+            """
+            print(f"cmd_line_list = {cmd_line_list}")
+            output = subprocess.run(cmd_line_list)
             log.info(output)
         return output
     except subprocess.CalledProcessError as c:
@@ -112,7 +116,7 @@ def get_forward_fastq_files(input_dir, debug=False):
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
-    input_glob = os.path.join(input_dir, '*_[R0]1*.fastq*')
+    input_glob = os.path.join(input_dir, '*_1*.fastq*')
     log.info('searching for forward read files with glob "%s"', input_glob)
     forward_fastq_files = glob.glob(input_glob)
     if len(forward_fastq_files) == 0:
