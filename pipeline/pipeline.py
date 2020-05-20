@@ -36,14 +36,14 @@ def get_args():
 
 class Pipeline:
     def __init__(self,
-                 config_fp
+                 config
                  ):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.fastqc_executable_fp = os.environ.get('FASTQC', default='fastqc')
         self.trim_executable_fp = os.environ.get('TRIMMOMATIC', default='trimmomatic')
         self.frag_executable_fp = os.environ.get('FRAGGENESCAN', default='fraggenescan')
         self.interproscan_executable_fp = os.environ.get('INTERPROSCAN', default='interproscan')
-        self.config_fp = config_fp
+        self.config_fp = config
         self.read_config()
 
 
