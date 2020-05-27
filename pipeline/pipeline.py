@@ -80,7 +80,8 @@ class Pipeline:
         """
         output_dir_list = []
         output_dir_list.append(self.step_01_trimming(input_dir=self.in_dir))
-        exit()
+        if self.paired_ends:
+            output_dir_list.append(self.step_01_1_merge_paired_end_reads(input_dir=self.in_dir))
         output_dir_list.append(self.step_02_fastqc(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_03_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_04_get_orfs(input_dir=output_dir_list[-1]))
@@ -172,6 +173,70 @@ class Pipeline:
         return output_dir
 
 
+    def step_01_1_merge_paired_end_reads(self, input_dir):
+        log, output_dir = self.initialize_step()
+        if len(os.listdir(output_dir)) > 0:
+            log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
+        else:
+            log.info('PEAR executable: "%s"', self.pear_executable_fp)
+
+            for compressed_forward_fastq_fp in get_forward_fastq_files(input_dir=input_dir, debug=self.debug):
+                compressed_reverse_fastq_fp = get_associated_reverse_fastq_fp(forward_fp=compressed_forward_fastq_fp)
+
+                forward_fastq_fp, reverse_fastq_fp = ungzip_files(
+                    compressed_forward_fastq_fp,
+                    compressed_reverse_fastq_fp,
+                    target_dir=output_dir
+                )
+
+                joined_fastq_basename = re.sub(
+                    string=os.path.basename(forward_fastq_fp),
+                    pattern=r'_([0R]1)',
+                    repl=lambda m: '_merged'.format(m.group(1)))[:-6]
+
+                joined_fastq_fp_prefix = os.path.join(output_dir, joined_fastq_basename)
+                log.info('joining paired ends from "%s" and "%s"', forward_fastq_fp, reverse_fastq_fp)
+                log.info('writing joined paired-end reads to "%s"', joined_fastq_fp_prefix)
+                run_cmd([
+                        self.pear_executable_fp,
+                        '-f', forward_fastq_fp,
+                        '-r', reverse_fastq_fp,
+                        '-o', joined_fastq_fp_prefix,
+                        '--min-overlap', str(self.pear_min_overlap),
+                        '--max-assembly-length', str(self.pear_max_assembly_length),
+                        '--min-assembly-length', str(self.pear_min_assembly_length),
+                        '-j', str(self.core_count)
+                    ],
+                    log_file = os.path.join(output_dir, 'log'),
+                    debug=self.debug
+                )
+
+                # delete the uncompressed input files
+                os.remove(forward_fastq_fp)
+                os.remove(reverse_fastq_fp)
+                gzip_files(glob.glob(joined_fastq_fp_prefix + '.*.fastq'), debug=self.debug)
+                with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
+                    num_assembled = 0
+                    num_discarded = 0
+                    forward_fp = ""
+                    reverse_fp = ""
+                    for l in logcheck:
+                        if 'Forward reads file' in l:
+                            forward_fp = l.split(' ')[-1]
+                        elif 'Reverse reads file' in l:
+                            reverse_fp = l.split(' ')[-1]
+                        elif 'Assembled reads' in l and 'file' not in l:
+                            num_assembled = int(l.split(' ')[3].replace(',', ''))
+                        elif 'Discarded reads' in l and 'file' not in l:
+                            num_discarded = int(l.split(' ')[3].replace(',', ''))
+                            log.info("num_assembled = {}, num_discarded = {}".format(num_assembled, num_discarded))
+                            if num_discarded > num_assembled:
+                                log.warning("More sequences discarded than kept by PEAR for files '{}' and '{}'".format(forward_fp, reverse_fp))
+
+        self.complete_step(log, output_dir)
+        return output_dir
+
+
     def step_02_fastqc(self, input_dir):
         """
         Uses FastQC to filter out bad reads
@@ -179,18 +244,19 @@ class Pipeline:
         :return: string path to output directory
         """
         log, output_dir = self.initialize_step()
-        input_fps = glob.glob(f"{input_dir}/*.fastq")
+        if self.paired_ends:
+            input_fps = glob.glob(f"{input_dir}/*.assembled*.fastq.gz")
+        else:
+            input_fps = glob.glob(f"{input_dir}/*.fastq.gz")
         log.info(f"input files = {input_fps}")
         if len(input_fps) == 0:
             raise PipelineException(f'found no fastq files in directory "{input_dir}"')
         for fp in input_fps:
-            out_fp = os.path.join(output_dir, re.sub(
-                                                    string=os.path.basename(fp),
-                                                    pattern='\.fq',
-                                                    repl='.fastq'))
-            log.info(f"writing output of {fp} to {out_fp}")
+            log.info(f"qc on {fp}")
             run_cmd([
-                self.fastqc_executable_fp
+                self.fastqc_executable_fp,
+                fp,
+                f"--outdir={output_dir}"
                 # INCLUDE MORE ARGS
             ],
                 log_file=os.path.join(output_dir, 'log'),
@@ -214,11 +280,15 @@ class Pipeline:
         for fp in input_fps:
             out_fp = os.path.join(output_dir, re.sub(
                                                     string=os.path.basename(fp),
-                                                    pattern='\.fq',
-                                                    repl='.fastq'))
+                                                    pattern='\.fastq\.gz',
+                                                    repl='frags.fastq.gz'))
             log.info(f"writing output of {fp} to {out_fp}")
             run_cmd([
-                self.frag_executable_fp
+                self.frag_executable_fp,
+                f"-genome={fp}",
+                f"-out={out_fp}",
+                "-complete=0",
+                f"thread={self.threads}"
                 # INCLUDE MORE ARGS
             ],
                 log_file=os.path.join(output_dir, 'log'),
