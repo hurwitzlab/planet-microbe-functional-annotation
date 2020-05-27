@@ -4,6 +4,9 @@ Design principles:
   2. pipeline steps should correspond directly to functions
   3. there should be a single function that represents the pipeline
   4. for development the pipeline should be 'restartable'
+
+  To run:
+  python pipeline/pipeline.py -c ./data/configs/config.txt
 """
 import argparse
 import glob
