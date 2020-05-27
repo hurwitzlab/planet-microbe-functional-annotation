@@ -162,10 +162,9 @@ class Pipeline:
             run_arr.append(trailing_str)
             run_arr.append(minlen_str)
             log.info(f"writing output of {fp} to {output_dir}/{out_base}")
-            run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
-            run_cmd([
-                    run_arr
-                ],
+            #run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
+            run_cmd(
+                run_arr,
                 log_file=cmd_log,
                 debug=self.debug
             )
