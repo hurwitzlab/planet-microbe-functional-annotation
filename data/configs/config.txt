@@ -1,5 +1,5 @@
 [DEFAULT]
-in_dir = data/in
+in_dir = data/in_small
 out_dir = data/out
 threads = 1
 debug = 1
@@ -11,4 +11,7 @@ simple_clip_thresh = 10
 min_adapter_length = 2
 keep_both_reads = keepBothReads
 min_quality = 3
-min_length = 36
+trim_min_length = 36
+pear_min_length = 1
+pear_max_assembly = 1000
+pear_min_assembly = 2

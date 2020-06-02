@@ -44,9 +44,10 @@ class Pipeline:
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.fastqc_executable_fp = os.environ.get('FASTQC', default='fastqc')
         self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
-        print(f"trim = {self.trim_executable_fp}")
-        self.frag_executable_fp = os.environ.get('FRAGGENESCAN', default='fraggenescan')
+        #print(f"trim = {self.trim_executable_fp}")
+        self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl', default='run_FragGeneScan.pl')
         self.interproscan_executable_fp = os.environ.get('INTERPROSCAN', default='interproscan')
+        self.pear_executable_fp = os.environ.get('PEAR', default='pear')
         self.config_fp = config
         self.read_config()
 
@@ -71,7 +72,10 @@ class Pipeline:
         self.trim_min_adapter_length = config["DEFAULT"]["min_adapter_length"]
         self.trim_keep_both_reads = config["DEFAULT"]["keep_both_reads"]
         self.trim_min_quality = config["DEFAULT"]["min_quality"]
-        self.trim_min_len = config["DEFAULT"]["min_length"]
+        self.trim_min_len = config["DEFAULT"]["trim_min_length"]
+        self.pear_min_overlap = config["DEFAULT"]["pear_min_length"]
+        self.pear_max_assembly_length = config["DEFAULT"]["pear_max_assembly"]
+        self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
         return
 
 
@@ -137,10 +141,6 @@ class Pipeline:
         if len(input_fps) == 0:
             raise PipelineException(f'found no fastq files in directory "{input_dir}"')
         for fp in input_fps:
-            out_fp = os.path.join(output_dir, re.sub(
-                                                    string=os.path.basename(fp),
-                                                    pattern='\.fq',
-                                                    repl='.fastq'))
             run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
             if self.paired_ends:
                 run_arr.append("PE")
@@ -148,8 +148,8 @@ class Pipeline:
                 run_arr.append("SE")
             out_base = re.sub(
                 string=os.path.basename(fp),
-                pattern=r'_([0R])1',
-                repl="")
+                pattern=r'_1\.(fastq|fq)',
+                repl=".fastq")
             trim_log = f"{output_dir}/trim_log"
             cmd_log = f"{output_dir}/cmd_log"
             run_arr.extend(["-threads", self.threads, "-trimlog", trim_log, "-basein", fp, "-baseout",
@@ -177,63 +177,57 @@ class Pipeline:
 
     def step_01_1_merge_paired_end_reads(self, input_dir):
         log, output_dir = self.initialize_step()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
-        else:
-            log.info('PEAR executable: "%s"', self.pear_executable_fp)
+        log.info('PEAR executable: "%s"', self.pear_executable_fp)
 
-            for compressed_forward_fastq_fp in get_forward_fastq_files(input_dir=input_dir, debug=self.debug):
-                compressed_reverse_fastq_fp = get_associated_reverse_fastq_fp(forward_fp=compressed_forward_fastq_fp)
+        for compressed_forward_fastq_fp in get_forward_fastq_files(input_dir=input_dir, debug=self.debug):
+            compressed_reverse_fastq_fp = get_associated_reverse_fastq_fp(forward_fp=compressed_forward_fastq_fp)
 
-                forward_fastq_fp, reverse_fastq_fp = ungzip_files(
-                    compressed_forward_fastq_fp,
-                    compressed_reverse_fastq_fp,
-                    target_dir=output_dir
-                )
+            forward_fastq_fp, reverse_fastq_fp = ungzip_files(
+                compressed_forward_fastq_fp,
+                compressed_reverse_fastq_fp,
+                target_dir=output_dir
+            )
 
-                joined_fastq_basename = re.sub(
-                    string=os.path.basename(forward_fastq_fp),
-                    pattern=r'_([0R]1)',
-                    repl=lambda m: '_merged'.format(m.group(1)))[:-6]
+            joined_fastq_basename = re.sub(
+                string=os.path.basename(forward_fastq_fp),
+                pattern=r'_1P',
+                repl=lambda m: '_merged')
 
-                joined_fastq_fp_prefix = os.path.join(output_dir, joined_fastq_basename)
-                log.info('joining paired ends from "%s" and "%s"', forward_fastq_fp, reverse_fastq_fp)
-                log.info('writing joined paired-end reads to "%s"', joined_fastq_fp_prefix)
-                run_cmd([
-                        self.pear_executable_fp,
-                        '-f', forward_fastq_fp,
-                        '-r', reverse_fastq_fp,
-                        '-o', joined_fastq_fp_prefix,
-                        '--min-overlap', str(self.pear_min_overlap),
-                        '--max-assembly-length', str(self.pear_max_assembly_length),
-                        '--min-assembly-length', str(self.pear_min_assembly_length),
-                        '-j', str(self.core_count)
-                    ],
-                    log_file = os.path.join(output_dir, 'log'),
-                    debug=self.debug
-                )
+            joined_fastq_fp_prefix = os.path.join(output_dir, joined_fastq_basename)
+            log.info('joining paired ends from "%s" and "%s"', forward_fastq_fp, reverse_fastq_fp)
+            log.info('writing joined paired-end reads to "%s"', joined_fastq_fp_prefix)
+            run_cmd([
+                    self.pear_executable_fp,
+                    '-f', forward_fastq_fp,
+                    '-r', reverse_fastq_fp,
+                    '-o', joined_fastq_fp_prefix,
+                    '--min-overlap', str(self.pear_min_overlap),
+                    '--max-assembly-length', str(self.pear_max_assembly_length),
+                    '--min-assembly-length', str(self.pear_min_assembly_length),
+                    '-j', str(self.threads)
+                ],
+                log_file = os.path.join(output_dir, 'log'),
+                debug=self.debug
+            )
 
-                # delete the uncompressed input files
-                os.remove(forward_fastq_fp)
-                os.remove(reverse_fastq_fp)
-                gzip_files(glob.glob(joined_fastq_fp_prefix + '.*.fastq'), debug=self.debug)
-                with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
-                    num_assembled = 0
-                    num_discarded = 0
-                    forward_fp = ""
-                    reverse_fp = ""
-                    for l in logcheck:
-                        if 'Forward reads file' in l:
-                            forward_fp = l.split(' ')[-1]
-                        elif 'Reverse reads file' in l:
-                            reverse_fp = l.split(' ')[-1]
-                        elif 'Assembled reads' in l and 'file' not in l:
-                            num_assembled = int(l.split(' ')[3].replace(',', ''))
-                        elif 'Discarded reads' in l and 'file' not in l:
-                            num_discarded = int(l.split(' ')[3].replace(',', ''))
-                            log.info("num_assembled = {}, num_discarded = {}".format(num_assembled, num_discarded))
-                            if num_discarded > num_assembled:
-                                log.warning("More sequences discarded than kept by PEAR for files '{}' and '{}'".format(forward_fp, reverse_fp))
+            gzip_files(glob.glob(joined_fastq_fp_prefix + '.*.fastq'), debug=self.debug)
+            with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
+                num_assembled = 0
+                num_discarded = 0
+                forward_fp = ""
+                reverse_fp = ""
+                for l in logcheck:
+                    if 'Forward reads file' in l:
+                        forward_fp = l.split(' ')[-1]
+                    elif 'Reverse reads file' in l:
+                        reverse_fp = l.split(' ')[-1]
+                    elif 'Assembled reads' in l and 'file' not in l:
+                        num_assembled = int(l.split(' ')[3].replace(',', ''))
+                    elif 'Discarded reads' in l and 'file' not in l:
+                        num_discarded = int(l.split(' ')[3].replace(',', ''))
+                        log.info("num_assembled = {}, num_discarded = {}".format(num_assembled, num_discarded))
+                        if num_discarded > num_assembled:
+                            log.warning("More sequences discarded than kept by PEAR for files '{}' and '{}'".format(forward_fp, reverse_fp))
 
         self.complete_step(log, output_dir)
         return output_dir

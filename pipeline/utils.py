@@ -116,7 +116,7 @@ def get_forward_fastq_files(input_dir, debug=False):
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
-    input_glob = os.path.join(input_dir, '*_1*.fastq*')
+    input_glob = os.path.join(input_dir, '*_1.f*q*')
     log.info('searching for forward read files with glob "%s"', input_glob)
     forward_fastq_files = glob.glob(input_glob)
     if len(forward_fastq_files) == 0:
@@ -128,7 +128,7 @@ def get_associated_reverse_fastq_fp(forward_fp):
     forward_input_dir, forward_basename = os.path.split(forward_fp)
     reverse_fastq_basename = re.sub(
         string=forward_basename,
-        pattern=r'_([0R])1',
-        repl=lambda m: '_{}2'.format(m.group(1)))
+        pattern=r'_1P.fastq',
+        repl=lambda m: '_2P.fastq')
     reverse_fastq_fp = os.path.join(forward_input_dir, reverse_fastq_basename)
     return reverse_fastq_fp
