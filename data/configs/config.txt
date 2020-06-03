@@ -15,3 +15,5 @@ trim_min_length = 36
 pear_min_length = 1
 pear_max_assembly = 1000
 pear_min_assembly = 2
+vsearch_filter_maxee = 5
+vsearch_filter_trunclen = 500

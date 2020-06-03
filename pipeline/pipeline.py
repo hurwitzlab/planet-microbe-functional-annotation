@@ -42,7 +42,7 @@ class Pipeline:
                  config
                  ):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
-        self.fastqc_executable_fp = os.environ.get('FASTQC', default='fastqc')
+        self.vsearch_executable_fp = os.environ.get('vsearch', default='vsearch')
         self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
         #print(f"trim = {self.trim_executable_fp}")
         self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl', default='run_FragGeneScan.pl')
@@ -76,6 +76,8 @@ class Pipeline:
         self.pear_min_overlap = config["DEFAULT"]["pear_min_length"]
         self.pear_max_assembly_length = config["DEFAULT"]["pear_max_assembly"]
         self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
+        self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
+        self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
         return
 
 
@@ -89,7 +91,7 @@ class Pipeline:
         output_dir_list.append(self.step_01_trimming(input_dir=self.in_dir))
         if self.paired_ends:
             output_dir_list.append(self.step_01_1_merge_paired_end_reads(input_dir=self.in_dir))
-        output_dir_list.append(self.step_02_fastqc(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_02_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_03_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_04_get_orfs(input_dir=output_dir_list[-1]))
         return output_dir_list
@@ -233,12 +235,66 @@ class Pipeline:
         return output_dir
 
 
+    def step_02_qc_reads_with_vsearch(self, input_dir):
+        log, output_dir = self.initialize_step()
+        if self.paired_ends is True:
+            input_files_glob = os.path.join(input_dir, '*.assembled*.fastq.gz')
+        else:
+            input_files_glob = os.path.join(input_dir, '*.fastq.gz')
+        input_file_list = glob.glob(input_files_glob)
+        if len(input_file_list) == 0:
+            raise PipelineException('found no .fastq.gz files in directory "{}"'.format(input_dir))
+        log.info('input file glob: "%s"', input_files_glob)
+        for assembled_fastq_fp in input_file_list:
+            input_file_basename = os.path.basename(assembled_fastq_fp)
+            output_file_basename = re.sub(
+                string=input_file_basename,
+                pattern='\.fastq\.gz',
+                repl='.ee{}trunc{}.fastq.gz'.format(self.vsearch_filter_maxee, self.vsearch_filter_trunclen)
+            )
+            output_fastq_fp = os.path.join(output_dir, output_file_basename)
+
+            log.info('vsearch executable: "%s"', self.vsearch_executable_fp)
+            log.info('filtering "%s"', assembled_fastq_fp)
+            run_cmd([
+                    self.vsearch_executable_fp,
+                    '-fastq_filter', assembled_fastq_fp,
+                    '-fastqout', output_fastq_fp,
+                    '-fastq_maxee', str(self.vsearch_filter_maxee),
+                    '-fastq_trunclen', str(self.vsearch_filter_trunclen),
+                    '-threads', str(self.core_count)
+                ],
+                log_file = os.path.join(output_dir, 'log'),
+                debug=self.debug
+            )
+        gzip_files(glob.glob(os.path.join(output_dir, '*.fastq')), debug=self.debug)
+        with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
+            kept_num = 0
+            discarded_num = 0
+            for l in logcheck:
+                if 'sequences kept' in l:
+                    l_arr = l.split(' ')
+                    kept_num = int(l_arr[0])
+                    discarded_num = int(l_arr[7])
+                if 'executing' in l:
+                    l_arr = l.split(' ')
+                    ran_fp = l[3]
+                    log.info("kept_num = {}, discarded_num = {}".format(kept_num, discarded_num))
+                    if kept_num == 0:
+                        log.error("No sequences kept by vsearch qc for input file '{}'".format(ran_fp))
+                    if discarded_num > kept_num:
+                        log.warning("More sequences discarded than kept by vsearch qc for input file '{}'".format(ran_fp))
+        self.complete_step(log, output_dir)
+        return output_dir
+
+
+"""
     def step_02_fastqc(self, input_dir):
-        """
+        
         Uses FastQC to filter out bad reads
         :param input_dir: string path to input files
         :return: string path to output directory
-        """
+        
         log, output_dir = self.initialize_step()
         if self.paired_ends:
             input_fps = glob.glob(f"{input_dir}/*.assembled*.fastq.gz")
@@ -260,7 +316,7 @@ class Pipeline:
             )
         self.complete_step(log, output_dir)
         return output_dir
-
+"""
 
     def step_03_get_gene_reads(self, input_dir):
         """
