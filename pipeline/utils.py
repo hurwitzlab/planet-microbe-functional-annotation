@@ -36,7 +36,7 @@ def create_output_dir(output_dir_name, parent_dir=None, input_dir=None, debug=Fa
         raise ValueError('exactly one of parent_dir and input_dir must be None')
 
     log = logging.getLogger(name=__name__)
-    if debug is True:
+    if debug:
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
@@ -50,10 +50,11 @@ def create_output_dir(output_dir_name, parent_dir=None, input_dir=None, debug=Fa
 
 def gzip_files(file_list, debug=False):
     log = logging.getLogger(name=__name__)
-    if debug is True:
+    if debug:
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
+    log.info("in gzip_files")
     for fp in file_list:
         with open(fp, 'rt') as src, gzip.open(fp + '.gz', 'wt') as dst:
             log.info('compressing file "%s"', fp)
@@ -61,12 +62,17 @@ def gzip_files(file_list, debug=False):
         os.remove(fp)
 
 
-def ungzip_files(*fp_list, target_dir):
+def ungzip_files(*fp_list, target_dir, debug=False):
+    log = logging.getLogger(name=__name__)
+    if debug:
+        log.setLevel(logging.DEBUG)
+    else:
+        log.setLevel(logging.WARNING)
     uncompressed_fps = []
     for fp in fp_list:
         # remove '.gz' from the file path
         uncompressed_fp = os.path.join(target_dir, os.path.basename(fp)[:-3])
-        print('unzipping {} into {}'.format(fp, uncompressed_fp))
+        log.info('unzipping {} to {}'.format(fp, uncompressed_fp))
         uncompressed_fps.append(uncompressed_fp)
         with gzip.open(fp, 'rt') as src, open(uncompressed_fp, 'wt') as dst:
             shutil.copyfileobj(fsrc=src, fdst=dst)
@@ -75,7 +81,7 @@ def ungzip_files(*fp_list, target_dir):
 
 def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
     log = logging.getLogger(name=__name__)
-    if debug is True:
+    if debug:
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
@@ -84,16 +90,13 @@ def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
             cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
             log.info('executing "%s"', cmd_line_str)
             log_file.write('executing "{}"'.format(cmd_line_str))
-            """
             output = subprocess.run(
                 cmd_line_list,
                 stdout=log_file,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
                 **kwargs)
-            """
-            print(f"cmd_line_list = {cmd_line_list}")
-            output = subprocess.run(cmd_line_list)
+            #output = subprocess.run(cmd_line_list)
             log.info(output)
         return output
     except subprocess.CalledProcessError as c:
@@ -112,11 +115,25 @@ def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
 
 def get_forward_fastq_files(input_dir, debug=False):
     log = logging.getLogger(name=__name__)
-    if debug is True:
+    if debug:
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
     input_glob = os.path.join(input_dir, '*_1.f*q*')
+    log.info('searching for forward read files with glob "%s"', input_glob)
+    forward_fastq_files = glob.glob(input_glob)
+    if len(forward_fastq_files) == 0:
+        raise PipelineException('found no forward reads from glob "{}"'.format(input_glob))
+    return forward_fastq_files
+
+
+def get_trimmed_forward_fastq_files(input_dir, debug=False):
+    log = logging.getLogger(name=__name__)
+    if debug:
+        log.setLevel(logging.DEBUG)
+    else:
+        log.setLevel(logging.WARNING)
+    input_glob = os.path.join(input_dir, '*_1P.fastq*')
     log.info('searching for forward read files with glob "%s"', input_glob)
     forward_fastq_files = glob.glob(input_glob)
     if len(forward_fastq_files) == 0:

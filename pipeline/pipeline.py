@@ -21,7 +21,7 @@ import configparser
 
 #TODO CHANGE BACK TO cluster_16S.
 from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list, \
-    get_forward_fastq_files, get_associated_reverse_fastq_fp
+    get_forward_fastq_files, get_associated_reverse_fastq_fp, get_trimmed_forward_fastq_files
 
 
 def main():
@@ -61,7 +61,7 @@ class Pipeline:
         config = configparser.ConfigParser()
         config.read(self.config_fp)
         self.paired_ends = config["DEFAULT"]["paired_ends"]
-        self.debug = config["DEFAULT"]["debug"]
+        self.debug = int(config["DEFAULT"]["debug"])
         self.in_dir = config["DEFAULT"]["in_dir"]
         self.out_dir = config["DEFAULT"]["out_dir"]
         self.threads = config["DEFAULT"]["threads"]
@@ -78,6 +78,7 @@ class Pipeline:
         self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
         self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
         self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
+        self.frag_train_file = config["DEFAULT"]["frag_train_file"]
         return
 
 
@@ -88,12 +89,13 @@ class Pipeline:
         :return:
         """
         output_dir_list = []
-        output_dir_list.append(self.step_01_trimming(input_dir=self.in_dir))
+        output_dir_list.append(self.step_01_copy_and_compress(input_dir=self.in_dir))
+        output_dir_list.append(self.step_02_trimming(input_dir=output_dir_list[-1]))
         if self.paired_ends:
-            output_dir_list.append(self.step_01_1_merge_paired_end_reads(input_dir=self.in_dir))
-        output_dir_list.append(self.step_02_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_03_get_gene_reads(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_04_get_orfs(input_dir=output_dir_list[-1]))
+            output_dir_list.append(self.step_02_1_merge_paired_end_reads(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_03_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_05_get_orfs(input_dir=output_dir_list[-1]))
         return output_dir_list
 
 
@@ -104,7 +106,7 @@ class Pipeline:
         """
         function_name = sys._getframe(1).f_code.co_name
         log = logging.getLogger(name=function_name)
-        if self.debug is True:
+        if self.debug:
             log.setLevel(logging.DEBUG)
         else:
             log.setLevel(logging.WARNING)
@@ -125,7 +127,67 @@ class Pipeline:
         return
 
 
-    def step_01_trimming(self, input_dir):
+    def step_01_copy_and_compress(self, input_dir):
+        log, output_dir = self.initialize_step()
+        if len(os.listdir(output_dir)) > 0:
+            log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
+        else:
+            log.debug('output_dir: %s', output_dir)
+            # Check for fasta and qual files
+            fasta_files = []
+            types = ['*.fasta*', '*.fa*']
+            for t in types:
+                fasta_files.extend(glob.glob(os.path.join(input_dir, t)))
+            fasta_files = sorted(fasta_files)
+            log.info('possible fasta files: "%s"', fasta_files)
+            qual_file_glob = os.path.join(input_dir, '*.qual*')
+            qual_files = sorted(glob.glob(qual_file_glob))
+            log.info('qual files: "%s"', qual_files)
+            fastas_no_slashes = [fasta.replace('\\', ' ').replace('/', ' ').split()[-1] for fasta in fasta_files]
+            quals_no_slashes = [qual.replace('\\', ' ').replace('/', ' ').split()[-1] for qual in qual_files]
+            fastas = [fasta.split(".")[0] for fasta in fastas_no_slashes]
+            quals = [qual.split('.')[0] for qual in quals_no_slashes]
+            for fasta in fastas:
+                for qual in quals:
+                    if fasta == qual:
+                        tmpfasta = os.path.join(input_dir, fasta + ".fasta")
+                        tmpqual = os.path.join(input_dir, qual + ".qual")
+                        tmpfastq = os.path.join(input_dir, fasta + ".fastq")
+                        log.info("Creating %s", tmpfastq)
+                        fasta_qual_to_fastq(tmpfasta, tmpqual, tmpfastq)
+                        log.info('%s created', tmpfastq)
+                        quals.remove(qual)
+                        break
+            input_fp_list = []
+            types = ['*.fastq*', '*.fq*']
+            for t in types:
+                input_fp_list.extend(glob.glob(os.path.join(input_dir, t)))
+            log.info('input files: %s', input_fp_list)
+
+            if len(input_fp_list) == 0:
+                raise PipelineException('found no fastq files in directory "{}"'.format(input_dir))
+
+            for input_fp in input_fp_list:
+                destination_name = re.sub(
+                                        string=os.path.basename(input_fp),
+                                        pattern='\.fq',
+                                        repl='.fastq')
+                destination_fp = os.path.join(output_dir, destination_name)
+                if input_fp.endswith('.gz'):
+                    log.info(f"already compressed, copying {input_fp} to {destination_fp}")
+                    with open(input_fp, 'rb') as f, open(destination_fp, 'wb') as g:
+                        shutil.copyfileobj(fsrc=f, fdst=g)
+                else:
+                    destination_fp = destination_fp + '.gz'
+                    log.info(f"compressing {input_fp} to {destination_fp}")
+                    with open(input_fp, 'rt') as f, gzip.open(destination_fp, 'wt') as g:
+                        shutil.copyfileobj(fsrc=f, fdst=g)
+
+        self.complete_step(log, output_dir)
+        return output_dir
+
+
+    def step_02_trimming(self, input_dir):
         """
         Uses Trimmomatic to trim reads
         :param input_dir: path to input files
@@ -153,7 +215,6 @@ class Pipeline:
                 pattern=r'_1\.(fastq|fq)',
                 repl=".fastq")
             trim_log = f"{output_dir}/trim_log"
-            cmd_log = f"{output_dir}/cmd_log"
             run_arr.extend(["-threads", self.threads, "-trimlog", trim_log, "-basein", fp, "-baseout",
                             os.path.join(output_dir, out_base)])
             illuminaclip_str = f"ILLUMINACLIP:{self.trim_adapter_fasta}:{self.trim_seed_mismatches}:" \
@@ -170,24 +231,25 @@ class Pipeline:
             #run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
             run_cmd(
                 run_arr,
-                log_file=cmd_log,
+                log_file=os.path.join(output_dir, 'log'),
                 debug=self.debug
             )
         self.complete_step(log, output_dir)
         return output_dir
 
 
-    def step_01_1_merge_paired_end_reads(self, input_dir):
+    def step_02_1_merge_paired_end_reads(self, input_dir):
         log, output_dir = self.initialize_step()
         log.info('PEAR executable: "%s"', self.pear_executable_fp)
 
-        for compressed_forward_fastq_fp in get_forward_fastq_files(input_dir=input_dir, debug=self.debug):
+        for compressed_forward_fastq_fp in get_trimmed_forward_fastq_files(input_dir=input_dir, debug=self.debug):
             compressed_reverse_fastq_fp = get_associated_reverse_fastq_fp(forward_fp=compressed_forward_fastq_fp)
 
             forward_fastq_fp, reverse_fastq_fp = ungzip_files(
                 compressed_forward_fastq_fp,
                 compressed_reverse_fastq_fp,
-                target_dir=output_dir
+                target_dir=output_dir,
+                debug=self.debug
             )
 
             joined_fastq_basename = re.sub(
@@ -235,9 +297,9 @@ class Pipeline:
         return output_dir
 
 
-    def step_02_qc_reads_with_vsearch(self, input_dir):
+    def step_03_qc_reads_with_vsearch(self, input_dir):
         log, output_dir = self.initialize_step()
-        if self.paired_ends is True:
+        if self.paired_ends:
             input_files_glob = os.path.join(input_dir, '*.assembled*.fastq.gz')
         else:
             input_files_glob = os.path.join(input_dir, '*.fastq.gz')
@@ -250,24 +312,27 @@ class Pipeline:
             output_file_basename = re.sub(
                 string=input_file_basename,
                 pattern='\.fastq\.gz',
-                repl='.ee{}trunc{}.fastq.gz'.format(self.vsearch_filter_maxee, self.vsearch_filter_trunclen)
+                repl='.ee{}trunc{}.fastq.gz'.format(self.vsearch_filter_maxee, self.vsearch_filter_trunclen)[:-3]
             )
             output_fastq_fp = os.path.join(output_dir, output_file_basename)
-
+            uncompressed_input_fp = ungzip_files(assembled_fastq_fp, target_dir=input_dir, debug=self.debug)[0]
+            
             log.info('vsearch executable: "%s"', self.vsearch_executable_fp)
-            log.info('filtering "%s"', assembled_fastq_fp)
+            log.info('filtering "%s"', uncompressed_input_fp)
             run_cmd([
                     self.vsearch_executable_fp,
-                    '-fastq_filter', assembled_fastq_fp,
+                    '-fastq_filter', uncompressed_input_fp,
                     '-fastqout', output_fastq_fp,
                     '-fastq_maxee', str(self.vsearch_filter_maxee),
                     '-fastq_trunclen', str(self.vsearch_filter_trunclen),
-                    '-threads', str(self.core_count)
+                    '-threads', str(self.threads)
                 ],
                 log_file = os.path.join(output_dir, 'log'),
                 debug=self.debug
             )
-        gzip_files(glob.glob(os.path.join(output_dir, '*.fastq')), debug=self.debug)
+        gzip_glob = glob.glob(os.path.join(output_dir, '*.fastq'))
+        log.info(f"zipping files {gzip_glob}")
+        gzip_files(gzip_glob, debug=self.debug)
         with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
             kept_num = 0
             discarded_num = 0
@@ -278,7 +343,7 @@ class Pipeline:
                     discarded_num = int(l_arr[7])
                 if 'executing' in l:
                     l_arr = l.split(' ')
-                    ran_fp = l[3]
+                    ran_fp = l_arr[3]
                     log.info("kept_num = {}, discarded_num = {}".format(kept_num, discarded_num))
                     if kept_num == 0:
                         log.error("No sequences kept by vsearch qc for input file '{}'".format(ran_fp))
@@ -288,7 +353,7 @@ class Pipeline:
         return output_dir
 
 
-"""
+    """
     def step_02_fastqc(self, input_dir):
         
         Uses FastQC to filter out bad reads
@@ -316,30 +381,33 @@ class Pipeline:
             )
         self.complete_step(log, output_dir)
         return output_dir
-"""
+    """
 
-    def step_03_get_gene_reads(self, input_dir):
+    def step_04_get_gene_reads(self, input_dir):
         """
         Uses FragGeneScan to find reads containing fragments of genes
         :param input_dir: string path to input files
         :return: string path to output directory
         """
         log, output_dir = self.initialize_step()
-        input_fps = glob.glob(f"{input_dir}/*.fastq")
+        input_fps = glob.glob(f"{input_dir}/*.fastq.gz")
         log.info(f"input files = {input_fps}")
         if len(input_fps) == 0:
             raise PipelineException(f'found no fastq files in directory "{input_dir}"')
-        for fp in input_fps:
+        log.info("uncompressing input files")
+        uncompressed_input_fps = ungzip_files(*input_fps, target_dir=input_dir, debug=self.debug)
+        for fp in uncompressed_input_fps:
             out_fp = os.path.join(output_dir, re.sub(
                                                     string=os.path.basename(fp),
-                                                    pattern='\.fastq\.gz',
-                                                    repl='frags.fastq.gz'))
+                                                    pattern='\.fastq',
+                                                    repl='frags.fastq'))
             log.info(f"writing output of {fp} to {out_fp}")
             run_cmd([
                 self.frag_executable_fp,
                 f"-genome={fp}",
                 f"-out={out_fp}",
                 "-complete=0",
+                f"-train={self.frag_train_file}",
                 f"thread={self.threads}"
                 # INCLUDE MORE ARGS
             ],
@@ -350,7 +418,7 @@ class Pipeline:
         return output_dir
 
 
-    def step_04_get_orfs(self, input_dir):
+    def step_05_get_orfs(self, input_dir):
         """
         Uses Interproscan to get ORFS and connect them to GO terms
         :param input_dir: string path to input files

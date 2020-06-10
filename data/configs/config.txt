@@ -1,5 +1,5 @@
 [DEFAULT]
-in_dir = data/in_small
+in_dir = data/in
 out_dir = data/out
 threads = 1
 debug = 1
@@ -17,3 +17,4 @@ pear_max_assembly = 1000
 pear_min_assembly = 2
 vsearch_filter_maxee = 5
 vsearch_filter_trunclen = 500
+frag_train_file = illumina_1
