@@ -1,0 +1,34 @@
+# pear
+apt-get install build-essential autoconf automake libtool
+# HAVE TO REGISTER WITH THIS WEBSITE TO DOWNLOAD:
+# http://www.exelixis-lab.org/web/software/pear
+
+# Old pear commands, might be used if downloading source rather than binaries
+# cd PEAR
+# ./autogen.sh
+# ./configure
+# make
+# sudo make install
+
+# FragGeneScan
+wget https://sourceforge.net/projects/fraggenescan/files/latest/download
+tar -xvzf download
+rm download
+cd FragGeneScan1.31
+make clean
+make fgs
+
+# Trimmomatic
+wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip
+unzip Trimmomatic-0.39.zip
+rm Trimmomatic-0.39.zip
+
+# vsearch
+wget https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz
+tar -xzf v2.14.2.tar.gz
+r, v2.14.2.tar.gz
+cd vsearch-2.14.2
+./autogen.sh
+./configure
+make
+make install
