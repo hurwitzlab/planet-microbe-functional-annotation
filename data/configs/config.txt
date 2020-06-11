@@ -1,7 +1,7 @@
 [DEFAULT]
 in_dir = data/in
 out_dir = data/out
-threads = 1
+threads = 2
 debug = 1
 paired_ends = 1
 adapter_fasta = data/configs/TruSeq3-PE.fa
@@ -15,6 +15,6 @@ trim_min_length = 36
 pear_min_length = 1
 pear_max_assembly = 1000
 pear_min_assembly = 2
-vsearch_filter_maxee = 5
-vsearch_filter_trunclen = 500
-frag_train_file = illumina_1
+vsearch_filter_maxee = 20
+vsearch_filter_minlen = 300
+frag_train_file = illumina_10

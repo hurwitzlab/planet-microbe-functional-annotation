@@ -149,3 +149,22 @@ def get_associated_reverse_fastq_fp(forward_fp):
         repl=lambda m: '_2P.fastq')
     reverse_fastq_fp = os.path.join(forward_input_dir, reverse_fastq_basename)
     return reverse_fastq_fp
+
+
+def fastq_to_fasta(fastq_fp, fasta_fp):
+    line_count = 0
+    if fastq_fp[-3:] == ".gz":
+        in_file = gzip.open(fastq_fp, "rb")
+        out_file = gzip.open(fasta_fp, "w")
+    else:
+        in_file = open(fastq_fp, "r")
+        out_file = open(fasta_fp, "w")
+    for l in in_file:
+        if line_count % 4 == 0:
+            out_file.write(f">{l[1:]}")
+        elif line_count % 4 == 1:
+            out_file.write(l)
+    in_file.close()
+    out_file.close()
+    
+    
