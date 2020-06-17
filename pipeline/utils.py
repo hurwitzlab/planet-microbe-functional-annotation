@@ -44,7 +44,7 @@ def create_output_dir(output_dir_name, parent_dir=None, input_dir=None, debug=Fa
     if os.path.exists(output_dir):
         log.warning('directory "%s" already exists', output_dir)
     else:
-        os.mkdir(output_dir)
+        os.makedirs(output_dir)
     return output_dir
 
 
