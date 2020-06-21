@@ -159,7 +159,7 @@ def fastq_to_fasta(fastq_fp, fasta_fp):
     else:
         in_file = open(fastq_fp, "r")
         out_file = open(fasta_fp, "w")
-    for l in in_file:
+    for line_count, l in enumerate(in_file):
         if line_count % 4 == 0:
             out_file.write(f">{l[1:]}")
         elif line_count % 4 == 1:
