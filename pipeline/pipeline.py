@@ -78,6 +78,7 @@ class Pipeline:
         self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
         self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
         self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
+        self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
         self.frag_train_file = config["DEFAULT"]["frag_train_file"]
         return
 
@@ -361,6 +362,47 @@ class Pipeline:
         self.complete_step(log, output_dir)
         return output_dir
 
+    def step_03_1_dereplicate_sort_remove_low_abundance_reads(self, input_dir):
+        log, output_dir = self.initialize_step()
+        if len(os.listdir(output_dir)) > 0:
+            log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
+        else:
+            log.info('input directory listing:\n\t%s', '\n\t'.join(os.listdir(input_dir)))
+            input_files_glob = os.path.join(input_dir, '*.assembled.*.fastq.gz')
+            log.info('input file glob: "%s"', input_files_glob)
+            input_fp_list = sorted(glob.glob(input_files_glob))
+
+            for input_fp in input_fp_list:
+                output_fp = os.path.join(
+                    output_dir,
+                    re.sub(
+                        string=os.path.basename(input_fp),
+                        pattern='\.fastq$',
+                        repl='.derepmin{}.fasta'.format(self.vsearch_derep_minuniquesize)))
+
+                uc_fp = os.path.join(
+                    output_dir,
+                    re.sub(
+                        string=os.path.basename(input_fp),
+                        pattern='\.fastq$',
+                        repl='.derepmin{}.txt'.format(self.vsearch_derep_minuniquesize)))
+
+                run_cmd([
+                        self.vsearch_executable_fp,
+                        '-derep_fulllength', input_fp,
+                        '-output', output_fp,
+                        '-uc', uc_fp,
+                        '-sizeout',
+                        '-minuniquesize', str(self.vsearch_derep_minuniquesize),
+                        '-threads', str(self.threads)
+                    ],
+                    log_file = os.path.join(output_dir, 'log')
+                )
+
+            #gzip_files(glob.glob(os.path.join(output_dir, '*.fasta')))
+
+        self.complete_step(log, output_dir)
+        return output_dir
 
     """
     def step_02_fastqc(self, input_dir):
