@@ -26,7 +26,7 @@ rm Trimmomatic-0.39.zip
 # vsearch
 wget https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz
 tar -xzf v2.14.2.tar.gz
-r, v2.14.2.tar.gz
+rm v2.14.2.tar.gz
 cd vsearch-2.14.2
 ./autogen.sh
 ./configure
