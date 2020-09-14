@@ -43,7 +43,8 @@ class Pipeline:
                  ):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.vsearch_executable_fp = os.environ.get('vsearch', default='vsearch')
-        self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
+        #self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
+        self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/u29/mattmiller899/Trimmomatic-0.39/trimmomatic-0.39.jar')
         #print(f"trim = {self.trim_executable_fp}")
         self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl', default='run_FragGeneScan.pl')
         self.interproscan_executable_fp = os.environ.get('INTERPROSCAN.SH', default='interproscan.sh')
@@ -78,7 +79,8 @@ class Pipeline:
         self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
         self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
         self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
-        self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
+        #self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
+        #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
         self.frag_train_file = config["DEFAULT"]["frag_train_file"]
         return
 
@@ -95,6 +97,7 @@ class Pipeline:
         if self.paired_ends:
             output_dir_list.append(self.step_02_1_merge_paired_end_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_03_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_03_1_chunk_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_05_get_orfs(input_dir=output_dir_list[-1]))
         return output_dir_list
@@ -335,6 +338,7 @@ class Pipeline:
                         '-fastqout', output_fastq_fp,
                         '-fastq_maxee', str(self.vsearch_filter_maxee),
                         '-fastq_minlen', str(self.vsearch_filter_minlen),
+                        #'-fastq_trunclen', str(self.vsearch_filter_trunclen),
                         '-threads', str(self.threads)
                     ],
                     log_file = os.path.join(output_dir, 'log'),
@@ -362,43 +366,33 @@ class Pipeline:
         self.complete_step(log, output_dir)
         return output_dir
 
-    def step_03_1_dereplicate_sort_remove_low_abundance_reads(self, input_dir):
+    def step_03_1_chunk_reads(self, input_dir):
         log, output_dir = self.initialize_step()
         if len(os.listdir(output_dir)) > 0:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
             log.info('input directory listing:\n\t%s', '\n\t'.join(os.listdir(input_dir)))
-            input_files_glob = os.path.join(input_dir, '*.assembled.*.fastq.gz')
+            input_files_glob = os.path.join(input_dir, '*.assembled.*.fastq')
             log.info('input file glob: "%s"', input_files_glob)
             input_fp_list = sorted(glob.glob(input_files_glob))
-
+            chunk_size = 10000
             for input_fp in input_fp_list:
-                output_fp = os.path.join(
-                    output_dir,
-                    re.sub(
-                        string=os.path.basename(input_fp),
-                        pattern='\.fastq$',
-                        repl='.derepmin{}.fasta'.format(self.vsearch_derep_minuniquesize)))
-
-                uc_fp = os.path.join(
-                    output_dir,
-                    re.sub(
-                        string=os.path.basename(input_fp),
-                        pattern='\.fastq$',
-                        repl='.derepmin{}.txt'.format(self.vsearch_derep_minuniquesize)))
-
-                run_cmd([
-                        self.vsearch_executable_fp,
-                        '-derep_fulllength', input_fp,
-                        '-output', output_fp,
-                        '-uc', uc_fp,
-                        '-sizeout',
-                        '-minuniquesize', str(self.vsearch_derep_minuniquesize),
-                        '-threads', str(self.threads)
-                    ],
-                    log_file = os.path.join(output_dir, 'log')
-                )
-
+                i = 0
+                log.info(f"reading input file {input_fp}")
+                fname, ext = input_fp.rsplit('.',1)
+                _, fname = os.path.split(fname)
+                written = False
+                with open(input_fp) as infile:
+                    while True:
+                        outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
+                        log.info(f"writing chunk to {outfilepath}")
+                        with open(outfilepath, 'w') as outfile:
+                            for line in (infile.readline() for _ in range(chunk_size)):
+                                outfile.write(line)
+                            written = bool(line)
+                        if not written:
+                            break
+                        i += 1
             #gzip_files(glob.glob(os.path.join(output_dir, '*.fasta')))
 
         self.complete_step(log, output_dir)
@@ -445,7 +439,9 @@ class Pipeline:
             log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
             #input_fps = glob.glob(f"{input_dir}/*.fastq.gz")
+            #TODO CHANGE BACK
             input_fps = glob.glob(f"{input_dir}/*.fastq")
+            #input_fps = glob.glob(f"{input_dir}/*.fasta")
             log.info(f"input files = {input_fps}")
             if len(input_fps) == 0:
                 raise PipelineException(f'found no fastq files in directory "{input_dir}"')
@@ -458,6 +454,7 @@ class Pipeline:
                                     pattern='\.fastq',
                                     repl='.fasta')
                 log.info(f"converting fastq {fp} to fasta {fasta_fp}")
+                #TODO CCAHNGE BACK
                 fastq_to_fasta(fp, fasta_fp)
                 out_fp = os.path.join(output_dir, re.sub(
                                                         string=os.path.basename(fp),
