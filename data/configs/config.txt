@@ -18,3 +18,4 @@ pear_min_assembly = 2
 vsearch_filter_maxee = 20
 vsearch_filter_minlen = 300
 frag_train_file = illumina_10
+centrifuge_db = /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_data/databases/Centrifuge_DB/pre-built/p_compressed

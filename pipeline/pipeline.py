@@ -46,6 +46,10 @@ class Pipeline:
         #self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
         self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR', default='/home/u29/mattmiller899/Trimmomatic-0.39/trimmomatic-0.39.jar')
         #print(f"trim = {self.trim_executable_fp}")
+        self.centrifuge_executable_fp = os.environ.get('centrifuge',
+                                                       default='/xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/tools/centrifuge/centrifuge')
+        self.centrifuge_kraken_executable_fp = os.environ.get('centrifuge-kreport',
+                                                              default='/xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/tools/centrifuge/centrifuge-kreport')
         self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl', default='run_FragGeneScan.pl')
         self.interproscan_executable_fp = os.environ.get('INTERPROSCAN.SH', default='interproscan.sh')
         self.pear_executable_fp = os.environ.get('PEAR', default='pear')
@@ -81,6 +85,7 @@ class Pipeline:
         self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
         #self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
         #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
+        self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
         self.frag_train_file = config["DEFAULT"]["frag_train_file"]
         return
 
@@ -97,9 +102,10 @@ class Pipeline:
         if self.paired_ends:
             output_dir_list.append(self.step_02_1_merge_paired_end_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_03_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_03_1_chunk_reads(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_05_get_orfs(input_dir=output_dir_list[-1]))
+        _ = self.step_04_centrifuge_taxonomy(input_dir=output_dir_list[-1])
+        output_dir_list.append(self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_06_get_gene_reads(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_07_get_orfs(input_dir=output_dir_list[-1]))
         return output_dir_list
 
 
@@ -366,7 +372,40 @@ class Pipeline:
         self.complete_step(log, output_dir)
         return output_dir
 
-    def step_03_1_chunk_reads(self, input_dir):
+    def step_04_centrifuge_taxonomy(self, input_dir):
+        log, output_dir = self.initialize_step()
+        if len(os.listdir(output_dir)) > 0:
+            log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
+        else:
+            log.info('input directory listing:\n\t%s', '\n\t'.join(os.listdir(input_dir)))
+            input_files_glob = os.path.join(input_dir, '*.assembled.*.fastq')
+            log.info('input file glob: "%s"', input_files_glob)
+            input_fp_list = sorted(glob.glob(input_files_glob))
+            for input_fp in input_fp_list:
+                input_basename = os.path.splitext(os.path.basename(input_fp))[0]
+                cent_results_fp = f"{output_dir}/{input_basename}_centrifuge_hits.tsv"
+                cent_report_fp = f"{output_dir}/{input_basename}_centrifuge_report.tsv"
+                fast_type = "q"
+                log.info(f"running centrifuge on {input_fp}, outputting results to {cent_results_fp} and report to "
+                         f"{cent_report_fp}")
+                run_cmd([
+                    self.centrifuge_executable_fp,
+                    f"-x {self.centrifuge_db}",
+                    f"-U {input_fp}",
+                    f"-S {cent_results_fp}",
+                    f"--report-file {cent_report_fp}",
+                    f"-p {self.threads}"
+                    f"-{fast_type}"
+                    # INCLUDE MORE ARGS
+                ],
+                    log_file=os.path.join(output_dir, 'log'),
+                    debug=self.debug
+                )
+        self.complete_step(log, output_dir)
+        return output_dir
+
+
+    def step_05_chunk_reads(self, input_dir):
         log, output_dir = self.initialize_step()
         if len(os.listdir(output_dir)) > 0:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
@@ -428,7 +467,7 @@ class Pipeline:
         return output_dir
     """
 
-    def step_04_get_gene_reads(self, input_dir):
+    def step_06_get_gene_reads(self, input_dir):
         """
         Uses FragGeneScan to find reads containing fragments of genes
         :param input_dir: string path to input files
@@ -477,7 +516,7 @@ class Pipeline:
         return output_dir
 
 
-    def step_05_get_orfs(self, input_dir):
+    def step_07_get_orfs(self, input_dir):
         """
         Uses Interproscan to get ORFS and connect them to GO terms
         :param input_dir: string path to input files
