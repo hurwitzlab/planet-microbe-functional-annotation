@@ -1,6 +1,6 @@
 [DEFAULT]
 in_dir = data/in
-out_dir = data/out4
+out_dir = data/out5
 threads = 2
 debug = 1
 paired_ends = 1
