@@ -401,6 +401,14 @@ class Pipeline:
                     log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug
                 )
+                run_cmd([
+                    self.centrifuge_kraken_executable_fp,
+                    f"-x {self.centrifuge_db}",
+                    f"{cent_results_fp}"
+                ],
+                    log_file=os.path.join(output_dir, "log"),
+                    debug=self.debug
+                )
         self.complete_step(log, output_dir)
         return output_dir
 
