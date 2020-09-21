@@ -404,7 +404,7 @@ class Pipeline:
                 run_cmd([
                     self.centrifuge_kraken_executable_fp,
                     f"-x {self.centrifuge_db}",
-                    f"{cent_results_fp}"
+                    f"{cent_report_fp}"
                 ],
                     log_file=os.path.join(output_dir, "log"),
                     debug=self.debug
