@@ -89,7 +89,8 @@ def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
         with open(log_file, 'at') as log_file:
             cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
             log.info('executing "%s"', cmd_line_str)
-            log_file.write('executing "{}"'.format(cmd_line_str))
+            if debug:
+                log_file.write('executing "{}"\n'.format(cmd_line_str))
             output = subprocess.run(
                 cmd_line_list,
                 stdout=log_file,

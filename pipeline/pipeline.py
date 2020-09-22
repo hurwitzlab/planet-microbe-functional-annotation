@@ -18,6 +18,7 @@ import re
 import shutil
 import sys
 import configparser
+import time
 
 #TODO CHANGE BACK TO cluster_16S.
 from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list, \
@@ -386,6 +387,7 @@ class Pipeline:
                 cent_results_fp = f"{output_dir}/{input_basename}_centrifuge_hits.tsv"
                 cent_report_fp = f"{output_dir}/{input_basename}_centrifuge_report.tsv"
                 fast_type = "q"
+                kreport_fp = f"{output_dir}/{input_basename}_kreport.tsv"
                 log.info(f"running centrifuge on {input_fp}, outputting results to {cent_results_fp} and report to "
                          f"{cent_report_fp}")
                 run_cmd([
@@ -394,21 +396,23 @@ class Pipeline:
                     f"-U {input_fp}",
                     f"-S {cent_results_fp}",
                     f"--report-file {cent_report_fp}",
-                    f"-p {self.threads}"
+                    f"-p {self.threads}",
                     f"-{fast_type}"
                     # INCLUDE MORE ARGS
                 ],
                     log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug
                 )
+                log.info(f"creating kraken report from {cent_results_fp}")
                 run_cmd([
                     self.centrifuge_kraken_executable_fp,
-                    f"-x {self.centrifuge_db}",
-                    f"{cent_report_fp}"
+                    "-x", self.centrifuge_db,
+                    f"{cent_results_fp}"
                 ],
-                    log_file=os.path.join(output_dir, "log"),
-                    debug=self.debug
+                    log_file=kreport_fp,
+                    debug=False
                 )
+                
         self.complete_step(log, output_dir)
         return output_dir
 
