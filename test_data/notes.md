@@ -4,6 +4,10 @@
 
 * [TARA 454 sample: ERX294150](https://www.ebi.ac.uk/ena/browser/view/ERX294150) [PM sample](https://www.planetmicrobe.org/#/samples/1900)
 
+
+* [Large illumina Tara sample SAMEA2620217](https://www.ebi.ac.uk/ena/browser/view/ERX555976) [PM sample](https://www.planetmicrobe.org/#/experiments/5129) 16GB for forward
+
+
 # Centrifuge
 
 * Link to centrifuge manual https://ccb.jhu.edu/software/centrifuge/manual.shtml
