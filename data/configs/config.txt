@@ -1,9 +1,9 @@
 [DEFAULT]
-in_dir = data/in
-out_dir = data/out5
-threads = 2
+in_dir = data/in_454
+out_dir = data/out_454
+threads = 4
 debug = 1
-paired_ends = 1
+paired_ends = 0
 adapter_fasta = data/configs/TruSeq3-PE.fa
 seed_mismatches = 2
 palindrome_clip_thresh = 30
