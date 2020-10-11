@@ -19,6 +19,7 @@ import shutil
 import sys
 import configparser
 import time
+from Bio import SeqIO
 
 #TODO CHANGE BACK TO cluster_16S.
 from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list, \
@@ -542,28 +543,31 @@ class Pipeline:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
             log.info('input directory listing:\n\t%s', '\n\t'.join(os.listdir(input_dir)))
-            input_files_glob = os.path.join(input_dir, f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.fasta')
+            input_files_glob = os.path.join(input_dir, f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.faa')
             #log.info('input file glob: "%s"', input_files_glob)
             input_fp_list = sorted(glob.glob(input_files_glob))
             if len(input_fp_list) == 0:
-                raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fasta files in directory "{input_dir}"')
+                raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.faa files in directory "{input_dir}"')
             log.info(f"input file list: {input_fp_list}")
-            chunk_size = 4000
-            exit()
+            chunk_size = 10000
             for input_fp in input_fp_list:
                 i = 0
                 log.info(f"reading input file {input_fp}")
                 fname, ext = input_fp.rsplit('.',1)
                 _, fname = os.path.split(fname)
                 written = False
-                with open(input_fp) as infile:
+                with open(input_fp, "r") as infile:
                     while True:
                         outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
                         log.info(f"writing chunk to {outfilepath}")
                         with open(outfilepath, 'w') as outfile:
-                            for line in (infile.readline() for _ in range(chunk_size)):
-                                outfile.write(line)
-                            written = bool(line)
+                            for record in (SeqIO.parse(infile, "fasta") for _ in range(chunk_size)):
+                                tmp_seq = str(record.seq)
+                                tmp_id = record.id
+                                tmp_desc = record.description
+                                tmp_seq = re.sub("\*", "X", tmp_seq)
+                                outfile.write(f">{tmp_id} {tmp_desc}\n{tmp_seq}\n")
+                            written = bool(record)
                         if not written:
                             break
                         i += 1
