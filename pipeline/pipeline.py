@@ -498,7 +498,7 @@ class Pipeline:
             if len(input_fp_list) == 0:
                 raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fastq files in directory "{input_dir}"')
             log.info(f"input file list: {input_fp_list}")
-            chunk_size = 10000
+            chunk_size = 4000
             for input_fp in input_fp_list:
                 i = 0
                 log.info(f"reading input file {input_fp}")
@@ -554,6 +554,7 @@ class Pipeline:
                                                         string=os.path.basename(fp),
                                                         pattern='\.fastq',
                                                         repl='_frags'))
+                os.remove(fp)
                 log.info(f"writing output of {fasta_fp} to {out_fp}")
                 run_cmd([
                     self.frag_executable_fp,
@@ -597,7 +598,8 @@ class Pipeline:
                         f"-i {fp}",
                         f"-b {out_basename}",
                         "-goterms",
-                        "-iprlookup"
+                        "-iprlookup",
+                        "-dra"
                         # INCLUDE MORE ARGS
                     ],
                     log_file=os.path.join(output_dir, 'log'),
