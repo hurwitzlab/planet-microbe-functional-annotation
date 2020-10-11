@@ -83,7 +83,8 @@ class Pipeline:
         self.pear_max_assembly_length = config["DEFAULT"]["pear_max_assembly"]
         self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
         self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
-        self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
+        self.vsearch_filter_minlen = 75
+        #self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
         #self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
         #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
         self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
@@ -105,8 +106,8 @@ class Pipeline:
             output_dir_list.append(self.step_01_1_merge_paired_end_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_02_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
         _ = self.step_03_centrifuge_taxonomy(input_dir=output_dir_list[-1])
-        output_dir_list.append(self.step_04_chunk_reads(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_05_get_gene_reads(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_06_get_orfs(input_dir=output_dir_list[-1]))
         return output_dir_list
 
@@ -236,7 +237,7 @@ class Pipeline:
                         string=os.path.basename(fp),
                         pattern=r'.(fastq|fq)',
                         repl=".fastq")
-                    run_arr.extend(["-threads", self.threads, "-trimlog", trim_log, fp, os.path.join(output_dir, out_base)])
+                    run_arr.extend(["-threads", str(self.threads), "-trimlog", trim_log, fp, os.path.join(output_dir, out_base)])
                 illuminaclip_str = f"ILLUMINACLIP:{self.trim_adapter_fasta}:{self.trim_seed_mismatches}:" \
                                   f"{self.trim_palindrome_clip_thresh}:{self.trim_simple_clip_thresh}:" \
                                   f"{self.trim_min_adapter_length}:{self.trim_keep_both_reads}"
@@ -398,15 +399,15 @@ class Pipeline:
                 output_file_basename = re.sub(
                     string=input_file_basename,
                     pattern='\.fastq*',
-                    repl='.ee{}minlen{}.fastq'.format(self.vsearch_filter_maxee, self.vsearch_filter_minlen)
+                    repl='.ee{}minlen{}.fasta'.format(self.vsearch_filter_maxee, self.vsearch_filter_minlen)
                 )
-                output_fastq_fp = os.path.join(output_dir, output_file_basename)
+                output_fasta_fp = os.path.join(output_dir, output_file_basename)
                 log.info('vsearch executable: "%s"', self.vsearch_executable_fp)
                 log.info('filtering "%s"', input_fastq_fp)
                 run_cmd([
                         self.vsearch_executable_fp,
                         '-fastq_filter', input_fastq_fp,
-                        '-fastqout', output_fastq_fp,
+                        '-fastaout', output_fasta_fp,
                         '-fastq_maxee', str(self.vsearch_filter_maxee),
                         '-fastq_minlen', str(self.vsearch_filter_minlen),
                         #'-fastq_trunclen', str(self.vsearch_filter_trunclen),
@@ -445,27 +446,27 @@ class Pipeline:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
             log.info('input directory listing:\n\t%s', '\n\t'.join(os.listdir(input_dir)))
-            input_files_glob = os.path.join(input_dir, f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.fastq')
+            input_files_glob = os.path.join(input_dir, f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.fasta')
             #log.info('input file glob: "%s"', input_files_glob)
             input_fp_list = sorted(glob.glob(input_files_glob))
             if len(input_fp_list) == 0:
-                raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fastq files in directory "{input_dir}"')
+                raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fasta files in directory "{input_dir}"')
             log.info(f"input file list: {input_fp_list}")
             for input_fp in input_fp_list:
                 input_basename = os.path.splitext(os.path.basename(input_fp))[0]
                 cent_results_fp = f"{output_dir}/{input_basename}_centrifuge_hits.tsv"
                 cent_report_fp = f"{output_dir}/{input_basename}_centrifuge_report.tsv"
-                fast_type = "q"
+                fast_type = "f"
                 kreport_fp = f"{output_dir}/{input_basename}_kreport.tsv"
                 log.info(f"running centrifuge on {input_fp}, outputting results to {cent_results_fp} and report to "
                          f"{cent_report_fp}")
                 run_cmd([
                     self.centrifuge_executable_fp,
-                    f"-x {self.centrifuge_db}",
-                    f"-U {input_fp}",
-                    f"-S {cent_results_fp}",
-                    f"--report-file {cent_report_fp}",
-                    f"-p {self.threads}",
+                    f"-x", self.centrifuge_db,
+                    f"-U", input_fp,
+                    f"-S", cent_results_fp,
+                    f"--report-file", cent_report_fp,
+                    f"-p", str(self.threads),
                     f"-{fast_type}"
                     # INCLUDE MORE ARGS
                 ],
@@ -486,19 +487,69 @@ class Pipeline:
         return output_dir
 
 
-    def step_04_chunk_reads(self, input_dir):
+    def step_04_get_gene_reads(self, input_dir):
+        """
+        Uses FragGeneScan to find reads containing fragments of genes
+        :param input_dir: string path to input files
+        :return: string path to output directory
+        """
+        log, output_dir = self.initialize_step()
+        if len(os.listdir(output_dir)) > 0:
+            log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
+        else:
+            #input_fps = glob.glob(f"{input_dir}/*.fastq.gz")
+            #TODO CHANGE BACK
+            input_fp_list = glob.glob(f"{input_dir}/*.fasta")
+            #input_fps = glob.glob(f"{input_dir}/*.fasta")
+            if len(input_fp_list) == 0:
+                raise PipelineException(f'found no fasta files in directory "{input_dir}"')
+            log.info(f"input files = {input_fp_list}") 
+            #log.info("uncompressing input files")
+            #uncompressed_input_fps = ungzip_files(*input_fps, target_dir=input_dir, debug=self.debug)
+            #for fp in uncompressed_input_fps:
+            for fp in input_fp_list:
+                #fasta_fp = re.sub(
+                #                    string=fp,
+                #                    pattern='\.fastq',
+                #                    repl='.fasta')
+                #log.info(f"converting fastq {fp} to fasta {fasta_fp}")
+                #fastq_to_fasta(fp, fasta_fp)
+                #os.remove(fp)
+                out_fp = os.path.join(output_dir, re.sub(
+                                                        string=os.path.basename(fp),
+                                                        pattern='\.fasta',
+                                                        repl='_frags'))
+                log.info(f"writing output of {fp} to {out_fp}")
+                run_cmd([
+                    self.frag_executable_fp,
+                    f"-genome={fp}",
+                    f"-out={out_fp}",
+                    "-complete=0",
+                    f"-train={self.frag_train_file}",
+                    f"thread={self.threads}"
+                    # INCLUDE MORE ARGS
+                ],
+                    log_file=os.path.join(output_dir, 'log'),
+                    debug=self.debug
+                )
+        self.complete_step(log, output_dir)
+        return output_dir
+
+
+    def step_05_chunk_reads(self, input_dir):
         log, output_dir = self.initialize_step()
         if len(os.listdir(output_dir)) > 0:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
             log.info('input directory listing:\n\t%s', '\n\t'.join(os.listdir(input_dir)))
-            input_files_glob = os.path.join(input_dir, f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.fastq')
+            input_files_glob = os.path.join(input_dir, f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.fasta')
             #log.info('input file glob: "%s"', input_files_glob)
             input_fp_list = sorted(glob.glob(input_files_glob))
             if len(input_fp_list) == 0:
-                raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fastq files in directory "{input_dir}"')
+                raise PipelineException(f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fasta files in directory "{input_dir}"')
             log.info(f"input file list: {input_fp_list}")
             chunk_size = 4000
+            exit()
             for input_fp in input_fp_list:
                 i = 0
                 log.info(f"reading input file {input_fp}")
@@ -518,56 +569,6 @@ class Pipeline:
                         i += 1
             #gzip_files(glob.glob(os.path.join(output_dir, '*.fasta')))
 
-        self.complete_step(log, output_dir)
-        return output_dir
-
-
-    def step_05_get_gene_reads(self, input_dir):
-        """
-        Uses FragGeneScan to find reads containing fragments of genes
-        :param input_dir: string path to input files
-        :return: string path to output directory
-        """
-        log, output_dir = self.initialize_step()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
-        else:
-            #input_fps = glob.glob(f"{input_dir}/*.fastq.gz")
-            #TODO CHANGE BACK
-            input_fp_list = glob.glob(f"{input_dir}/*.fastq")
-            #input_fps = glob.glob(f"{input_dir}/*.fasta")
-            if len(input_fp_list) == 0:
-                raise PipelineException(f'found no fastq files in directory "{input_dir}"')
-            log.info(f"input files = {input_fp_list}") 
-            #log.info("uncompressing input files")
-            #uncompressed_input_fps = ungzip_files(*input_fps, target_dir=input_dir, debug=self.debug)
-            #for fp in uncompressed_input_fps:
-            for fp in input_fp_list:
-                fasta_fp = re.sub(
-                                    string=fp,
-                                    pattern='\.fastq',
-                                    repl='.fasta')
-                log.info(f"converting fastq {fp} to fasta {fasta_fp}")
-                #TODO CCAHNGE BACK
-                fastq_to_fasta(fp, fasta_fp)
-                out_fp = os.path.join(output_dir, re.sub(
-                                                        string=os.path.basename(fp),
-                                                        pattern='\.fastq',
-                                                        repl='_frags'))
-                os.remove(fp)
-                log.info(f"writing output of {fasta_fp} to {out_fp}")
-                run_cmd([
-                    self.frag_executable_fp,
-                    f"-genome={fasta_fp}",
-                    f"-out={out_fp}",
-                    "-complete=0",
-                    f"-train={self.frag_train_file}",
-                    f"thread={self.threads}"
-                    # INCLUDE MORE ARGS
-                ],
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug
-                )
         self.complete_step(log, output_dir)
         return output_dir
 
