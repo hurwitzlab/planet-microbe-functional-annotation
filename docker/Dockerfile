@@ -20,7 +20,7 @@ WORKDIR /app
 # COPY pear /usr/local/bin
 
 # FragGeneScan
-RUN wget https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1.31.tar.gz \
+RUN wget -q https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1.31.tar.gz \
     && tar -xvzf FragGeneScan1.31.tar.gz \
     && rm FragGeneScan1.31.tar.gz \
     && cd FragGeneScan1.31 \
@@ -28,12 +28,12 @@ RUN wget https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1.31
     && make fgs
 
 # Trimmomatic
-RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip \
+RUN wget -q http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip \
     && unzip Trimmomatic-0.39.zip \
     && rm Trimmomatic-0.39.zip
 
 # vsearch
-RUN wget https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz \
+RUN wget -q https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz \
     && tar -xzf v2.14.2.tar.gz \
     && rm v2.14.2.tar.gz \
     && cd vsearch-2.14.2 \
