@@ -56,7 +56,6 @@ RUN mkdir my_interproscan \
     && md5sum -c interproscan-5.44-79.0-64-bit.tar.gz.md5 \
     && tar -pxzf interproscan-5.44-79.0-64-bit.tar.gz
 
-RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation.git funcadelic
-# && python3 -m pip install -r /app/biofx_python/requirements.txt
+RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation.git funcadelic && python3 -m pip install -r /app/funcadelic/pipeline/requirements.txt
 
 CMD ["python3", "--version"]
