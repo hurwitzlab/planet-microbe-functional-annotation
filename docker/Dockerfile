@@ -51,8 +51,8 @@ RUN wget -q https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz \
 #
 RUN mkdir my_interproscan \
     && cd my_interproscan \
-    && wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz \
-    && wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz.md5 \
+    && wget -q ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz \
+    && wget -q ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz.md5 \
     && md5sum -c interproscan-5.44-79.0-64-bit.tar.gz.md5 \
     && tar -pxzf interproscan-5.44-79.0-64-bit.tar.gz
 
