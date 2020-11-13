@@ -56,6 +56,9 @@ RUN mkdir my_interproscan \
     && md5sum -c interproscan-5.44-79.0-64-bit.tar.gz.md5 \
     && tar -pxzf interproscan-5.44-79.0-64-bit.tar.gz
 
-RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation.git funcadelic && python3 -m pip install -r /app/funcadelic/pipeline/requirements.txt
+RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation.git funcadelic \
+    && chmod +x /app/funcadelic/pipeline/pipeline.py \
+    && python3 -m pip install -r /app/funcadelic/pipeline/requirements.txt 
 
-CMD ["python3", "--version"]
+ENV PATH=/app/funcadelic/pipeline:$PATH
+CMD ["python3", "/app/funcadelic/pipeline/pipeline.py", "-h"]

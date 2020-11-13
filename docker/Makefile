@@ -7,5 +7,8 @@ img:
 shell:
 	$(DOCKER) run -it $(TAG) bash
 
+run:
+	$(DOCKER) run -v `cd ../data && pwd`:/data $(TAG) pipeline.py -c /data/configs/docker.txt
+
 push:
 	$(DOCKER) push $(TAG)
