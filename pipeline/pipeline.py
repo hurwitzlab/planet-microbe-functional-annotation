@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Design principles:
   1. reading this script should not require a high level of Python experience
