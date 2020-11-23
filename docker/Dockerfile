@@ -19,44 +19,49 @@ WORKDIR /app
 
 COPY pear /usr/local/bin
 
+#
 # FragGeneScan
-#RUN wget -q https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1.31.tar.gz \
-#    && tar -xvzf FragGeneScan1.31.tar.gz \
-#    && rm FragGeneScan1.31.tar.gz \
-#    && cd FragGeneScan1.31 \
-#    && make clean \
-#    && make fgs
+#
+RUN wget -q https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1.31.tar.gz \
+    && tar -xvzf FragGeneScan1.31.tar.gz \
+    && rm FragGeneScan1.31.tar.gz \
+    && cd FragGeneScan1.31 \
+    && make clean \
+    && make fgs
 
-## Trimmomatic
-#RUN wget -q http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip \
-#    && unzip Trimmomatic-0.39.zip \
-#    && rm Trimmomatic-0.39.zip
+#
+# Trimmomatic
+#
+RUN wget -q http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip \
+    && unzip Trimmomatic-0.39.zip \
+    && rm Trimmomatic-0.39.zip
 
-## vsearch
-#RUN wget -q https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz \
-#    && tar -xzf v2.14.2.tar.gz \
-#    && rm v2.14.2.tar.gz \
-#    && cd vsearch-2.14.2 \
-#    && ./autogen.sh \
-#    && ./configure \
-#    && make \
-#    && make install
+#
+# vsearch
+#
+RUN wget -q https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz \
+    && tar -xzf v2.14.2.tar.gz \
+    && rm v2.14.2.tar.gz \
+    && cd vsearch-2.14.2 \
+    && ./autogen.sh \
+    && ./configure \
+    && make \
+    && make install
 
-##
-## Interproscan
-##
-## Recommended checksum to confirm the download was successful:
-## Must return *interproscan-5.44-79.0-64-bit.tar.gz: OK*
-## If not - try downloading the file again as it may be a corrupted copy.
-##
-#RUN mkdir my_interproscan \
-#    && cd my_interproscan \
-#    && wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz \
-#    && wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz.md5 \
-#    && md5sum -c interproscan-5.44-79.0-64-bit.tar.gz.md5 \
-#    && tar -pxzf interproscan-5.44-79.0-64-bit.tar.gz
+#
+# Interproscan
+#
+# Recommended checksum to confirm the download was successful:
+# Must return *interproscan-5.44-79.0-64-bit.tar.gz: OK*
+# If not - try downloading the file again as it may be a corrupted copy.
+#
+RUN mkdir my_interproscan \
+    && cd my_interproscan \
+    && wget -q ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz \
+    && wget -q ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.44-79.0/interproscan-5.44-79.0-64-bit.tar.gz.md5 \
+    && md5sum -c interproscan-5.44-79.0-64-bit.tar.gz.md5 \
+    && tar -pxzf interproscan-5.44-79.0-64-bit.tar.gz
 
-#RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation.git funcadelic && python3 -m pip install -r /app/funcadelic/pipeline/requirements.txt
+RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation.git funcadelic && python3 -m pip install -r /app/funcadelic/pipeline/requirements.txt
 
-#CMD ["python3", "--version"]
-CMD ["pear", "--help"]
+CMD ["python3", "--version"]
