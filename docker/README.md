@@ -1,18 +1,20 @@
 # How to make the Docker container
 
-First, ensure Docker daemon is running, e.g., on lytic:
+Before building the image, you must have a Linux binary of the `pear` executable in this directory so that it can be added to the image.
+
+Next, ensure Docker daemon is running, e.g., on lytic:
 
 ```
 $ sudo service docker start
 ```
 
-Then run:
+To create a Docker image, either run:
 
 ```
 $ make img
 ```
 
-This is equivalent to:
+or the equivalent:
 
 ```
 $ sudo docker build --tag=hurwitzlab/funcadelic:0.1.0 .
