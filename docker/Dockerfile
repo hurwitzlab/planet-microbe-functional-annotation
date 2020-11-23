@@ -17,9 +17,11 @@ WORKDIR /app
 # make
 # sudo make install
 
-# COPY pear /usr/local/bin
+COPY pear /usr/local/bin
 
+#
 # FragGeneScan
+#
 RUN wget -q https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1.31.tar.gz \
     && tar -xvzf FragGeneScan1.31.tar.gz \
     && rm FragGeneScan1.31.tar.gz \
@@ -27,12 +29,16 @@ RUN wget -q https://downloads.sourceforge.net/project/fraggenescan/FragGeneScan1
     && make clean \
     && make fgs
 
+#
 # Trimmomatic
+#
 RUN wget -q http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip \
     && unzip Trimmomatic-0.39.zip \
     && rm Trimmomatic-0.39.zip
 
+#
 # vsearch
+#
 RUN wget -q https://github.com/torognes/vsearch/archive/v2.14.2.tar.gz \
     && tar -xzf v2.14.2.tar.gz \
     && rm v2.14.2.tar.gz \
