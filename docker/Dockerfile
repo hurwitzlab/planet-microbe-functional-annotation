@@ -67,4 +67,5 @@ RUN git clone https://github.com/hurwitzlab/planet-microbe-functional-annotation
     && python3 -m pip install -r /app/funcadelic/pipeline/requirements.txt 
 
 ENV PATH=/app/funcadelic/pipeline:$PATH
+ENV TRIMMOMATIC-0.39.JAR=/app/Trimmomatic-0.39/trimmomatic-0.39.jar
 CMD ["python3", "/app/funcadelic/pipeline/pipeline.py", "-h"]
