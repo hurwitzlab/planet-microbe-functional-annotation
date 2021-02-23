@@ -19,7 +19,7 @@ import shutil
 import sys
 import configparser
 import time
-from Bio import SeqIO, Seq
+from Bio import SeqIO
 
 #TODO CHANGE BACK TO cluster_16S.
 from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, PipelineException, get_sorted_file_list, \
@@ -90,6 +90,7 @@ class Pipeline:
         #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
         self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
         self.frag_train_file = config["DEFAULT"]["frag_train_file"]
+        self.delete_intermediates = int(config["DEFAULT"]["delete_intermediates"])
         return
 
 
@@ -110,6 +111,13 @@ class Pipeline:
         output_dir_list.append(self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_06_get_orfs(input_dir=output_dir_list[-1]))
+        if self.delete_intermediates == 1:
+            for i in range(len(output_dir_list) - 1):
+                for fn in os.listdir(output_dir_list[i]):
+                    if fn == "log" or fn == "trim_log":
+                        continue
+                    fp = os.path.join(output_dir_list[i], fn)
+                    os.remove(fp)
         return output_dir_list
 
 
@@ -208,7 +216,6 @@ class Pipeline:
         :return: path to output directory
         """
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
@@ -275,15 +282,12 @@ class Pipeline:
                     else:
                         log.info(f"{percent_surviving}% of reads survived after Trimmomatic trimming for {fp}")
 
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
 
 
     def step_01_1_merge_paired_end_reads(self, input_dir):
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
@@ -346,8 +350,6 @@ class Pipeline:
                                 log.error(f"All sequences discarded by PEAR for files '{forward_fp}' and '{reverse_fp}'... Exiting")
                                 exit(1)
 
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
 
@@ -383,7 +385,6 @@ class Pipeline:
 
     def step_02_qc_reads_with_vsearch(self, input_dir):
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
@@ -398,6 +399,7 @@ class Pipeline:
             log.info(f"input file list: {input_fp_list}")
             for input_fastq_fp in input_fp_list:
                 # Uncompress if its still compressed
+                log.info(f"last 3 = {input_fastq_fp[-3:]}")
                 if input_fastq_fp[-3:] == ".gz":
                     uncompressed_input_fp = ungzip_files(input_fastq_fp, target_dir=input_dir, debug=self.debug)[0]
                     os.remove(input_fastq_fp)
@@ -418,6 +420,7 @@ class Pipeline:
                         '-fastq_maxee', str(self.vsearch_filter_maxee),
                         '-fastq_minlen', str(self.vsearch_filter_minlen),
                         #'-fastq_trunclen', str(self.vsearch_filter_trunclen),
+                        '-fastq_qmax', '100',
                         '-threads', str(self.threads)
                     ],
                     log_file = os.path.join(output_dir, 'log'),
@@ -443,15 +446,12 @@ class Pipeline:
                             exit(1)
                         if discarded_num > kept_num:
                             log.warning("More sequences discarded than kept by vsearch qc for input file '{}'".format(ran_fp))
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
 
 
     def step_03_centrifuge_taxonomy(self, input_dir):
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
@@ -492,8 +492,7 @@ class Pipeline:
                     log_file=kreport_fp,
                     debug=False
                 )
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
+                
         self.complete_step(log, output_dir)
         return output_dir
 
@@ -505,7 +504,6 @@ class Pipeline:
         :return: string path to output directory
         """
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
@@ -544,15 +542,12 @@ class Pipeline:
                     log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug
                 )
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
 
 
     def step_05_chunk_reads(self, input_dir):
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.info('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
@@ -571,30 +566,23 @@ class Pipeline:
                 _, fname = os.path.split(fname)
                 written = False
                 with open(input_fp, "r") as infile:
-                    outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
-                    log.info(f"writing chunk to {outfilepath}")
-                    tmp_count = 0
-                    outfile = open(outfilepath, 'w')
-                    for record in SeqIO.parse(infile, "fasta"):
-                        if tmp_count == chunk_size:
-                            outfile.close()
-                            i += 1
-                            outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
-                            log.info(f"writing chunk to {outfilepath}")
-                            outfile = open(outfilepath, 'w')
-                            tmp_count = 0
-                        tmp_seq = str(record.seq)
-                        tmp_id = record.id
-                        tmp_seq = re.sub("\*", "X", tmp_seq)
-                        outfile.write(f">{tmp_id}\n{tmp_seq}\n")
-                        tmp_count += 1
-                try:
-                    outfile.close()
-                except:
-                    pass
+                    while True:
+                        outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
+                        log.info(f"writing chunk to {outfilepath}")
+                        with open(outfilepath, 'w') as outfile:
+                            for record in (SeqIO.parse(infile, "fasta") for _ in range(chunk_size)):
+                                log.info(f"record = {record}")
+                                tmp_seq = str(record.seq)
+                                tmp_id = record.id
+                                tmp_desc = record.description
+                                tmp_seq = re.sub("\*", "X", tmp_seq)
+                                outfile.write(f">{tmp_id} {tmp_desc}\n{tmp_seq}\n")
+                            written = bool(record)
+                        if not written:
+                            break
+                        i += 1
             #gzip_files(glob.glob(os.path.join(output_dir, '*.fasta')))
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
+
         self.complete_step(log, output_dir)
         return output_dir
 
@@ -606,36 +594,32 @@ class Pipeline:
         :return: string path to output directory
         """
         log, output_dir = self.initialize_step()
-        start_time = time.time()
         if len(os.listdir(output_dir)) > 0:
             log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
         else:
-            input_fp_list = glob.glob(f"{input_dir}/*.faa")
+            input_fp_list = glob.glob(f"{input_dir}/*.ffn")
             if len(input_fp_list) == 0:
-                raise PipelineException(f'found no faa files in directory "{input_dir}"')
+                raise PipelineException(f'found no fnn files in directory "{input_dir}"')
             log.info(f"input files = {input_fp_list}")
             for fp in input_fp_list:
                 out_basename = os.path.join(output_dir, re.sub(
                                                         string=os.path.basename(fp),
-                                                        pattern='\.faa',
+                                                        pattern='\.ffn',
                                                         repl='_interpro'))
                 log.info(f"writing output of {fp} to {out_basename}")
                 run_cmd([
                         self.interproscan_executable_fp,
-                        "-appl", "Pfam",
-                        "-i", fp,
-                        "-b", out_basename,
+                        "-appl Pfam",
+                        f"-i {fp}",
+                        f"-b {out_basename}",
                         "-goterms",
                         "-iprlookup",
-                        "-dra",
-                        "-cpu", str(self.threads)
+                        "-dra"
                         # INCLUDE MORE ARGS
                     ],
                     log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug
                 )
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
 

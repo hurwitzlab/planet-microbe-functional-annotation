@@ -1,6 +1,6 @@
 [DEFAULT]
-in_dir = data/in_454
-out_dir = data/out_454
+in_dir = data/in
+out_dir = data/out
 threads = 4
 debug = 1
 paired_ends = 0
@@ -18,3 +18,4 @@ pear_min_assembly = 2
 vsearch_filter_maxee = 20
 frag_train_file = illumina_10
 centrifuge_db = /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_data/databases/Centrifuge_DB/pre-built/p_compressed
+delete_intermediates = 1
