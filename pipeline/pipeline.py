@@ -1,4 +1,3 @@
-=======
 #!/usr/bin/env python3
 """
 Design principles:
@@ -736,4 +735,3 @@ class Pipeline:
 
 if __name__ == '__main__':
     main()
->>>>>>> 1909e5456f24eadfd740320b191b38a03dd3e38f
