@@ -134,7 +134,9 @@ class Pipeline:
             self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(
             self.step_06_get_orfs(input_dir=output_dir_list[-1]))
+        print(f"delete intermediates = {self.delete_intermediates}")
         if self.delete_intermediates == 1:
+            print(f"deleting intermediates")
             for i in range(len(output_dir_list) - 1):
                 for fn in os.listdir(output_dir_list[i]):
                     if fn == "log" or fn == "trim_log":
