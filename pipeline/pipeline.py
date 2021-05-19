@@ -90,6 +90,7 @@ class Pipeline:
         #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
         self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
         self.frag_train_file = config["DEFAULT"]["frag_train_file"]
+        self.delete_intermediates = config["DEFAULT"]["delete_intermediates"]
         return
 
 
@@ -110,6 +111,10 @@ class Pipeline:
         output_dir_list.append(self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(self.step_06_get_orfs(input_dir=output_dir_list[-1]))
+        if self.delete_intermediates == 1:
+            for i in range(len(output_dir_list) - 1):
+                os.remove(f"{output_dir_list[i]}/*")
+                os.rmdir(output_dir_list[i])
         return output_dir_list
 
 
