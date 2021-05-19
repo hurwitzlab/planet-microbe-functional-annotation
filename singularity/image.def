@@ -1,0 +1,11 @@
+BootStrap: docker
+From: hurwitzlab/funcadelic:0.1.0
+
+%runscript
+    exec python3 /app/funcadelic/pipeline/pipeline.py "$@"
+
+%post
+    # Mount points for TACC directories
+    mkdir /home1
+    mkdir /scratch
+    mkdir /work

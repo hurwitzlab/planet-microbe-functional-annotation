@@ -1,8 +1,10 @@
 [DEFAULT]
+in_dir = /data/in_454
+out_dir = /data/out_454
 threads = 4
 debug = 1
 paired_ends = 0
-adapter_fasta = data/configs/TruSeq3-PE.fa
+adapter_fasta = /data/configs/TruSeq3-PE.fa
 seed_mismatches = 2
 palindrome_clip_thresh = 30
 simple_clip_thresh = 10
@@ -14,7 +16,5 @@ pear_min_length = 1
 pear_max_assembly = 1000
 pear_min_assembly = 2
 vsearch_filter_maxee = 20
-vsearch_filter_minlen = 300
 frag_train_file = illumina_10
 centrifuge_db = /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_data/databases/Centrifuge_DB/pre-built/p_compressed
-delete_intermediates = 0
