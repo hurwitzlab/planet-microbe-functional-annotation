@@ -43,11 +43,21 @@ def get_args():
         '--config',
         required=True,
         help='path to config file containing parameters/arguments')
+    arg_parser.add_argument(
+        '-i',
+        '--input_file',
+        required=True,
+        help='path to input file')
+    arg_parser.add_argument(
+        '-o',
+        '--out_dir',
+        required=True,
+        help='path to output directory')
     return arg_parser.parse_args()
 
 
 class Pipeline:
-    def __init__(self, config):
+    def __init__(self, config, input_file, out_dir):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.vsearch_executable_fp = os.environ.get('vsearch',
                                                     default='vsearch')
@@ -75,6 +85,8 @@ class Pipeline:
         self.pear_executable_fp = os.environ.get('PEAR', default='pear')
         self.config_fp = config
         self.read_config()
+        self.input_file = input_file
+        self.out_dir = out_dir
 
     def read_config(self):
         """
@@ -86,8 +98,8 @@ class Pipeline:
         config.read(self.config_fp)
         self.paired_ends = int(config["DEFAULT"]["paired_ends"])
         self.debug = int(config["DEFAULT"]["debug"])
-        self.in_dir = config["DEFAULT"]["in_dir"]
-        self.out_dir = config["DEFAULT"]["out_dir"]
+        #self.in_dir = config["DEFAULT"]["in_dir"]
+        #self.out_dir = config["DEFAULT"]["out_dir"]
         self.threads = config["DEFAULT"]["threads"]
         self.trim_adapter_fasta = config["DEFAULT"]["adapter_fasta"]
         self.trim_seed_mismatches = config["DEFAULT"]["seed_mismatches"]
@@ -120,14 +132,14 @@ class Pipeline:
         output_dir_list = []
         #output_dir_list.append(self.step_01_copy_and_compress(input_dir=self.in_dir))
         #output_dir_list.append(self.step_02_trimming(input_dir=output_dir_list[-1]))
-        output_dir_list.append(self.step_01_trimming(input_dir=self.in_dir))
+        output_dir_list.append(self.step_01_trimming(input_file=self.input_file))
         if self.paired_ends:
             output_dir_list.append(
                 self.step_01_1_merge_paired_end_reads(
                     input_dir=output_dir_list[-1]))
         output_dir_list.append(
             self.step_02_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
-        _ = self.step_03_centrifuge_taxonomy(input_dir=output_dir_list[-1])
+        #_ = self.step_03_centrifuge_taxonomy(input_dir=output_dir_list[-1])
         output_dir_list.append(
             self.step_04_get_gene_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(
@@ -235,7 +247,7 @@ class Pipeline:
         return output_dir
     """
 
-    def step_01_trimming(self, input_dir):
+    def step_01_trimming(self, input_file):
         """
         Uses Trimmomatic to trim reads
         :param input_dir: path to input files
@@ -249,6 +261,7 @@ class Pipeline:
                 output_dir)
         else:
             input_fp_list = []
+            """
             types = ['*.fastq*', '*.fq*']
             if self.paired_ends:
                 input_fp_list = get_forward_fastq_files(input_dir, self.debug)
@@ -259,73 +272,76 @@ class Pipeline:
                 raise PipelineException(
                     f'found no fastq files in directory "{input_dir}"')
             log.info(f"input files = {input_fp_list}")
-            for fp in input_fp_list:
-                run_arr = [
-                    self.java_executable_fp, "-jar", self.trim_executable_fp
-                ]
-                trim_log = f"{output_dir}/trim_log"
-                if self.paired_ends:
-                    run_arr.append("PE")
-                    out_base = re.sub(string=os.path.basename(fp),
-                                      pattern=r'_1\.(fastq|fq)',
-                                      repl=".fastq")
-                    run_arr.extend([
-                        "-threads", self.threads, "-trimlog", trim_log,
-                        "-basein", fp, "-baseout",
-                        os.path.join(output_dir, out_base)
-                    ])
+            """
+            if not os.path.isfile(input_file):
+                raise PipelineException(f'input file {input_file} is not a file or does not exist')
+                exit()
+            run_arr = [
+                self.java_executable_fp, "-jar", self.trim_executable_fp
+            ]
+            trim_log = f"{output_dir}/trim_log"
+            if self.paired_ends:
+                run_arr.append("PE")
+                out_base = re.sub(string=os.path.basename(input_file),
+                                  pattern=r'_1\.(fastq|fq)',
+                                  repl=".fastq")
+                run_arr.extend([
+                    "-threads", self.threads, "-trimlog", trim_log,
+                    "-basein", fp, "-baseout",
+                    os.path.join(output_dir, out_base)
+                ])
+            else:
+                run_arr.append("SE")
+                out_base = re.sub(string=os.path.basename(input_file),
+                                  pattern=r'.(fastq|fq)',
+                                  repl=".fastq")
+                run_arr.extend([
+                    "-threads",
+                    str(self.threads), "-trimlog", trim_log, input_file,
+                    os.path.join(output_dir, out_base)
+                ])
+            illuminaclip_str = (f"ILLUMINACLIP:{self.trim_adapter_fasta}:"
+                                f"{self.trim_seed_mismatches}:"
+                                f"{self.trim_palindrome_clip_thresh}:"
+                                f"{self.trim_simple_clip_thresh}:"
+                                f"{self.trim_min_adapter_length}:"
+                                f"{self.trim_keep_both_reads}")
+            leading_str = f"LEADING:{self.trim_min_quality}"
+            trailing_str = f"TRAILING:{self.trim_min_quality}"
+            minlen_str = f"MINLEN:{self.trim_min_len}"
+            run_arr.append(illuminaclip_str)
+            run_arr.append(leading_str)
+            run_arr.append(trailing_str)
+            run_arr.append(minlen_str)
+            log.info(f"writing output of {input_file} to {output_dir}/{out_base}")
+            #run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
+            run_cmd(run_arr,
+                    log_file=os.path.join(output_dir, 'log'),
+                    debug=self.debug)
+            # Check the log to make sure most reads were trimmed properly
+            with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
+                percent_surviving = 0.0
+                for l in logcheck:
+                    if "Surviving" in l:
+                        larr = l.split(" ")
+                        if self.paired_ends:
+                            percent_surviving = float(larr[7][1:-2])
+                        else:
+                            percent_surviving = float(larr[5][1:-2])
+                if percent_surviving < 10.0:
+                    log.error(
+                        f"Fewer than 10% ({percent_surviving}%) of reads "
+                        f"survived after Trimmomatic trimming for {input_file}... "
+                        f"Exiting")
+                    exit(1)
+                elif percent_surviving < 50.0:
+                    log.warning(
+                        f"Fewer than 50% ({percent_surviving}%) of reads "
+                        f"survived after Trimmomatic trimming for {input_file}")
                 else:
-                    run_arr.append("SE")
-                    out_base = re.sub(string=os.path.basename(fp),
-                                      pattern=r'.(fastq|fq)',
-                                      repl=".fastq")
-                    run_arr.extend([
-                        "-threads",
-                        str(self.threads), "-trimlog", trim_log, fp,
-                        os.path.join(output_dir, out_base)
-                    ])
-                illuminaclip_str = (f"ILLUMINACLIP:{self.trim_adapter_fasta}:"
-                                    f"{self.trim_seed_mismatches}:"
-                                    f"{self.trim_palindrome_clip_thresh}:"
-                                    f"{self.trim_simple_clip_thresh}:"
-                                    f"{self.trim_min_adapter_length}:"
-                                    f"{self.trim_keep_both_reads}")
-                leading_str = f"LEADING:{self.trim_min_quality}"
-                trailing_str = f"TRAILING:{self.trim_min_quality}"
-                minlen_str = f"MINLEN:{self.trim_min_len}"
-                run_arr.append(illuminaclip_str)
-                run_arr.append(leading_str)
-                run_arr.append(trailing_str)
-                run_arr.append(minlen_str)
-                log.info(f"writing output of {fp} to {output_dir}/{out_base}")
-                #run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
-                run_cmd(run_arr,
-                        log_file=os.path.join(output_dir, 'log'),
-                        debug=self.debug)
-                # Check the log to make sure most reads were trimmed properly
-                with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
-                    percent_surviving = 0.0
-                    for l in logcheck:
-                        if "Surviving" in l:
-                            larr = l.split(" ")
-                            if self.paired_ends:
-                                percent_surviving = float(larr[7][1:-2])
-                            else:
-                                percent_surviving = float(larr[5][1:-2])
-                    if percent_surviving < 10.0:
-                        log.error(
-                            f"Fewer than 10% ({percent_surviving}%) of reads "
-                            f"survived after Trimmomatic trimming for {fp}... "
-                            f"Exiting")
-                        exit(1)
-                    elif percent_surviving < 50.0:
-                        log.warning(
-                            f"Fewer than 50% ({percent_surviving}%) of reads "
-                            f"survived after Trimmomatic trimming for {fp}")
-                    else:
-                        log.info(
-                            f"{percent_surviving}% of reads survived after "
-                            f"Trimmomatic trimming for {fp}")
+                    log.info(
+                        f"{percent_surviving}% of reads survived after "
+                        f"Trimmomatic trimming for {input_file}")
 
         end_time = time.time()
         log.info(f"Time taken for this step: {int((end_time - start_time))}s")
@@ -531,6 +547,7 @@ class Pipeline:
         self.complete_step(log, output_dir)
         return output_dir
 
+    """
     def step_03_centrifuge_taxonomy(self, input_dir):
         log, output_dir = self.initialize_step()
         start_time = time.time()
@@ -584,6 +601,7 @@ class Pipeline:
         log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
+    """
 
     def step_04_get_gene_reads(self, input_dir):
         """
