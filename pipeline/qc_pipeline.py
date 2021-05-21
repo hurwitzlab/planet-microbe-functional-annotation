@@ -7,7 +7,7 @@ Design principles:
   4. for development the pipeline should be 'restartable'
 
   To run:
-  python pipeline/pipeline.py -c ./data/configs/config.txt
+  python pipeline/qc_pipeline.py -c ./data/configs/config.txt
 """
 import argparse
 import glob
@@ -22,17 +22,17 @@ import configparser
 import time
 from Bio import SeqIO, Seq
 
-#TODO CHANGE BACK TO cluster_16S.
+# TODO CHANGE BACK TO cluster_16S.
 from utils import create_output_dir, gzip_files, ungzip_files, run_cmd, \
-     PipelineException, get_sorted_file_list, get_forward_fastq_files, \
-     get_associated_reverse_fastq_fp, get_trimmed_forward_fastq_files, \
-     fastq_to_fasta
+    PipelineException, get_sorted_file_list, get_forward_fastq_files, \
+    get_associated_reverse_fastq_fp, get_trimmed_forward_fastq_files, \
+    fastq_to_fasta
 
 
 def main():
     logging.basicConfig(level=logging.INFO)
     args = get_args()
-    Pipeline(**args.__dict__).run()
+    QCPipeline(**args.__dict__).run()
     return 0
 
 
@@ -45,9 +45,9 @@ def get_args():
         help='path to config file containing parameters/arguments')
     arg_parser.add_argument(
         '-i',
-        '--input_dir',
+        '--input_file',
         required=True,
-        help='path to input dir (step 02 output directory of the QC pipeline)')
+        help='path to input file')
     arg_parser.add_argument(
         '-o',
         '--out_dir',
@@ -56,27 +56,20 @@ def get_args():
     return arg_parser.parse_args()
 
 
-class Pipeline:
-    def __init__(self, config, input_dir, out_dir):
+class QCPipeline:
+    def __init__(self, config, input_file, out_dir):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.vsearch_executable_fp = os.environ.get('vsearch',
                                                     default='vsearch')
-        # self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR',
-        # default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
         self.trim_executable_fp = os.environ.get(
             'TRIMMOMATIC-0.39.JAR',
             default=
             '/home/u29/mattmiller899/Trimmomatic-0.39/trimmomatic-0.39.jar')
 
-        #print(f"trim = {self.trim_executable_fp}")
-        self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl',
-                                                 default='run_FragGeneScan.pl')
-        self.interproscan_executable_fp = os.environ.get(
-            'INTERPROSCAN.SH', default='interproscan.sh')
-        self.pear_executable_fp = os.environ.get('PEAR', default='pear')
+        # print(f"trim = {self.trim_executable_fp}")
         self.config_fp = config
         self.read_config()
-        self.input_dir = input_dir
+        self.input_file = input_file
         self.out_dir = out_dir
 
     def read_config(self):
@@ -87,9 +80,9 @@ class Pipeline:
         """
         config = configparser.ConfigParser()
         config.read(self.config_fp)
-        #self.paired_ends = int(config["DEFAULT"]["paired_ends"])
-        #self.in_dir = config["DEFAULT"]["in_dir"]
-        #self.out_dir = config["DEFAULT"]["out_dir"]
+        # self.paired_ends = int(config["DEFAULT"]["paired_ends"])
+        # self.in_dir = config["DEFAULT"]["in_dir"]
+        # self.out_dir = config["DEFAULT"]["out_dir"]
         self.threads = config["DEFAULT"]["threads"]
         self.debug = int(config["DEFAULT"]["debug"])
         self.trim_adapter_fasta = config["DEFAULT"]["adapter_fasta"]
@@ -106,9 +99,9 @@ class Pipeline:
         self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
         self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
         self.vsearch_filter_minlen = 75
-        #self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
-        #self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
-        #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
+        # self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
+        # self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
+        # self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
         self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
         self.frag_train_file = config["DEFAULT"]["frag_train_file"]
         self.delete_intermediates = int(config["DEFAULT"]["delete_intermediates"])
@@ -121,26 +114,15 @@ class Pipeline:
         :return:
         """
         output_dir_list = []
-        #output_dir_list.append(self.step_01_copy_and_compress(input_dir=self.in_dir))
-        #output_dir_list.append(self.step_02_trimming(input_dir=output_dir_list[-1]))
-        #_ = self.step_03_centrifuge_taxonomy(input_dir=output_dir_list[-1])
+        # output_dir_list.append(self.step_01_copy_and_compress(input_dir=self.in_dir))
+        # output_dir_list.append(self.step_02_trimming(input_dir=output_dir_list[-1]))
+        output_dir_list.append(self.step_01_trimming(input_file=self.input_file))
+        # if self.paired_ends:
+        #    output_dir_list.append(
+        #        self.step_01_1_merge_paired_end_reads(
+        #            input_dir=output_dir_list[-1]))
         output_dir_list.append(
-            self.step_04_get_gene_reads(input_dir=self.input_dir))
-        output_dir_list.append(
-            self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
-        output_dir_list.append(
-            self.step_06_get_orfs(input_dir=output_dir_list[-1]))
-        output_dir_list.append(
-            self.step_07_combine_tsv(input_dir=output_dir_list[-1]))
-        print(f"delete intermediates = {self.delete_intermediates}")
-        if self.delete_intermediates == 1:
-            print(f"deleting intermediates")
-            for i in range(len(output_dir_list) - 1):
-                for fn in os.listdir(output_dir_list[i]):
-                    if fn == "log" or fn == "trim_log":
-                        continue
-                    fp = os.path.join(output_dir_list[i], fn)
-                    os.remove(fp)
+            self.step_02_qc_reads_with_vsearch(input_dir=output_dir_list[-1]))
         return output_dir_list
 
     def initialize_step(self):
@@ -277,7 +259,7 @@ class Pipeline:
                     "-basein", fp, "-baseout",
                     os.path.join(output_dir, out_base)
                 ])
-            
+
             else:
             """
             run_arr.append("SE")
@@ -303,7 +285,7 @@ class Pipeline:
             run_arr.append(trailing_str)
             run_arr.append(minlen_str)
             log.info(f"writing output of {input_file} to {output_dir}/{out_base}")
-            #run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
+            # run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
             run_cmd(run_arr,
                     log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug)
@@ -313,9 +295,9 @@ class Pipeline:
                 for l in logcheck:
                     if "Surviving" in l:
                         larr = l.split(" ")
-                        #if self.paired_ends:
+                        # if self.paired_ends:
                         #    percent_surviving = float(larr[7][1:-2])
-                        #else:
+                        # else:
                         percent_surviving = float(larr[5][1:-2])
                 if percent_surviving < 10.0:
                     log.error(
@@ -337,6 +319,7 @@ class Pipeline:
         self.complete_step(log, output_dir)
         return output_dir
 
+    """
     def step_01_1_merge_paired_end_reads(self, input_dir):
         log, output_dir = self.initialize_step()
         start_time = time.time()
@@ -347,15 +330,15 @@ class Pipeline:
         else:
             log.info('PEAR executable: "%s"', self.pear_executable_fp)
 
-            #for compressed_forward_fastq_fp in get_trimmed_forward_fastq_files(input_dir=input_dir, debug=self.debug):
+            # for compressed_forward_fastq_fp in get_trimmed_forward_fastq_files(input_dir=input_dir, debug=self.debug):
             #    compressed_reverse_fastq_fp = get_associated_reverse_fastq_fp(forward_fp=compressed_forward_fastq_fp)
 
-            #forward_fastq_fp, reverse_fastq_fp = ungzip_files(
+            # forward_fastq_fp, reverse_fastq_fp = ungzip_files(
             #    compressed_forward_fastq_fp,
             #    compressed_reverse_fastq_fp,
             #    target_dir=output_dir,
             #    debug=self.debug
-            #)
+            # )
             for forward_fastq_fp in get_trimmed_forward_fastq_files(
                     input_dir=input_dir, debug=self.debug):
                 reverse_fastq_fp = get_associated_reverse_fastq_fp(
@@ -382,10 +365,10 @@ class Pipeline:
                     str(self.pear_min_assembly_length), '-j',
                     str(self.threads)
                 ],
-                        log_file=os.path.join(output_dir, 'log'),
-                        debug=self.debug)
+                    log_file=os.path.join(output_dir, 'log'),
+                    debug=self.debug)
 
-                #gzip_files(glob.glob(joined_fastq_fp_prefix + '.*.fastq'), debug=self.debug)
+                # gzip_files(glob.glob(joined_fastq_fp_prefix + '.*.fastq'), debug=self.debug)
                 # Check log file to make sure most reads were assembled
                 with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
                     num_assembled = 0
@@ -408,7 +391,7 @@ class Pipeline:
                             if num_discarded > num_assembled:
                                 log.warning(
                                     "More sequences discarded than kept by PEAR for files '{}' and '{}'"
-                                    .format(forward_fp, reverse_fp))
+                                        .format(forward_fp, reverse_fp))
                             if num_assembled == 0:
                                 log.error(
                                     f"All sequences discarded by PEAR for files '{forward_fp}' and '{reverse_fp}'... Exiting"
@@ -419,14 +402,15 @@ class Pipeline:
         log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
+    """
 
     """
     def step_01_2_fastqc(self, input_dir):
-       
+
          Uses FastQC to get the sequence length distribution for vsearch
         :param input_dir: string path to input files
         :return: string path to output directory
-        
+
         log, output_dir = self.initialize_step()
         if self.paired_ends:
             input_fps = glob.glob(f"{input_dir}/*.assembled*.fastq")
@@ -458,17 +442,17 @@ class Pipeline:
                 'output directory "%s" is not empty, this step will be skipped',
                 output_dir)
         else:
-            #if self.paired_ends:
+            # if self.paired_ends:
             #    input_files_glob = os.path.join(input_dir,
             #                                    '*.assembled*.fastq*')
-            #else:
+            # else:
             input_files_glob = os.path.join(input_dir, '*.fastq*')
             input_fp_list = glob.glob(input_files_glob)
             if len(input_fp_list) == 0:
                 raise PipelineException(
                     'found no .fastq files in directory "{}"'.format(
                         input_dir))
-            #log.info('input file glob: "%s"', input_files_glob)
+            # log.info('input file glob: "%s"', input_files_glob)
             log.info(f"input file list: {input_fp_list}")
             for input_fastq_fp in input_fp_list:
                 # Uncompress if its still compressed
@@ -500,15 +484,15 @@ class Pipeline:
                         str(self.vsearch_filter_maxee),
                         '-fastq_minlen',
                         str(self.vsearch_filter_minlen),
-                        #'-fastq_trunclen', str(self.vsearch_filter_trunclen),
+                        # '-fastq_trunclen', str(self.vsearch_filter_trunclen),
                         '-threads',
                         str(self.threads)
                     ],
                     log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug)
-            #gzip_glob = glob.glob(os.path.join(output_dir, '*.fastq'))
-            #log.info(f"zipping files {gzip_glob}")
-            #gzip_files(gzip_glob, debug=self.debug)
+            # gzip_glob = glob.glob(os.path.join(output_dir, '*.fastq'))
+            # log.info(f"zipping files {gzip_glob}")
+            # gzip_files(gzip_glob, debug=self.debug)
             with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
                 kept_num = 0
                 discarded_num = 0
@@ -525,248 +509,17 @@ class Pipeline:
                         if kept_num == 0:
                             log.error(
                                 "No sequences kept by vsearch qc for input file '{}'... Exiting"
-                                .format(ran_fp))
+                                    .format(ran_fp))
                             exit(1)
                         if discarded_num > kept_num:
                             log.warning(
                                 "More sequences discarded than kept by vsearch qc for input file '{}'"
-                                .format(ran_fp))
+                                    .format(ran_fp))
         end_time = time.time()
         log.info(f"Time taken for this step: {int((end_time - start_time))}s")
         self.complete_step(log, output_dir)
         return output_dir
 
-    """
-    def step_03_centrifuge_taxonomy(self, input_dir):
-        log, output_dir = self.initialize_step()
-        start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
-            log.info(
-                'output directory "%s" is not empty, this step will be skipped',
-                output_dir)
-        else:
-            log.info('input directory listing:\n\t%s',
-                     '\n\t'.join(os.listdir(input_dir)))
-            input_files_glob = os.path.join(
-                input_dir,
-                f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.fasta'
-            )
-            #log.info('input file glob: "%s"', input_files_glob)
-            input_fp_list = sorted(glob.glob(input_files_glob))
-            if len(input_fp_list) == 0:
-                raise PipelineException(
-                    f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.fasta files in directory "{input_dir}"'
-                )
-            log.info(f"input file list: {input_fp_list}")
-            for input_fp in input_fp_list:
-                input_basename = os.path.splitext(
-                    os.path.basename(input_fp))[0]
-                cent_results_fp = f"{output_dir}/{input_basename}_centrifuge_hits.tsv"
-                cent_report_fp = f"{output_dir}/{input_basename}_centrifuge_report.tsv"
-                fast_type = "f"
-                kreport_fp = f"{output_dir}/{input_basename}_kreport.tsv"
-                log.info(
-                    f"running centrifuge on {input_fp}, outputting results to {cent_results_fp} and report to "
-                    f"{cent_report_fp}")
-                run_cmd(
-                    [
-                        self.centrifuge_executable_fp, f"-x",
-                        self.centrifuge_db, f"-U", input_fp, f"-S",
-                        cent_results_fp, f"--report-file", cent_report_fp,
-                        f"-p",
-                        str(self.threads), f"-{fast_type}"
-                        # INCLUDE MORE ARGS
-                    ],
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug)
-                log.info(f"creating kraken report from {cent_results_fp}")
-                run_cmd([
-                    self.centrifuge_kraken_executable_fp, "-x",
-                    self.centrifuge_db, f"{cent_results_fp}"
-                ],
-                        log_file=kreport_fp,
-                        debug=False)
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
-        self.complete_step(log, output_dir)
-        return output_dir
-    """
-
-    def step_04_get_gene_reads(self, input_dir):
-        """
-        Uses FragGeneScan to find reads containing fragments of genes
-        :param input_dir: string path to input files
-        :return: string path to output directory
-        """
-        log, output_dir = self.initialize_step()
-        start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning(
-                'output directory "%s" is not empty, this step will be skipped',
-                output_dir)
-        else:
-            #input_fps = glob.glob(f"{input_dir}/*.fastq.gz")
-            #TODO CHANGE BACK
-            input_fp_list = glob.glob(f"{input_dir}/*.fasta")
-            #input_fps = glob.glob(f"{input_dir}/*.fasta")
-            if len(input_fp_list) == 0:
-                raise PipelineException(
-                    f'found no fasta files in directory "{input_dir}"')
-            log.info(f"input files = {input_fp_list}")
-            #log.info("uncompressing input files")
-            #uncompressed_input_fps = ungzip_files(*input_fps, target_dir=input_dir, debug=self.debug)
-            #for fp in uncompressed_input_fps:
-            for fp in input_fp_list:
-                #fasta_fp = re.sub(
-                #                    string=fp,
-                #                    pattern='\.fastq',
-                #                    repl='.fasta')
-                #log.info(f"converting fastq {fp} to fasta {fasta_fp}")
-                #fastq_to_fasta(fp, fasta_fp)
-                #os.remove(fp)
-                out_fp = os.path.join(
-                    output_dir,
-                    re.sub(string=os.path.basename(fp),
-                           pattern='\.fasta',
-                           repl='.frags'))
-                log.info(f"writing output of {fp} to {out_fp}")
-                run_cmd(
-                    [
-                        self.frag_executable_fp, f"-genome={fp}",
-                        f"-out={out_fp}", "-complete=0",
-                        f"-train={self.frag_train_file}",
-                        f"thread={self.threads}"
-                        # INCLUDE MORE ARGS
-                    ],
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug)
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
-        self.complete_step(log, output_dir)
-        return output_dir
-
-    def step_05_chunk_reads(self, input_dir):
-        log, output_dir = self.initialize_step()
-        start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
-            log.info(
-                'output directory "%s" is not empty, this step will be skipped',
-                output_dir)
-        else:
-            log.info('input directory listing:\n\t%s',
-                     '\n\t'.join(os.listdir(input_dir)))
-            input_files_glob = os.path.join(
-                input_dir,
-                f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.faa'
-            )
-            #log.info('input file glob: "%s"', input_files_glob)
-            input_fp_list = sorted(glob.glob(input_files_glob))
-            if len(input_fp_list) == 0:
-                raise PipelineException(
-                    f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.faa files in directory "{input_dir}"'
-                )
-            log.info(f"input file list: {input_fp_list}")
-            chunk_size = 10000
-            for input_fp in input_fp_list:
-                i = 0
-                log.info(f"reading input file {input_fp}")
-                fname, ext = input_fp.rsplit('.', 1)
-                _, fname = os.path.split(fname)
-                written = False
-                with open(input_fp, "r") as infile:
-                    outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
-                    log.info(f"writing chunk to {outfilepath}")
-                    tmp_count = 0
-                    outfile = open(outfilepath, 'w')
-                    for record in SeqIO.parse(infile, "fasta"):
-                        if tmp_count == chunk_size:
-                            outfile.close()
-                            i += 1
-                            outfilepath = f"{output_dir}/{fname}_{i}.{ext}"
-                            log.info(f"writing chunk to {outfilepath}")
-                            outfile = open(outfilepath, 'w')
-                            tmp_count = 0
-                        tmp_seq = str(record.seq)
-                        tmp_id = record.id
-                        tmp_seq = re.sub("\*", "X", tmp_seq)
-                        outfile.write(f">{tmp_id}\n{tmp_seq}\n")
-                        tmp_count += 1
-                try:
-                    outfile.close()
-                except:
-                    pass
-            #gzip_files(glob.glob(os.path.join(output_dir, '*.fasta')))
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
-        self.complete_step(log, output_dir)
-        return output_dir
-
-    def step_06_get_orfs(self, input_dir):
-        """
-        Uses Interproscan to get ORFS and connect them to GO terms
-        :param input_dir: string path to input files
-        :return: string path to output directory
-        """
-        log, output_dir = self.initialize_step()
-        start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning(
-                'output directory "%s" is not empty, this step will be skipped',
-                output_dir)
-        else:
-            input_fp_list = glob.glob(f"{input_dir}/*.faa")
-            if len(input_fp_list) == 0:
-                raise PipelineException(
-                    f'found no faa files in directory "{input_dir}"')
-            log.info(f"input files = {input_fp_list}")
-            for fp in input_fp_list:
-                out_basename = os.path.join(
-                    output_dir,
-                    re.sub(string=os.path.basename(fp),
-                           pattern='\.faa',
-                           repl='_interpro'))
-                log.info(f"writing output of {fp} to {out_basename}")
-                run_cmd(
-                    [
-                        self.interproscan_executable_fp, "-appl", "Pfam", "-i",
-                        fp, "-b", out_basename, "-goterms", "-iprlookup",
-                        "-dra", "-cpu",
-                        str(self.threads)
-                        # INCLUDE MORE ARGS
-                    ],
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug)
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
-        self.complete_step(log, output_dir)
-        return output_dir
-
-    def step_07_combine_tsv(self, input_dir):
-        log, output_dir = self.initialize_step()
-        start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning(
-                'output directory "%s" is not empty, this step will be skipped',
-                output_dir)
-        else:
-            input_fp_list = glob.glob(f"{input_dir}/*.tsv")
-            if len(input_fp_list) == 0:
-                raise PipelineException(
-                    f'found no tsv files in directory "{input_dir}"')
-                exit()
-            log.info(f"input files = {input_fp_list}")
-            out_basename = "_".join(os.path.basename(input_fp_list[0]).split("_")[0:-2])
-            out_fp = os.path.join(output_dir, f"{out_basename}_interpro_combined.tsv")
-            log.info(f"out_fp = {out_fp}")
-            with open(out_fp, "w") as out:
-                for fp in input_fp_list:
-                    with open(fp, "r") as f:
-                        for l in f:
-                            out.write(l)
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
-        self.complete_step(log, output_dir)
-        return output_dir
 
 if __name__ == '__main__':
     main()
