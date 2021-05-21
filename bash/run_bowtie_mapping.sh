@@ -11,4 +11,4 @@ set -u
 
 cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/mattmiller899/planet_microbe/planet-microbe-functional-annotation
 module load singularity
-singularity exec /bowtie2/bowtie2-2.4.2/bowtie2 -x $INDEX -U $IN_FILES -S $SAM -p 8 -f --un-gz $OUT
+singularity exec /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/mattmiller899/planet_microbe/planet-microbe-functional-annotation/singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2 -x $INDEX -U $IN_FILES -S $SAM -p 8 -f --un-gz $OUT
