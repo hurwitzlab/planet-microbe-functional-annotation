@@ -1,0 +1,9 @@
+__default__:
+  partition: 'standard' #MODIFY
+  group: 'bhurwitz' #MODIFY
+  M: 'mattmiller899@email.arizona.edu' #MODIFY
+  time: '24:00:00'
+  n: "5"
+  m: '25gb'
+  o: 'out/{rule}.{wildcards}.out'
+  e: 'err/{rule}.{wildcards}.err'
