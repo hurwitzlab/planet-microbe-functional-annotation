@@ -1,0 +1,17 @@
+TrimmomaticSE: Started with arguments:
+ -threads 4 -trimlog ../data/out_small/step_01_trimming/trim_log ../data/bowtie_cleaned/ERR771001_1.fastq.gz ../data/out_small/step_01_trimming/ERR771001_1.fastq.gz ILLUMINACLIP:data/configs/TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
+java.io.FileNotFoundException: /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/mattmiller899/planet_microbe/planet-microbe-functional-annotation/bash/data/configs/TruSeq3-PE.fa (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at org.usadellab.trimmomatic.fasta.FastaParser.parse(FastaParser.java:54)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.loadSequences(IlluminaClippingTrimmer.java:110)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.makeIlluminaClippingTrimmer(IlluminaClippingTrimmer.java:71)
+	at org.usadellab.trimmomatic.trim.TrimmerFactory.makeTrimmer(TrimmerFactory.java:32)
+	at org.usadellab.trimmomatic.Trimmomatic.createTrimmers(Trimmomatic.java:59)
+	at org.usadellab.trimmomatic.TrimmomaticSE.run(TrimmomaticSE.java:318)
+	at org.usadellab.trimmomatic.Trimmomatic.main(Trimmomatic.java:85)
+Quality encoding detected as phred33
+Input Reads: 2499 Surviving: 2498 (99.96%) Dropped: 1 (0.04%)
+TrimmomaticSE: Completed successfully
+executing "java -jar /home/u29/mattmiller899/Trimmomatic-0.39/trimmomatic-0.39.jar SE -threads 4 -trimlog ../data/out_small/step_01_trimming/trim_log ../data/bowtie_cleaned/ERR771001_1.fastq.gz ../data/out_small/step_01_trimming/ERR771001_1.fastq.gz ILLUMINACLIP:data/configs/TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36"

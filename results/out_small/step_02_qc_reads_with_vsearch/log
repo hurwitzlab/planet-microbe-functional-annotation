@@ -1,0 +1,6 @@
+vsearch v2.6.0_linux_x86_64, 503.8GB RAM, 96 cores
+https://github.com/torognes/vsearch
+
+Reading input file 100%
+2474 sequences kept (of which 0 truncated), 24 sequences discarded.
+executing "vsearch -fastq_filter ../data/out_small/step_01_trimming/ERR771001_1.fastq -fastaout ../data/out_small/step_02_qc_reads_with_vsearch/ERR771001_1.ee20minlen75.fasta -fastq_maxee 20 -fastq_minlen 75 -threads 4"

@@ -1,0 +1,633 @@
+ERR771001.666_3_299_-	77105a0a410e2025b44c043cdb6c9e0d	99	Pfam	PF00106	short chain dehydrogenase	1	99	4.2E-24	T	21-05-2021	IPR002347	Short-chain dehydrogenase/reductase SDR	GO:0055114
+ERR771001.2491_1_297_-	741772eada16b9ad326ca63c32eef7ab	99	Pfam	PF01625	Peptide methionine sulfoxide reductase	26	99	1.3E-28	T	21-05-2021	IPR002569	Peptide methionine sulphoxide reductase MsrA	GO:0008113|GO:0055114
+ERR771001.1061_2_298_+	c9976ecc46af9a94ff14a04dfbd2bfc1	99	Pfam	PF00848	Ring hydroxylating alpha subunit (catalytic domain)	58	90	5.5E-6	T	21-05-2021	IPR015879	Aromatic-ring-hydroxylating dioxygenase, alpha subunit, C-terminal domain	GO:0005506|GO:0044237|GO:0051537|GO:0055114
+ERR771001.50_1_297_-	dcc2e2744f12311345ddf59a836f1183	99	Pfam	PF00773	RNB domain	1	96	7.5E-37	T	21-05-2021	IPR001900	Ribonuclease II/R	GO:0003723|GO:0004540
+ERR771001.1730_3_167_+	e0a96b4d4a28704e21357c191c3965f1	55	Pfam	PF01551	Peptidase family M23	7	51	1.6E-8	T	21-05-2021	IPR016047	Peptidase M23	
+ERR771001.1049_2_286_+	fe2f9abc96d5edf335080c83845691f0	95	Pfam	PF00022	Actin	1	86	5.0E-17	T	21-05-2021	IPR004000	Actin family	
+ERR771001.2393_3_251_-	d10001b74d4291a0e804c7c89c633e5f	83	Pfam	PF02615	Malate/L-lactate dehydrogenase	12	81	3.0E-14	T	21-05-2021	IPR003767	Malate/L-lactate dehydrogenase-like	GO:0016491|GO:0055114
+ERR771001.1586_3_299_-	c3a1e1b1e2bf2aa32e0f8adad8924af3	99	Pfam	PF07686	Immunoglobulin V-set domain	3	97	9.5E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2038_2_193_-	a0b2f40ef54af82715bca075eaeb2fe0	64	Pfam	PF00137	ATP synthase subunit C	10	61	7.7E-10	T	21-05-2021	IPR002379	V-ATPase proteolipid subunit C-like domain	GO:0015078|GO:0033177|GO:1902600
+ERR771001.1594_99_299_-	d6edf935600370e7e83fd910112c19aa	66	Pfam	PF05698	Bacterial trigger factor protein (TF) C-terminus	1	43	8.6E-6	T	21-05-2021	IPR008880	Trigger factor, C-terminal	GO:0006457|GO:0015031
+ERR771001.1312_14_298_+	25b9cb87d3bf2f759fb9466937eba443	95	Pfam	PF13855	Leucine rich repeat	37	95	1.8E-9	T	21-05-2021	IPR001611	Leucine-rich repeat	GO:0005515
+ERR771001.1592_1_297_+	a5aef5728520bb4a521b99986db4090b	99	Pfam	PF12146	Serine aminopeptidase, S33	5	99	1.5E-9	T	21-05-2021	IPR022742	Serine aminopeptidase, S33	
+ERR771001.207_1_297_-	7254e0b1e0d3b3064c6588c5d701c2d7	99	Pfam	PF02776	Thiamine pyrophosphate enzyme, N-terminal TPP binding domain	21	99	1.4E-25	T	21-05-2021	IPR012001	Thiamine pyrophosphate enzyme, N-terminal TPP-binding domain	GO:0030976
+ERR771001.127_2_298_-	ff4e2b8bdb535a38b4dbcdcb01fae6d6	99	Pfam	PF17863	AAA lid domain	53	98	6.9E-15	T	21-05-2021	IPR041628	ChlI/MoxR, AAA lid domain	
+ERR771001.331_2_298_+	0b2372852547883ab26df73b140f2296	99	Pfam	PF02824	TGS domain	44	99	5.0E-18	T	21-05-2021	IPR004095	TGS	
+ERR771001.690_1_297_-	affcf58ea54b1e63378935fa777872ca	99	Pfam	PF00909	Ammonium Transporter Family	3	67	1.5E-15	T	21-05-2021	IPR024041	Ammonium transporter AmtB-like domain	GO:0008519|GO:0015696|GO:0016020
+ERR771001.382_2_298_-	da8de08107e5f7cba7115bb303d291c6	99	Pfam	PF05618	Putative ATP-dependant zinc protease	2	95	4.9E-20	T	21-05-2021
+ERR771001.577_1_297_-	74d29eee165875619244a8a51aa20d33	99	Pfam	PF03947	Ribosomal Proteins L2, C-terminal domain	16	99	4.2E-30	T	21-05-2021	IPR022669	Ribosomal protein L2, C-terminal	GO:0003735|GO:0005840|GO:0006412
+ERR771001.1199_1_297_+	1c86363ec42fd50b5338401ead9ef26a	99	Pfam	PF00475	Imidazoleglycerol-phosphate dehydratase	10	97	2.3E-40	T	21-05-2021	IPR000807	Imidazoleglycerol-phosphate dehydratase	GO:0000105|GO:0004424
+ERR771001.2044_1_222_+	c956018c88d0324f01775ee04ab5dc0b	73	Pfam	PF01008	Initiation factor 2 subunit family	28	61	2.1E-7	T	21-05-2021	IPR000649	Initiation factor 2B-related	GO:0044237
+ERR771001.488_2_298_-	2f85b02d0b12543d3718959d4fe15dca	99	Pfam	PF13795	HupE / UreJ protein	11	88	1.7E-22	T	21-05-2021	IPR032809	Putative HupE/UreJ protein	
+ERR771001.1448_1_297_+	9f7795c8e1be97c726146e80fad8f3d3	99	Pfam	PF00501	AMP-binding enzyme	20	98	2.5E-10	T	21-05-2021	IPR000873	AMP-dependent synthetase/ligase	
+ERR771001.856_1_299_-	9706476283205380d88d558605192001	99	Pfam	PF00162	Phosphoglycerate kinase	65	98	3.9E-8	T	21-05-2021	IPR001576	Phosphoglycerate kinase	GO:0004618|GO:0006096
+ERR771001.2410_95_298_-	4def38684a27421150465916660b2c41	67	Pfam	PF17782	DprA winged helix domain	2	59	1.2E-14	T	21-05-2021	IPR041614	DprA, winged helix domain	
+ERR771001.1172_2_208_-	fabf594c5c247921ca3e8d3a83d110be	69	Pfam	PF03462	PCRF domain	9	66	4.3E-7	T	21-05-2021	IPR005139	Peptide chain release factor	GO:0006415
+ERR771001.2025_1_297_+	813b1fcd77bcbb5ffc157ebba76fd6a1	99	Pfam	PF00378	Enoyl-CoA hydratase/isomerase	11	74	1.2E-10	T	21-05-2021	IPR001753	Enoyl-CoA hydratase/isomerase	GO:0003824
+ERR771001.1411_1_288_+	6c652ed4bc6f4e0a0feaa895b2548e26	96	Pfam	PF17762	HTH domain found in ParB protein	16	62	3.1E-15	T	21-05-2021	IPR041468	ParB/Spo0J, HTH domain	
+ERR771001.1893_1_297_+	ff79e0d3eb5644bcd1385fe544c7dcc3	99	Pfam	PF00593	TonB dependent receptor	13	92	2.1E-9	T	21-05-2021	IPR000531	TonB-dependent receptor-like, beta-barrel	
+ERR771001.143_64_297_+	15266dd134fc012b20ead3f5d46a6f2e	78	Pfam	PF04542	Sigma-70 region 2	28	78	8.6E-5	T	21-05-2021	IPR007627	RNA polymerase sigma-70 region 2	GO:0003700|GO:0006352|GO:0006355
+ERR771001.1465_2_298_-	b35f92989357164d786f2c517951bbfe	99	Pfam	PF07686	Immunoglobulin V-set domain	6	97	1.6E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.111_3_299_+	ec150f0a562e5f26d0dadfab12d4a83e	99	Pfam	PF03717	Penicillin-binding Protein dimerisation domain	28	95	2.3E-13	T	21-05-2021	IPR005311	Penicillin-binding protein, dimerisation domain	GO:0008658
+ERR771001.966_3_297_+	88c17c1e070973552dd58d6bf5bae2f0	99	Pfam	PF00171	Aldehyde dehydrogenase family	1	45	7.7E-10	T	21-05-2021	IPR015590	Aldehyde dehydrogenase domain	GO:0016491|GO:0055114
+ERR771001.295_43_297_-	fc58460111c01ab79a4534449a338e75	84	Pfam	PF00441	Acyl-CoA dehydrogenase, C-terminal domain	1	79	5.1E-20	T	21-05-2021	IPR009075	Acyl-CoA dehydrogenase/oxidase C-terminal	GO:0016627|GO:0055114
+ERR771001.1203_3_290_+	25b112c6201231765ceeeae4f3d3fca5	95	Pfam	PF00579	tRNA synthetases class I (W and Y)	1	89	4.5E-21	T	21-05-2021	IPR002305	Aminoacyl-tRNA synthetase, class Ic	GO:0000166|GO:0004812|GO:0005524|GO:0006418
+ERR771001.1915_2_298_+	353c64a2ae2e1ff01cb724a77ac9cd2e	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	9.2E-15	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.788_1_297_-	aa50f8b1396aa7e160babc85c55db299	99	Pfam	PF08214	Histone acetylation protein	29	98	1.0E-15	T	21-05-2021	IPR013178	Histone acetyltransferase Rtt109/CBP	GO:0004402|GO:0006355|GO:0016573
+ERR771001.571_3_71_+	06c5f83a274a13840a7e61350144cc1e	22	Pfam	PF02913	FAD linked oxidases, C-terminal domain	2	18	5.4E-5	T	21-05-2021	IPR004113	FAD-linked oxidase, C-terminal	GO:0003824|GO:0050660
+ERR771001.2112_2_79_+	813d5f7708ebf864d391ee7e046af12f	25	Pfam	PF02036	SCP-2 sterol transfer family	2	24	9.1E-5	T	21-05-2021	IPR003033	SCP2 sterol-binding domain	
+ERR771001.428_3_245_+	9356213a4dc37598856d481815f03aa7	80	Pfam	PF13662	Toprim domain	3	53	2.3E-7	T	21-05-2021	IPR006171	TOPRIM  domain	
+ERR771001.947_3_212_+	1179542c39b9faaf23d62e6577e5450c	69	Pfam	PF02518	Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	1	65	2.5E-14	T	21-05-2021	IPR003594	Histidine kinase/HSP90-like ATPase	
+ERR771001.852_3_299_+	6fde7d106d579e1113a3b2ce0b1e872e	99	Pfam	PF01668	SmpB protein	42	96	1.6E-16	T	21-05-2021	IPR000037	SsrA-binding protein	GO:0003723
+ERR771001.1823_2_124_+	98c95916e9d77854d2afc5c1d4924e76	40	Pfam	PF01612	3'-5' exonuclease	2	40	3.1E-6	T	21-05-2021	IPR002562	3'-5' exonuclease domain	GO:0003676|GO:0006139|GO:0008408
+ERR771001.2212_3_299_-	334dae30ae20f2b7a10a0ca29666931b	99	Pfam	PF08007	Cupin superfamily protein	1	93	5.7E-21	T	21-05-2021	IPR003347	JmjC domain	
+ERR771001.16_165_299_+	6df4a9d0fc33caac42f8680d9497e337	45	Pfam	PF01384	Phosphate transporter family	7	44	2.9E-9	T	21-05-2021	IPR001204	Phosphate transporter	GO:0005315|GO:0006817|GO:0016020
+ERR771001.604_1_150_+	8790a34fd2fb9014e33c03ce545c3222	49	Pfam	PF02910	Fumarate reductase flavoprotein C-term	2	49	1.0E-8	T	21-05-2021	IPR015939	Fumarate reductase/succinate dehydrogenase flavoprotein-like, C-terminal	GO:0016491|GO:0055114
+ERR771001.2237_2_283_-	abb3c340d7072e9b171606c1491855cc	94	Pfam	PF00542	Ribosomal protein L7/L12 C-terminal domain	46	94	6.3E-21	T	21-05-2021	IPR013823	Ribosomal protein L7/L12, C-terminal	GO:0003735|GO:0006412
+ERR771001.2237_2_283_-	abb3c340d7072e9b171606c1491855cc	94	Pfam	PF16320	Ribosomal protein L7/L12 dimerisation domain	1	33	3.6E-9	T	21-05-2021	IPR008932	Ribosomal protein L7/L12, oligomerisation	GO:0003735|GO:0005840|GO:0006412
+ERR771001.1364_1_297_-	2c14d99994b5f63fa4c35ebac9532b83	99	Pfam	PF06258	Mitochondrial fission ELM1	12	98	6.4E-20	T	21-05-2021	IPR009367	Mitochondrial fission protein ELM1-like	
+ERR771001.13_1_297_+	adf05b1ce1c0005d891a542058c09749	99	Pfam	PF07686	Immunoglobulin V-set domain	12	96	9.1E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.453_2_298_-	8a85a7eed01436f1dbfac3521de429c7	99	Pfam	PF00953	Glycosyl transferase family 4	4	46	3.0E-8	T	21-05-2021	IPR000715	Glycosyl transferase, family 4	GO:0008963|GO:0016021
+ERR771001.244_3_299_+	23d60b81c3284a82605437431deecacd	99	Pfam	PF00562	RNA polymerase Rpb2, domain 6	1	92	3.4E-21	T	21-05-2021	IPR007120	DNA-directed RNA polymerase, subunit 2, hybrid-binding domain	GO:0003677|GO:0003899|GO:0006351
+ERR771001.263_3_269_-	0ced4e156af926bb06a87a16fd403dae	89	Pfam	PF05195	Aminopeptidase P, N-terminal domain	45	89	1.7E-6	T	21-05-2021	IPR007865	Aminopeptidase P, N-terminal	GO:0030145|GO:0070006
+ERR771001.253_3_299_-	93d86d71e6b8630c122a115ee3ee608e	99	Pfam	PF03331	UDP-3-O-acyl N-acetylglycosamine deacetylase	1	99	2.5E-18	T	21-05-2021	IPR004463	UDP-3-O-acyl N-acetylglucosamine deacetylase	GO:0008759|GO:0009245
+ERR771001.1488_1_297_+	0bf86fef258279cd4c138ba560309f11	99	Pfam	PF00817	impB/mucB/samB family	17	99	4.1E-29	T	21-05-2021	IPR001126	UmuC domain	GO:0006281
+ERR771001.1990_1_297_+	6ec0965808dbb04959c7341a28a3dd92	99	Pfam	PF02514	CobN/Magnesium Chelatase	2	99	1.2E-31	T	21-05-2021	IPR003672	CobN/magnesium chelatase	GO:0009058
+ERR771001.1598_2_289_-	9b6e85b61da8ced1ba9de9e3cb311eac	96	Pfam	PF03726	Polyribonucleotide nucleotidyltransferase, RNA binding domain	5	65	2.8E-11	T	21-05-2021	IPR015848	Polyribonucleotide nucleotidyltransferase, RNA-binding domain	GO:0003723|GO:0006396
+ERR771001.942_1_297_+	82384ffb9630ea978f3ce3215cb4367b	99	Pfam	PF04998	RNA polymerase Rpb1, domain 5	1	63	9.0E-20	T	21-05-2021	IPR007081	RNA polymerase Rpb1, domain 5	GO:0003677|GO:0003899|GO:0006351
+ERR771001.730_2_298_+	746f987e716b7b2b4d25565588e04f7c	99	Pfam	PF13277	YmdB-like protein	1	99	2.6E-26	T	21-05-2021	IPR005235	Metallophosphoesterase, YmdB-like	
+ERR771001.2065_1_297_+	7ca1f75967a56122e8edf676cf337844	99	Pfam	PF13561	Enoyl-(Acyl carrier protein) reductase	21	97	1.1E-13	T	21-05-2021
+ERR771001.409_2_298_-	b621e24ae096e29df90262f75fa17362	99	Pfam	PF03668	P-loop ATPase protein family	2	97	4.6E-21	T	21-05-2021	IPR005337	RapZ-like family	GO:0005524
+ERR771001.1140_3_299_-	c38197fb1571d6929fe6714b6d228e18	99	Pfam	PF07686	Immunoglobulin V-set domain	3	68	1.8E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2276_3_299_-	755d0b7d9d28c9cad53031f4dc6d8314	99	Pfam	PF00474	Sodium:solute symporter family	62	99	2.0E-5	T	21-05-2021	IPR001734	Sodium/solute symporter	GO:0016020|GO:0022857|GO:0055085
+ERR771001.2434_3_299_+	c79a67582f51f05ec3a56ae765aa35dd	99	Pfam	PF00005	ABC transporter	17	99	3.2E-7	T	21-05-2021	IPR003439	ABC transporter-like	GO:0005524
+ERR771001.585_44_298_-	a89021fe5961ca1f8888c46daa2d254b	84	Pfam	PF03186	CobD/Cbib protein	4	66	6.7E-11	T	21-05-2021	IPR004485	Cobalamin biosynthesis CobD/CbiB	GO:0009236|GO:0016021|GO:0048472
+ERR771001.1445_1_297_+	976ee6f66843edd6978094467b65fc62	99	Pfam	PF08158	NUC130/3NT domain	62	97	3.0E-9	T	21-05-2021	IPR012977	Uncharacterised domain NUC130/133, N-terminal	
+ERR771001.1556_1_297_-	6364480c9901c4518d38e67b11192a46	99	Pfam	PF00162	Phosphoglycerate kinase	4	91	1.5E-24	T	21-05-2021	IPR001576	Phosphoglycerate kinase	GO:0004618|GO:0006096
+ERR771001.2197_88_297_-	8d899199744194cdac84c2f6d0af5e89	69	Pfam	PF00679	Elongation factor G C-terminus	1	63	1.1E-18	T	21-05-2021	IPR000640	Elongation factor EFG, domain V-like	
+ERR771001.952_1_297_+	63a3691d1a6342b339eba925413500c1	99	Pfam	PF02559	CarD-like/TRCF domain	2	95	1.1E-27	T	21-05-2021	IPR003711	CarD-like/TRCF domain	
+ERR771001.1253_2_298_-	ce1f206a1b407d9326ba45ef9405d12c	99	Pfam	PF00206	Lyase	12	99	4.1E-12	T	21-05-2021	IPR022761	Fumarate lyase, N-terminal	
+ERR771001.1239_3_120_+	6691487f5e63dede757f7bc6d87a0b8d	40	Pfam	PF03960	ArsC family	2	39	3.3E-11	T	21-05-2021	IPR006660	Arsenate reductase-like	
+ERR771001.2231_2_298_-	b9a61b5138aa3e3e83a0df05b3e12d78	99	Pfam	PF03060	Nitronate monooxygenase	1	98	1.3E-11	T	21-05-2021	IPR004136	Nitronate monooxygenase	GO:0018580|GO:0055114
+ERR771001.1343_1_297_+	30b96cc704e39fa83846a511fc97210e	99	Pfam	PF04760	Translation initiation factor IF-2, N-terminal region	64	97	3.3E-7	T	21-05-2021	IPR006847	Translation initiation factor IF-2, N-terminal	
+ERR771001.1102_2_298_-	d03c9e224bf7ba8b524545d664400b59	99	Pfam	PF02800	Glyceraldehyde 3-phosphate dehydrogenase, C-terminal domain	1	99	4.6E-19	T	21-05-2021	IPR020829	Glyceraldehyde 3-phosphate dehydrogenase, catalytic domain	GO:0016620|GO:0055114
+ERR771001.141_71_298_+	85086b2a2474dd50f74612e0f9237651	76	Pfam	PF13510	2Fe-2S iron-sulfur cluster binding domain	3	76	1.8E-19	T	21-05-2021
+ERR771001.1881_1_240_-	e9459b80292091477d93a2e9f82215df	80	Pfam	PF01227	GTP cyclohydrolase I	1	80	7.5E-26	T	21-05-2021	IPR020602	GTP cyclohydrolase I domain	
+ERR771001.663_1_299_+	cae2a438d3435041750a46ef1c6667ae	100	Pfam	PF13857	Ankyrin repeats (many copies)	17	63	2.9E-8	T	21-05-2021
+ERR771001.1581_3_299_+	6611e49505f00e03d438b4f435345949	99	Pfam	PF00575	S1 RNA binding domain	54	98	4.8E-9	T	21-05-2021	IPR003029	S1 domain	GO:0003676
+ERR771001.1581_3_299_+	6611e49505f00e03d438b4f435345949	99	Pfam	PF00575	S1 RNA binding domain	2	34	2.8E-4	T	21-05-2021	IPR003029	S1 domain	GO:0003676
+ERR771001.2093_1_297_-	fb1488cd0138460de9f3b49684e9d387	99	Pfam	PF01509	TruB family pseudouridylate synthase (N terminal domain)	2	98	2.2E-24	T	21-05-2021	IPR002501	Pseudouridine synthase II, N-terminal	GO:0006396
+ERR771001.23_16_297_-	1d1a1c68ef85131b43075ef21ec572e0	93	Pfam	PF07479	NAD-dependent glycerol-3-phosphate dehydrogenase C-terminus	7	82	5.6E-20	T	21-05-2021	IPR006109	Glycerol-3-phosphate dehydrogenase, NAD-dependent, C-terminal	GO:0004367|GO:0005975|GO:0055114
+ERR771001.1818_2_298_-	be00ee17a527d99496ccc4b269eaeb7a	99	Pfam	PF07686	Immunoglobulin V-set domain	7	97	1.6E-7	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1344_1_297_+	4d8e31de4580b1784dfec9b8a02b1bb4	99	Pfam	PF13976	GAG-pre-integrase domain	42	92	5.0E-8	T	21-05-2021	IPR025724	GAG-pre-integrase domain	
+ERR771001.574_2_298_+	6ddd7c3dbe9a54cc330f4b95f58d5d50	99	Pfam	PF02774	Semialdehyde dehydrogenase, dimerisation domain	23	99	2.4E-18	T	21-05-2021	IPR012280	Semialdehyde dehydrogenase, dimerisation domain	GO:0008652|GO:0016620|GO:0046983
+ERR771001.664_1_297_-	68239e7ee8dd69a565c62f0a2b5e2918	99	Pfam	PF07686	Immunoglobulin V-set domain	4	96	3.8E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2220_2_298_+	f9814ddf9b428272600f3a9ec0033557	99	Pfam	PF08443	RimK-like ATP-grasp domain	5	99	1.0E-32	T	21-05-2021	IPR013651	ATP-grasp fold, RimK-type	
+ERR771001.2484_3_239_+	d029808b57f7e086ba9d0cb6f066fe7a	79	Pfam	PF07715	TonB-dependent Receptor Plug Domain	5	79	8.0E-10	T	21-05-2021	IPR012910	TonB-dependent receptor, plug domain	
+ERR771001.373_3_299_+	b78819e9c708d7ce734682a947d01b7e	99	Pfam	PF13570	PQQ-like domain	30	62	0.0029	T	21-05-2021	IPR025666	Pyrrolo-quinoline quinone-like domain	
+ERR771001.566_3_299_+	1d50b3ff5ce66f442b15dd689587e665	99	Pfam	PF06082	Exopolysaccharide biosynthesis protein YbjH	3	57	1.8E-5	T	21-05-2021	IPR010344	Exopolysaccharide biosynthesis protein YbjH	
+ERR771001.487_1_297_-	e9a35dcf1f78492d2a4b9810bdef5f17	99	Pfam	PF00012	Hsp70 protein	1	99	5.5E-34	T	21-05-2021	IPR013126	Heat shock protein 70 family	
+ERR771001.47_2_298_+	c03255d0fd24dc0406b540a37ac8339c	99	Pfam	PF00009	Elongation factor Tu GTP binding domain	1	98	2.1E-39	T	21-05-2021	IPR000795	Transcription factor, GTP-binding domain	GO:0003924|GO:0005525
+ERR771001.234_2_154_-	8e10098da039ff4d3c9a83e653c54982	51	Pfam	PF00478	IMP dehydrogenase / GMP reductase domain	1	51	7.8E-13	T	21-05-2021	IPR001093	IMP dehydrogenase/GMP reductase	GO:0003824|GO:0055114
+ERR771001.2341_2_297_-	cea1ea482760e7268787f8830e3ecb12	98	Pfam	PF00085	Thioredoxin	35	97	1.1E-21	T	21-05-2021	IPR013766	Thioredoxin domain	
+ERR771001.1809_2_298_-	9211fdf38124536bb27a3be30d5c3896	99	Pfam	PF13640	2OG-Fe(II) oxygenase superfamily	3	95	6.6E-18	T	21-05-2021	IPR005123	Oxoglutarate/iron-dependent dioxygenase	GO:0016491|GO:0055114
+ERR771001.1709_1_297_+	d4564eb4e528092156a04c8ce7f657a9	99	Pfam	PF01242	6-pyruvoyl tetrahydropterin synthase	1	95	1.6E-15	T	21-05-2021	IPR007115	6-pyruvoyl tetrahydropterin synthase/QueD family	
+ERR771001.1023_3_299_-	568083012db9300f9ce841ee5f304b74	99	Pfam	PF01272	Transcription elongation factor, GreA/GreB, C-term	27	99	1.6E-25	T	21-05-2021	IPR001437	Transcription elongation factor, GreA/GreB, C-terminal	GO:0003677|GO:0032784
+ERR771001.2159_3_299_+	762d8a5b695e609769a66b50f02675af	99	Pfam	PF01039	Carboxyl transferase domain	2	96	2.4E-16	T	21-05-2021	IPR034733	Acetyl-CoA carboxylase	
+ERR771001.722_3_104_-	d4a39fe9858294dd16162b8dfd00cab0	34	Pfam	PF00771	FHIPEP family	1	34	9.3E-20	T	21-05-2021	IPR001712	Type III secretion system FHIPEP	GO:0009306|GO:0016020
+ERR771001.2415_2_298_-	efc5a82881656724cf7eda996d6a601d	99	Pfam	PF00078	Reverse transcriptase (RNA-dependent DNA polymerase)	4	91	2.9E-7	T	21-05-2021	IPR000477	Reverse transcriptase domain	
+ERR771001.2164_3_299_+	1d3c85cff842be44a1c53841368d2205	99	Pfam	PF13091	PLD-like domain	11	86	6.3E-14	T	21-05-2021	IPR025202	Phospholipase D-like domain	
+ERR771001.1640_3_299_+	d5603209788d8e37c93d663a2d812bee	99	Pfam	PF02515	CoA-transferase family III	1	99	3.6E-27	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.196_1_297_-	b11b823af7da36e2f4d0026538775aef	99	Pfam	PF01761	3-dehydroquinate synthase	1	83	4.4E-20	T	21-05-2021	IPR030960	3-dehydroquinate synthase domain	
+ERR771001.682_3_299_+	6c8705f5fec074cda969aec2c7b540ee	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	2.3E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.91_65_298_+	1759605070e7903517e057ecbd555deb	78	Pfam	PF13704	Glycosyl transferase family 2	11	64	3.2E-7	T	21-05-2021
+ERR771001.1524_2_298_-	9f5ac39e079d255c7286c2d809cffc16	99	Pfam	PF08757	CotH kinase protein	1	73	5.5E-13	T	21-05-2021	IPR014867	Spore coat protein CotH	
+ERR771001.1970_2_298_-	6cb3082832e31234cb442ad77725d4a1	99	Pfam	PF13439	Glycosyltransferase Family 4	1	97	5.5E-7	T	21-05-2021	IPR028098	Glycosyltransferase subfamily 4-like, N-terminal domain	
+ERR771001.155_10_297_+	2a551b254333c4d7f0230d1431d59ebd	96	Pfam	PF02265	S1/P1 Nuclease	17	88	3.5E-15	T	21-05-2021	IPR003154	S1/P1 nuclease	GO:0003676|GO:0004519|GO:0006308
+ERR771001.2188_30_299_+	a79dee44489bcdd9ab8afe97d5ab6a0c	90	Pfam	PF01180	Dihydroorotate dehydrogenase	42	90	1.6E-12	T	21-05-2021	IPR005720	Dihydroorotate dehydrogenase domain	GO:0005737|GO:0016627|GO:0055114
+ERR771001.1755_1_297_+	b37f5e2f610c6b62896cf608bc703d2c	99	Pfam	PF07973	Threonyl and Alanyl tRNA synthetase second additional domain	1	44	1.8E-17	T	21-05-2021	IPR012947	Threonyl/alanyl tRNA synthetase, SAD	GO:0004812|GO:0005524|GO:0043039
+ERR771001.751_2_298_+	fa53079c2af7f3b230c15d1ecb7189ef	99	Pfam	PF01807	CHC2 zinc finger	1	82	1.5E-26	T	21-05-2021	IPR002694	Zinc finger, CHC2-type	GO:0003677|GO:0003896|GO:0006260|GO:0008270
+ERR771001.240_2_298_-	f19d9bdf6a53c161944b68fb344bc1e1	99	Pfam	PF00450	Serine carboxypeptidase	10	99	3.8E-27	T	21-05-2021	IPR001563	Peptidase S10, serine carboxypeptidase	GO:0004185|GO:0006508
+ERR771001.1216_1_297_-	7e68ff80ef6da9e73f313e1e966030c7	99	Pfam	PF09996	Uncharacterized protein conserved in bacteria (DUF2237)	1	95	3.7E-44	T	21-05-2021	IPR018714	Protein of unknown function DUF2237	
+ERR771001.2440_3_227_+	847d3976d39ac18e55fe8e5d873a8b52	75	Pfam	PF01019	Gamma-glutamyltranspeptidase	2	75	2.2E-8	T	21-05-2021
+ERR771001.2261_3_299_+	dcaac51b7b1f93ff626e8cd159d70ce8	99	Pfam	PF02779	Transketolase, pyrimidine binding domain	4	47	1.5E-8	T	21-05-2021	IPR005475	Transketolase-like, pyrimidine-binding domain	
+ERR771001.2261_3_299_+	dcaac51b7b1f93ff626e8cd159d70ce8	99	Pfam	PF02780	Transketolase, C-terminal domain	64	99	7.1E-7	T	21-05-2021	IPR033248	Transketolase, C-terminal domain	
+ERR771001.2179_1_297_+	f4ad39176bfd1c5406a726456dba44c6	99	Pfam	PF00198	2-oxoacid dehydrogenases acyltransferase (catalytic domain)	1	99	1.6E-38	T	21-05-2021	IPR001078	2-oxoacid dehydrogenase acyltransferase, catalytic domain	GO:0016746
+ERR771001.559_1_193_+	1f7371e10036dc7089ceaac57bf43249	65	Pfam	PF00411	Ribosomal protein S11	2	54	8.1E-20	T	21-05-2021	IPR001971	Ribosomal protein S11	GO:0003735|GO:0005840|GO:0006412
+ERR771001.1387_1_299_-	727ad654ed890fbc1a61368d41a0167e	99	Pfam	PF03597	Cytochrome oxidase maturation protein cbb3-type	75	99	8.6E-6	T	21-05-2021	IPR004714	Cytochrome oxidase maturation protein cbb3-type	
+ERR771001.1151_3_239_-	9fdd7fde240a298b536aa8af8ef086cd	79	Pfam	PF03446	NAD binding domain of 6-phosphogluconate dehydrogenase	2	75	1.1E-18	T	21-05-2021	IPR006115	6-phosphogluconate dehydrogenase, NADP-binding	GO:0050661
+ERR771001.771_1_297_+	90703dd0c9f5d64db24f314e216da1a8	99	Pfam	PF00665	Integrase core domain	2	89	3.5E-10	T	21-05-2021	IPR001584	Integrase, catalytic core	GO:0015074
+ERR771001.2334_3_299_+	fa9fba2d08b0c820668fd14f01154ae1	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	5.2E-9	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1971_2_298_-	917f83003c3e03baf8a5a17842f71222	99	Pfam	PF00311	Phosphoenolpyruvate carboxylase	2	99	2.1E-20	T	21-05-2021	IPR021135	Phosphoenolpyruvate carboxylase	GO:0006099|GO:0008964|GO:0015977
+ERR771001.1748_3_299_-	4d06dae241ede58bf6eee191bb217c53	99	Pfam	PF01266	FAD dependent oxidoreductase	7	89	1.1E-9	T	21-05-2021	IPR006076	FAD dependent oxidoreductase	GO:0016491|GO:0055114
+ERR771001.2343_1_297_-	5681ce12fde1b0dfc42a2f4965ac0b04	99	Pfam	PF02673	Bacitracin resistance protein BacA	4	98	1.5E-26	T	21-05-2021	IPR003824	Undecaprenyl-diphosphatase UppP	GO:0016020|GO:0016311|GO:0050380
+ERR771001.2202_2_298_+	d1b641577c14f5f23ed207a073227cf2	99	Pfam	PF00202	Aminotransferase class-III	1	99	1.1E-22	T	21-05-2021	IPR005814	Aminotransferase class-III	GO:0008483|GO:0030170
+ERR771001.1776_3_299_-	c91261b2514d599f81127e81d136802e	99	Pfam	PF00587	tRNA synthetase class II core domain (G, H, P, S and T)	50	99	3.8E-13	T	21-05-2021	IPR002314	Aminoacyl-tRNA synthetase, class II (G/ P/ S/T)	GO:0000166|GO:0004812|GO:0005524|GO:0006418
+ERR771001.25_1_297_-	f8ecd95118bd7170f9c9e178e7b0aae6	99	Pfam	PF00514	Armadillo/beta-catenin-like repeat	47	85	6.0E-7	T	21-05-2021	IPR000225	Armadillo	GO:0005515
+ERR771001.25_1_297_-	f8ecd95118bd7170f9c9e178e7b0aae6	99	Pfam	PF00514	Armadillo/beta-catenin-like repeat	4	43	1.5E-4	T	21-05-2021	IPR000225	Armadillo	GO:0005515
+ERR771001.2009_1_297_+	9ce3b0a4acd27b77a0806005000e33cc	99	Pfam	PF00771	FHIPEP family	1	76	9.2E-17	T	21-05-2021	IPR001712	Type III secretion system FHIPEP	GO:0009306|GO:0016020
+ERR771001.411_1_297_-	4ed8a42dfde52443e156b8f05dc8ecd4	99	Pfam	PF01209	ubiE/COQ5 methyltransferase family	21	80	2.4E-16	T	21-05-2021	IPR004033	UbiE/COQ5 methyltransferase	GO:0008168
+ERR771001.1120_3_248_+	c1c88eea58c3bde43a9d5bb0bda8f491	81	Pfam	PF00326	Prolyl oligopeptidase family	17	66	7.9E-6	T	21-05-2021	IPR001375	Peptidase S9, prolyl oligopeptidase, catalytic domain	GO:0006508|GO:0008236
+ERR771001.2072_1_297_+	52a33eb95d849596b8611b4e436a73a4	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	3.0E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1034_3_299_-	bd0838964448695b1ba6671d46765b42	99	Pfam	PF16363	GDP-mannose 4,6 dehydratase	6	99	5.0E-19	T	21-05-2021	IPR016040	NAD(P)-binding domain	
+ERR771001.1924_3_299_+	9a338626fcaa1c81aff10aad781f68db	99	Pfam	PF00575	S1 RNA binding domain	27	96	2.7E-11	T	21-05-2021	IPR003029	S1 domain	GO:0003676
+ERR771001.2036_1_297_-	4062de2bfb2210d144f45b8e109203f6	99	Pfam	PF05088	Bacterial NAD-glutamate dehydrogenase	2	99	2.9E-16	T	21-05-2021	IPR028971	NAD-glutamate dehydrogenase	GO:0004352|GO:0019551
+ERR771001.889_3_299_-	8f677b2f28edc3aec7d13fb3b0aef2f7	99	Pfam	PF13662	Toprim domain	47	94	1.2E-7	T	21-05-2021	IPR006171	TOPRIM  domain	
+ERR771001.2250_3_299_+	6ce5a9e070657757c2c50377780a452d	99	Pfam	PF01336	OB-fold nucleic acid binding domain	31	96	5.4E-9	T	21-05-2021	IPR004365	OB-fold nucleic acid binding domain, AA-tRNA synthetase-type	GO:0003676
+ERR771001.212_3_298_-	842cc12cc8868d9c5ec69e867fe42a8c	98	Pfam	PF02779	Transketolase, pyrimidine binding domain	12	97	8.1E-22	T	21-05-2021	IPR005475	Transketolase-like, pyrimidine-binding domain	
+ERR771001.1039_1_189_+	0efee634ddfbc566f17cef43beba2016	62	Pfam	PF12915	Protein of unknown function (DUF3833)	1	55	9.6E-18	T	21-05-2021	IPR024409	Protein of unknown function DUF3833	
+ERR771001.814_2_298_-	abcd2511ac5281b7a6dc4bd15c7c7243	99	Pfam	PF03060	Nitronate monooxygenase	1	99	1.2E-26	T	21-05-2021	IPR004136	Nitronate monooxygenase	GO:0018580|GO:0055114
+ERR771001.1551_2_298_+	c0a0296a48ab1e787713b47a5b518f8f	99	Pfam	PF01225	Mur ligase family, catalytic domain	1	98	2.2E-18	T	21-05-2021	IPR000713	Mur ligase, N-terminal catalytic domain	GO:0005524|GO:0009058
+ERR771001.2354_3_245_+	c80b785844a469895dd12b70eee1e334	81	Pfam	PF00400	WD domain, G-beta repeat	2	28	3.9E-8	T	21-05-2021	IPR001680	WD40 repeat	GO:0005515
+ERR771001.2354_3_245_+	c80b785844a469895dd12b70eee1e334	81	Pfam	PF00400	WD domain, G-beta repeat	32	70	5.2E-11	T	21-05-2021	IPR001680	WD40 repeat	GO:0005515
+ERR771001.1577_1_297_-	13fb7df9c948267045638499803c3e9f	99	Pfam	PF06980	Protein of unknown function (DUF1302)	3	79	4.5E-18	T	21-05-2021	IPR010727	Protein of unknown function DUF1302	
+ERR771001.1835_50_298_-	dec0c68cb1c4426e921fde0bfb072a0a	82	Pfam	PF00164	Ribosomal protein S12/S23	1	81	6.9E-29	T	21-05-2021	IPR006032	Ribosomal protein S12/S23	GO:0003735|GO:0005840|GO:0006412
+ERR771001.100_1_297_+	77f2d7445c8702d6ed6361c059439f29	99	Pfam	PF00580	UvrD/REP helicase N-terminal domain	3	91	1.5E-18	T	21-05-2021	IPR034739	UvrD/AddA helicase, N-terminal	GO:0005524
+ERR771001.980_2_298_-	e4b8e405960e5ec2607e72f5228081b9	99	Pfam	PF00939	Sodium:sulfate symporter transmembrane region	2	98	7.0E-17	T	21-05-2021	IPR001898	Solute carrier family 13	GO:0016020|GO:0022857|GO:0055085
+ERR771001.2405_1_255_-	00658b3db9b0b7aa7bea4932a7468b61	85	Pfam	PF05405	Mitochondrial ATP synthase B chain precursor (ATP-synt_B)	6	85	1.5E-14	T	21-05-2021	IPR008688	ATP synthase, F0 complex, subunit B/MI25	GO:0000276|GO:0015078|GO:0015986
+ERR771001.444_2_298_+	4f690229167d1513681d38f6b43052f0	99	Pfam	PF13306	BspA type Leucine rich repeat region (6 copies)	40	99	1.1E-18	T	21-05-2021	IPR026906	BspA type Leucine rich repeat region	
+ERR771001.967_1_297_-	3feac42995f5e4f39f6777ddf898c5df	99	Pfam	PF08443	RimK-like ATP-grasp domain	4	97	4.4E-7	T	21-05-2021	IPR013651	ATP-grasp fold, RimK-type	
+ERR771001.2113_2_298_+	3e24103da09484b3d81ac0d14810974d	99	Pfam	PF00289	Biotin carboxylase, N-terminal domain	1	83	3.7E-30	T	21-05-2021	IPR005481	Biotin carboxylase-like, N-terminal domain	
+ERR771001.193_2_298_-	698871ffc9c8243cd88da276bd660618	99	Pfam	PF00578	AhpC/TSA family	36	92	2.1E-10	T	21-05-2021	IPR000866	Alkyl hydroperoxide reductase subunit C/ Thiol specific antioxidant	GO:0016209|GO:0016491|GO:0055114
+ERR771001.2474_32_298_-	0716cf138182f5d481a0db6751f1cf56	88	Pfam	PF01323	DSBA-like thioredoxin domain	1	79	5.3E-12	T	21-05-2021	IPR001853	DSBA-like thioredoxin domain	GO:0015035
+ERR771001.1737_3_197_+	90acb5a871b2fb6ba3f606d7bfd18749	65	Pfam	PF01042	Endoribonuclease L-PSP	10	65	8.3E-11	T	21-05-2021	IPR006175	YjgF/YER057c/UK114 family	
+ERR771001.1098_2_298_+	43784fb3ef9afbf0bea3ea05f18182c9	99	Pfam	PF00072	Response regulator receiver domain	1	99	1.7E-25	T	21-05-2021	IPR001789	Signal transduction response regulator, receiver domain	GO:0000160
+ERR771001.354_1_297_-	908ac236c07e3084d17a3988fec90dcc	99	Pfam	PF08241	Methyltransferase domain	6	43	1.2E-5	T	21-05-2021	IPR013216	Methyltransferase type 11	GO:0008168
+ERR771001.2291_3_299_+	9d85ba4020f72a59a51e63e7d2037663	99	Pfam	PF02673	Bacitracin resistance protein BacA	2	89	1.1E-11	T	21-05-2021	IPR003824	Undecaprenyl-diphosphatase UppP	GO:0016020|GO:0016311|GO:0050380
+ERR771001.361_2_298_+	960972475ee1cd8a53fb83640af2ded3	99	Pfam	PF00892	EamA-like transporter family	2	73	4.7E-9	T	21-05-2021	IPR000620	EamA domain	GO:0016020|GO:0016021
+ERR771001.1259_2_298_+	ca69183dfe2cddc1bc38c41cf363ff40	99	Pfam	PF03950	tRNA synthetases class I (E and Q), anti-codon binding domain	16	98	7.4E-22	T	21-05-2021	IPR020059	Glutamyl/glutaminyl-tRNA synthetase, class Ib, anti-codon binding domain	GO:0000166|GO:0004812|GO:0005524|GO:0005737|GO:0006418
+ERR771001.505_2_292_+	55f2461fa9618e26b166626a5130d8e0	96	Pfam	PF07731	Multicopper oxidase	3	93	2.4E-25	T	21-05-2021	IPR011706	Multicopper oxidase, type 2	GO:0005507|GO:0016491|GO:0055114
+ERR771001.324_1_114_+	6c71d4d1c1a0da3d4a74f31018f12b4f	38	Pfam	PF00153	Mitochondrial carrier protein	3	34	4.0E-7	T	21-05-2021	IPR018108	Mitochondrial substrate/solute carrier	
+ERR771001.586_2_298_+	f96185185af0859050f41adaaedcb5b3	99	Pfam	PF12833	Helix-turn-helix domain	49	99	3.2E-9	T	21-05-2021	IPR018060	DNA binding HTH domain, AraC-type	GO:0003700|GO:0006355|GO:0043565
+ERR771001.1672_3_299_+	3c1796fe5ae836c350d5e2066510b592	99	Pfam	PF03721	UDP-glucose/GDP-mannose dehydrogenase family, NAD binding domain	4	99	3.2E-10	T	21-05-2021	IPR001732	UDP-glucose/GDP-mannose dehydrogenase, N-terminal	GO:0016616|GO:0051287|GO:0055114
+ERR771001.929_2_298_-	b18dbc0077e3828de354f23d54516168	99	Pfam	PF07686	Immunoglobulin V-set domain	1	97	2.1E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2077_2_298_-	82d976d30bb10e7f6ec3790b9c7be1ca	99	Pfam	PF02515	CoA-transferase family III	2	98	7.5E-31	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.1848_3_299_-	bbb08aa14c6cdd4f286df5498b396992	99	Pfam	PF00884	Sulfatase	3	93	1.1E-13	T	21-05-2021	IPR000917	Sulfatase, N-terminal	GO:0008484
+ERR771001.1849_2_298_-	318e13aa962374455a440170268ea438	99	Pfam	PF00920	Dehydratase family	1	99	9.1E-23	T	21-05-2021	IPR000581	Dihydroxy-acid/6-phosphogluconate dehydratase	GO:0003824
+ERR771001.1726_1_297_-	741aa2abdce198edd8b58dd7606c72c7	99	Pfam	PF03601	Conserved hypothetical protein 698	3	98	2.8E-26	T	21-05-2021	IPR018383	Uncharacterised protein family UPF0324, prokaryote	GO:0016021
+ERR771001.982_103_297_+	e0951889b6e0311d0fdfbf247df7b74c	65	Pfam	PF00153	Mitochondrial carrier protein	22	58	3.5E-5	T	21-05-2021	IPR018108	Mitochondrial substrate/solute carrier	
+ERR771001.119_60_299_-	df61fbd01efa6ba89bbee322fd110473	79	Pfam	PF00889	Elongation factor TS	1	77	1.3E-12	T	21-05-2021	IPR014039	Translation elongation factor EFTs/EF1B, dimerisation	GO:0003746|GO:0006414
+ERR771001.535_2_298_+	8181f08be5111e72f885105b2e19e407	99	Pfam	PF00106	short chain dehydrogenase	24	95	2.3E-11	T	21-05-2021	IPR002347	Short-chain dehydrogenase/reductase SDR	GO:0055114
+ERR771001.150_3_299_-	d8b08d6f23e9a912166c1bfb59ced986	99	Pfam	PF10458	Valyl tRNA synthetase tRNA binding arm	48	98	1.9E-22	T	21-05-2021	IPR019499	Valyl-tRNA synthetase,  tRNA-binding arm	GO:0000166|GO:0004832|GO:0005524|GO:0005737|GO:0006438
+ERR771001.2497_3_299_-	68e8835d7a10b02112e435cd11cb85c2	99	Pfam	PF06421	GTP-binding protein LepA C-terminus	20	99	8.7E-36	T	21-05-2021	IPR013842	GTP-binding protein LepA, C-terminal	
+ERR771001.573_47_298_-	31421e82bb7612045bcaed79ea969ae0	83	Pfam	PF13501	Sulfur oxidation protein SoxY	1	81	1.1E-24	T	21-05-2021	IPR032711	Ig-like SoxY domain	
+ERR771001.1777_1_297_-	f39ae3505d34dbfde7b366dc95248feb	99	Pfam	PF00155	Aminotransferase class I and II	27	98	3.9E-6	T	21-05-2021	IPR004839	Aminotransferase, class I/classII	GO:0009058|GO:0030170
+ERR771001.135_2_298_-	70058cd3917c898c4cfc5af32dc51c5b	99	Pfam	PF01921	tRNA synthetases class I (K)	2	60	2.2E-10	T	21-05-2021	IPR002904	Lysine-tRNA ligase	GO:0000166|GO:0004824|GO:0005524|GO:0005737|GO:0006430
+ERR771001.859_105_299_+	060ca11ebc7c6300ddd50c54b15c7435	65	Pfam	PF00132	Bacterial transferase hexapeptide (six repeats)	2	35	1.9E-5	T	21-05-2021	IPR001451	Hexapeptide repeat	
+ERR771001.1000_1_297_+	94aab8c89f624847858468a010c235a9	99	Pfam	PF05698	Bacterial trigger factor protein (TF) C-terminus	1	99	5.4E-17	T	21-05-2021	IPR008880	Trigger factor, C-terminal	GO:0006457|GO:0015031
+ERR771001.1175_2_298_-	788a28c6669d993da2927bfbaf84a001	99	Pfam	PF12452	Protein of unknown function (DUF3685)	1	95	8.5E-24	T	21-05-2021	IPR022552	Uncharacterised protein family Ycf55	
+ERR771001.2345_1_282_+	aa5c1a0ddb99570acfcceed829a4a257	93	Pfam	PF05187	Electron transfer flavoprotein-ubiquinone oxidoreductase, 4Fe-4S	1	90	2.0E-43	T	21-05-2021
+ERR771001.290_1_297_-	7f7b690f9eea0f0eef01f936d86aa042	99	Pfam	PF13417	Glutathione S-transferase, N-terminal domain	16	85	1.4E-11	T	21-05-2021	IPR004045	Glutathione S-transferase, N-terminal	GO:0005515
+ERR771001.1168_112_297_+	d9ccfabf1c24d417c40b1350b9c5616d	62	Pfam	PF04715	Anthranilate synthase component I, N terminal region	18	61	1.8E-8	T	21-05-2021	IPR006805	Anthranilate synthase component I, N-terminal	GO:0009058
+ERR771001.1076_3_299_-	7a78d0840986130212b4ce8a331c83bb	99	Pfam	PF01425	Amidase	45	99	2.6E-7	T	21-05-2021	IPR023631	Amidase signature domain	
+ERR771001.507_1_282_+	d272fa96e39208328c0c97c8aeaf3443	94	Pfam	PF02867	Ribonucleotide reductase, barrel domain	27	93	3.9E-16	T	21-05-2021	IPR000788	Ribonucleotide reductase large subunit, C-terminal	GO:0006260|GO:0055114
+ERR771001.2122_3_299_+	f4af6483b76ba51a5b7e57d897ec2e02	99	Pfam	PF00501	AMP-binding enzyme	1	99	1.5E-14	T	21-05-2021	IPR000873	AMP-dependent synthetase/ligase	
+ERR771001.1274_2_259_-	d101baef2b284102ad1ff7aa39e68201	86	Pfam	PF03480	Bacterial extracellular solute-binding protein, family 7	1	83	1.2E-22	T	21-05-2021	IPR018389	TRAP transporter solute receptor DctP/TeaA	GO:0055085
+ERR771001.2027_113_298_+	8319f5abd261f3dd351b4353955c6215	62	Pfam	PF12100	Domain of unknown function (DUF3576)	13	61	2.3E-16	T	21-05-2021	IPR021959	Protein of unknown function DUF3576	
+ERR771001.2067_1_297_-	a82ddbb92151c1f89e31b2425863d9e4	99	Pfam	PF03144	Elongation factor Tu domain 2	9	78	2.0E-8	T	21-05-2021	IPR004161	Translation elongation factor EFTu-like, domain 2	GO:0005525
+ERR771001.377_1_297_+	617189d7eb858ac3f6768d309e0d655b	99	Pfam	PF00117	Glutamine amidotransferase class-I	3	98	2.5E-19	T	21-05-2021	IPR017926	Glutamine amidotransferase	
+ERR771001.880_1_297_-	5f3929407fa273555d31b25d8e6d28d5	99	Pfam	PF00106	short chain dehydrogenase	2	98	3.8E-29	T	21-05-2021	IPR002347	Short-chain dehydrogenase/reductase SDR	GO:0055114
+ERR771001.1868_80_298_+	85d83912b29b4292b13ea84181d392e9	73	Pfam	PF01722	BolA-like protein	12	73	2.6E-10	T	21-05-2021	IPR002634	BolA protein	
+ERR771001.2485_3_203_-	2a00476c7f175b78a5afa970d7a2a3cb	67	Pfam	PF00271	Helicase conserved C-terminal domain	15	67	2.1E-9	T	21-05-2021	IPR001650	Helicase, C-terminal	
+ERR771001.187_3_299_+	8d9bc650e255d6fb77c78740ff297630	99	Pfam	PF01063	Amino-transferase class IV	23	97	4.1E-11	T	21-05-2021	IPR001544	Aminotransferase class IV	GO:0003824
+ERR771001.875_2_298_-	b462a049e6550dcfbe25ac38994c134f	99	Pfam	PF00709	Adenylosuccinate synthetase	6	99	2.6E-37	T	21-05-2021	IPR001114	Adenylosuccinate synthetase	GO:0004019|GO:0005525|GO:0006164
+ERR771001.2481_8_298_-	12bc89b1308c80e2953c6c4ec0ff43bc	96	Pfam	PF00254	FKBP-type peptidyl-prolyl cis-trans isomerase	7	92	1.5E-18	T	21-05-2021	IPR001179	FKBP-type peptidyl-prolyl cis-trans isomerase domain	GO:0003755
+ERR771001.1738_2_298_-	825bf354c013873b96649430cb4b19b6	99	Pfam	PF00224	Pyruvate kinase, barrel domain	20	99	3.4E-23	T	21-05-2021	IPR015793	Pyruvate kinase, barrel	GO:0000287|GO:0004743|GO:0006096|GO:0030955
+ERR771001.2336_3_299_-	89073aa302ffc41fe942e37ab7ae7c90	99	Pfam	PF00296	Luciferase-like monooxygenase	1	99	8.1E-22	T	21-05-2021	IPR011251	Luciferase-like domain	GO:0016705|GO:0055114
+ERR771001.704_1_297_-	e02f2f158b6a55da52fb07fb5f11065a	99	Pfam	PF06808	Tripartite ATP-independent periplasmic transporter, DctM component	7	96	3.9E-13	T	21-05-2021	IPR010656	TRAP C4-dicarboxylate transport system permease DctM subunit	
+ERR771001.1863_1_297_-	1729ec71fc247ea56bd381e0c7bdb50e	99	Pfam	PF13649	Methyltransferase domain	27	98	2.2E-6	T	21-05-2021	IPR041698	Methyltransferase domain 25	
+ERR771001.2311_3_299_-	299f0d2b7322ae423f26613585ab7c80	99	Pfam	PF01512	Respiratory-chain NADH dehydrogenase 51 Kd subunit	2	97	2.8E-18	T	21-05-2021	IPR011538	NADH-ubiquinone oxidoreductase 51kDa subunit, FMN-binding domain	
+ERR771001.837_3_297_-	9a9517cadb1c499e8a03f2e2bc74711c	98	Pfam	PF03486	HI0933-like protein	62	93	2.8E-7	T	21-05-2021
+ERR771001.2380_2_298_+	8a108c12bc07a30e600886e7a7e001fc	99	Pfam	PF00852	Glycosyltransferase family 10 (fucosyltransferase) C-term	38	99	1.8E-12	T	21-05-2021	IPR001503	Glycosyl transferase family 10	GO:0006486|GO:0008417|GO:0016020
+ERR771001.1627_2_298_-	61d99967d78796cae4b3cd7a81fced2d	99	Pfam	PF07686	Immunoglobulin V-set domain	2	75	1.3E-9	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2045_3_299_-	0931c0ca94d644feabdd2f350f252a5d	99	Pfam	PF00225	Kinesin motor domain	4	99	1.1E-23	T	21-05-2021	IPR001752	Kinesin motor domain	GO:0003777|GO:0005524|GO:0007018|GO:0008017
+ERR771001.652_2_298_-	d821a3eb71508b98466278048ddc4ca9	99	Pfam	PF01435	Peptidase family M48	2	94	5.2E-15	T	21-05-2021	IPR001915	Peptidase M48	GO:0004222|GO:0006508
+ERR771001.802_1_297_+	c2fd1f4c12e36ebfd1e90cf5e7fd16cc	99	Pfam	PF00890	FAD binding domain	32	99	8.2E-12	T	21-05-2021	IPR003953	FAD-dependent oxidoreductase 2, FAD binding domain	
+ERR771001.148_3_266_-	0a70eac8d47e74dd70aa2e2fbfaec8b5	88	Pfam	PF03746	LamB/YcsF family	12	88	4.6E-28	T	21-05-2021	IPR005501	LamB/YcsF/PxpA-like	
+ERR771001.74_1_288_-	3dea6fefdfbf841534d430f11f1ce292	96	Pfam	PF00330	Aconitase family (aconitate hydratase)	14	95	9.1E-28	T	21-05-2021	IPR001030	Aconitase/3-isopropylmalate dehydratase large subunit, alpha/beta/alpha domain	
+ERR771001.904_3_299_-	3d6f37dac5309ea8c8f9566d3a3ecaf8	99	Pfam	PF00572	Ribosomal protein L13	1	99	2.2E-37	T	21-05-2021	IPR005822	Ribosomal protein L13	GO:0003735|GO:0005840|GO:0006412
+ERR771001.504_1_297_+	1d7cd9eab43b1b904dd1f5fc2f54b2f2	99	Pfam	PF01193	RNA polymerase Rpb3/Rpb11 dimerisation domain	10	59	4.8E-7	T	21-05-2021	IPR011263	DNA-directed RNA polymerase, RpoA/D/Rpb3-type	GO:0003899|GO:0006351
+ERR771001.798_1_297_-	70ebe9438a9cc641036769d1eef32171	99	Pfam	PF00293	NUDIX domain	39	81	7.9E-5	T	21-05-2021	IPR000086	NUDIX hydrolase domain	GO:0016787
+ERR771001.1313_2_247_+	697ee1e7577e3a0149435ac586a564fa	81	Pfam	PF13937	Domain of unknown function (DUF4212)	1	75	3.9E-24	T	21-05-2021	IPR019886	Sodium symporter small subunit, predicted	
+ERR771001.1232_1_297_+	31d8027559f3f919c732c1c094865538	99	Pfam	PF01039	Carboxyl transferase domain	2	83	3.1E-9	T	21-05-2021	IPR034733	Acetyl-CoA carboxylase	
+ERR771001.1439_2_298_+	e60c0f2a837d8c0d7b546209aefef4b0	99	Pfam	PF10589	NADH-ubiquinone oxidoreductase-F iron-sulfur binding region	56	88	3.8E-10	T	21-05-2021	IPR019575	NADH-ubiquinone oxidoreductase 51kDa subunit, iron-sulphur binding domain	GO:0051539
+ERR771001.1067_3_206_-	0e2fd8bb92329407bb14dd48fa0d545f	68	Pfam	PF14681	Uracil phosphoribosyltransferase	8	64	1.3E-13	T	21-05-2021
+ERR771001.1073_3_299_+	872b51a727c5af2cc9699b379ea14230	99	Pfam	PF03102	NeuB family	8	99	1.0E-22	T	21-05-2021	IPR013132	N-acetylneuraminic acid synthase, N-terminal	GO:0016051
+ERR771001.142_1_297_-	e47dc83d064fe9b5e8e499504f3b222c	99	Pfam	PF08411	Exonuclease C-terminal	5	88	5.9E-8	T	21-05-2021	IPR013620	Exodeoxyribonuclease I, C-terminal	GO:0006281|GO:0008852
+ERR771001.964_2_298_-	2152196c7c71611f41e82ae5f73408a0	99	Pfam	PF07686	Immunoglobulin V-set domain	10	97	1.0E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2349_24_299_-	46799d1add241cf1b01aa142f3b1655d	91	Pfam	PF00016	Ribulose bisphosphate carboxylase large chain, catalytic domain	2	68	5.7E-15	T	21-05-2021	IPR000685	Ribulose bisphosphate carboxylase, large subunit, C-terminal	GO:0000287
+ERR771001.1925_81_299_-	76cca59ca91b4847354eb106bd5c6654	72	Pfam	PF07676	WD40-like Beta Propeller Repeat	2	32	1.5E-6	T	21-05-2021	IPR011659	WD40-like Beta Propeller	
+ERR771001.1371_2_298_+	3d468b8e36378aa9c086b5c2889b2572	99	Pfam	PF18911	PKD domain	34	99	1.8E-7	T	21-05-2021
+ERR771001.2445_2_298_-	3965d44af4240890b8763cfb9340a813	99	Pfam	PF13844	Glycosyl transferase family 41	30	86	8.8E-10	T	21-05-2021	IPR029489	O-GlcNAc transferase, C-terminal	
+ERR771001.1243_16_297_-	bdcc0a0496033a7d4d450eee5f783877	93	Pfam	PF00583	Acetyltransferase (GNAT) family	2	80	8.8E-13	T	21-05-2021	IPR000182	GNAT domain	GO:0008080
+ERR771001.979_3_299_+	db4620c8d3a64891521bedd13c8ae4ef	99	Pfam	PF02386	Cation transport protein	1	97	8.0E-13	T	21-05-2021	IPR003445	Cation transporter	GO:0006812|GO:0008324|GO:0055085
+ERR771001.1926_2_298_-	beb5b232e29f2875ab0597df9db194e2	99	Pfam	PF02739	5'-3' exonuclease, N-terminal resolvase-like domain	2	99	3.1E-31	T	21-05-2021	IPR020046	5'-3' exonuclease, alpha-helical arch, N-terminal	GO:0003677
+ERR771001.378_8_298_-	d598d3648bd48d8e9b8c67b1650edcf3	96	Pfam	PF03420	Prohead core protein serine protease	2	46	4.9E-10	T	21-05-2021	IPR005082	Peptidase U9, T4 prohead protease	
+ERR771001.1502_1_297_-	6e72fe86c6daa036df8085d011945a6d	99	Pfam	PF07686	Immunoglobulin V-set domain	5	97	1.5E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1643_1_198_-	dfcf30e4cbd4c55dd10866283f0992a6	66	Pfam	PF03702	Anhydro-N-acetylmuramic acid kinase	1	64	7.2E-21	T	21-05-2021	IPR005338	Anhydro-N-acetylmuramic acid kinase	GO:0005524|GO:0006040|GO:0009254|GO:0016773
+ERR771001.1698_2_298_+	81592a5700fcb3180617c1ac27d6ac0d	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	8.4E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1898_1_297_-	a00e2320a9d81ac224b45750e12f8978	99	Pfam	PF07686	Immunoglobulin V-set domain	2	70	1.7E-9	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2256_2_220_+	2e9b961f26546ae766203a5b467aae8a	73	Pfam	PF03953	Tubulin C-terminal domain	2	61	3.4E-17	T	21-05-2021	IPR018316	Tubulin/FtsZ, 2-layer sandwich domain	
+ERR771001.1185_2_298_-	1dec922f784c6493e23930076987303f	99	Pfam	PF10602	26S proteasome subunit RPN7	4	69	3.4E-12	T	21-05-2021	IPR019585	26S proteasome regulatory subunit Rpn7/COP9 signalosome complex subunit 1	
+ERR771001.909_3_299_+	41ac5ea715fd1f17321b418d8bb91f2c	99	Pfam	PF00124	Photosynthetic reaction centre protein	2	98	7.4E-25	T	21-05-2021	IPR000484	Photosynthetic reaction centre, L/M	GO:0009772|GO:0019684|GO:0045156
+ERR771001.746_3_299_-	a30519f1c97ae966ddc476e8bece723f	99	Pfam	PF07516	SecA Wing and Scaffold domain	1	95	3.0E-9	T	21-05-2021	IPR011116	SecA Wing/Scaffold	GO:0016020|GO:0017038
+ERR771001.1531_3_299_+	43d31b4c769161e1c46462815b6fefb2	99	Pfam	PF13424	Tetratricopeptide repeat	23	96	3.3E-13	T	21-05-2021
+ERR771001.692_1_297_-	b6e0e085ff45fab32948d56f88761242	99	Pfam	PF07219	HemY protein N-terminus	2	97	6.6E-22	T	21-05-2021	IPR010817	HemY, N-terminal	
+ERR771001.1434_3_299_+	bd758f5ab64e40fb328d5b161987b310	99	Pfam	PF05721	Phytanoyl-CoA dioxygenase (PhyH)	1	99	3.0E-16	T	21-05-2021	IPR008775	Phytanoyl-CoA dioxygenase	
+ERR771001.801_3_299_-	086be9484b8d05f02f0bcbb36f51781c	99	Pfam	PF02201	SWIB/MDM2 domain	49	98	2.6E-12	T	21-05-2021	IPR003121	SWIB/MDM2 domain	GO:0005515
+ERR771001.965_3_299_+	06ee45d4d9751cd87fa102cf79390171	99	Pfam	PF07686	Immunoglobulin V-set domain	12	98	1.9E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1637_3_299_+	27de9cd3413b5e893efa6d741e51f62d	99	Pfam	PF00521	DNA gyrase/topoisomerase IV, subunit A	6	98	8.7E-44	T	21-05-2021	IPR002205	DNA topoisomerase, type IIA, subunit A/C-terminal	GO:0003677|GO:0003918|GO:0005524|GO:0006265
+ERR771001.1605_1_291_+	cf0007e6c4528ee2c7a1ead15e86c7ca	97	Pfam	PF13499	EF-hand domain pair	27	94	1.7E-8	T	21-05-2021	IPR002048	EF-hand domain	GO:0005509
+ERR771001.2052_1_297_-	e84f5ef557cd559d34bc70a0c0a481d9	99	Pfam	PF07686	Immunoglobulin V-set domain	5	96	2.2E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.915_3_298_-	bbbd2bee83e2db3b4d60dbe3e582feba	98	Pfam	PF02223	Thymidylate kinase	32	97	1.0E-14	T	21-05-2021	IPR039430	Thymidylate kinase-like domain	
+ERR771001.93_3_299_-	2b4d3e16270d8ce7b6e8145f0c80d358	99	Pfam	PF00664	ABC transporter transmembrane region	1	97	2.0E-16	T	21-05-2021	IPR011527	ABC transporter type 1, transmembrane domain	GO:0005524|GO:0016021|GO:0042626|GO:0055085
+ERR771001.800_3_299_+	0cca93e235eea0f8df14d23b36fab3ad	99	Pfam	PF04962	KduI/IolB family	2	96	9.0E-29	T	21-05-2021	IPR021120	KduI/IolB isomerase	GO:0016861
+ERR771001.451_1_297_+	286281dbf16512b356cb1f2eea959b2a	99	Pfam	PF07686	Immunoglobulin V-set domain	13	97	2.9E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.18_2_169_+	e535d50f8661f3c3300d410d17a80e04	55	Pfam	PF01729	Quinolinate phosphoribosyl transferase, C-terminal domain	12	53	5.0E-10	T	21-05-2021	IPR002638	Quinolinate phosphoribosyl transferase, C-terminal	GO:0004514|GO:0009435
+ERR771001.1245_1_299_-	c0ef514f87e872b5e4761581a1d26ec4	99	Pfam	PF02219	Methylenetetrahydrofolate reductase	22	99	3.6E-17	T	21-05-2021	IPR003171	Methylenetetrahydrofolate reductase-like	GO:0004489|GO:0006555|GO:0055114
+ERR771001.1059_3_299_+	eaacc61a67fc780b408c23ae108232ab	99	Pfam	PF02096	60Kd inner membrane protein	1	98	3.0E-21	T	21-05-2021	IPR001708	Membrane  insertase YidC/ALB3/OXA1/COX18	GO:0016021|GO:0032977
+ERR771001.1369_1_297_+	1d4e916b6118a58be9f69fa30fded26d	99	Pfam	PF13516	Leucine Rich repeat	60	81	0.0012	T	21-05-2021	IPR001611	Leucine-rich repeat	GO:0005515
+ERR771001.1369_1_297_+	1d4e916b6118a58be9f69fa30fded26d	99	Pfam	PF13516	Leucine Rich repeat	1	17	1.4	T	21-05-2021	IPR001611	Leucine-rich repeat	GO:0005515
+ERR771001.276_1_297_+	9fc71ca862f0b0db493d0a6892b9148d	99	Pfam	PF00155	Aminotransferase class I and II	1	85	8.4E-10	T	21-05-2021	IPR004839	Aminotransferase, class I/classII	GO:0009058|GO:0030170
+ERR771001.1301_1_297_-	eb5c036afb78aabfccbdc21a20151678	99	Pfam	PF13361	UvrD-like helicase C-terminal domain	2	52	7.8E-14	T	21-05-2021	IPR014017	UvrD-like DNA helicase, C-terminal	GO:0005524|GO:0016787
+ERR771001.712_3_299_+	9d518b9d03816c0873aca8337f42aa10	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	8.1E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1769_2_298_-	5f2901845f48c32f983fa2c1367c124b	99	Pfam	PF00496	Bacterial extracellular solute-binding proteins, family 5 Middle	9	99	1.9E-16	T	21-05-2021	IPR000914	Solute-binding protein family 5 domain	
+ERR771001.787_44_250_-	9b95c95ba0ff7785ccf8cb8e0d240d3d	68	Pfam	PF11137	Protein of unknown function (DUF2909)	2	61	2.5E-20	T	21-05-2021	IPR021313	Protein of unknown function DUF2909	
+ERR771001.1231_2_289_-	da839ddc7d262905f710e7474c3cf20b	96	Pfam	PF00800	Prephenate dehydratase	6	95	2.4E-21	T	21-05-2021	IPR001086	Prephenate dehydratase	GO:0004664|GO:0009094
+ERR771001.1940_1_297_-	34b8458f0580a5600476fb1ad6907520	99	Pfam	PF01425	Amidase	1	71	3.2E-24	T	21-05-2021	IPR023631	Amidase signature domain	
+ERR771001.2330_2_298_-	2bf49990ed7a23b809c86f0437eb209c	99	Pfam	PF13911	AhpC/TSA antioxidant enzyme	10	92	3.2E-8	T	21-05-2021	IPR032801	Peroxiredoxin-like 2A/B/C	GO:0055114
+ERR771001.1929_3_299_-	6a35be034e1746b0f5661da69046699f	99	Pfam	PF09347	Domain of unknown function (DUF1989)	1	87	7.9E-22	T	21-05-2021	IPR018959	Domain of unknown function DUF1989	
+ERR771001.1649_1_297_+	3c9b9edbee570d0e1b3b652e240f3989	99	Pfam	PF13383	Methyltransferase domain	5	50	5.2E-6	T	21-05-2021	IPR025714	Methyltransferase domain	
+ERR771001.2008_2_205_+	bc803280c12867d2d650107194cb3689	68	Pfam	PF00069	Protein kinase domain	5	49	2.2E-12	T	21-05-2021	IPR000719	Protein kinase domain	GO:0004672|GO:0005524|GO:0006468
+ERR771001.2101_1_297_-	0c0ccf4138ad3a466ec1bdd4604f517c	99	Pfam	PF01968	Hydantoinase/oxoprolinase	10	99	2.6E-19	T	21-05-2021	IPR002821	Hydantoinase A/oxoprolinase	GO:0016787
+ERR771001.218_1_297_+	a9a3c89c4b6409af7c128f96ef68a507	99	Pfam	PF00557	Metallopeptidase family M24	7	99	3.0E-16	T	21-05-2021	IPR000994	Peptidase M24	
+ERR771001.1338_2_299_-	606fad5d692ae1f95629094b74074bb8	99	Pfam	PF13599	Pentapeptide repeats (9 copies)	21	95	2.2E-11	T	21-05-2021	IPR001646	Pentapeptide repeat	
+ERR771001.2473_3_299_-	b3d1a13eeab7d9ffea5a9894f6700722	99	Pfam	PF00497	Bacterial extracellular solute-binding proteins, family 3	10	94	2.5E-7	T	21-05-2021	IPR001638	Solute-binding protein  family 3/N-terminal domain of MltF	
+ERR771001.543_1_279_+	5c9830fceb26a861bf551b98c70a0d75	93	Pfam	PF05982	Na+-dependent bicarbonate transporter superfamily	1	93	8.9E-27	T	21-05-2021	IPR010293	Na+-dependent bicarbonate transporter superfamily	
+ERR771001.1045_1_297_+	ceb904a61da439aacaa13c1dd453cbad	99	Pfam	PF00186	Dihydrofolate reductase	1	98	4.8E-27	T	21-05-2021	IPR001796	Dihydrofolate reductase domain	GO:0004146|GO:0046654|GO:0055114
+ERR771001.1024_2_298_+	b664958222b3df4c631c9ac7c6ea2e32	99	Pfam	PF13624	SurA N-terminal domain	2	67	1.6E-8	T	21-05-2021
+ERR771001.1807_2_298_+	9edc7ae8b1b998d3aa6270a0c956f1f0	99	Pfam	PF01479	S4 domain	29	75	5.7E-18	T	21-05-2021	IPR002942	RNA-binding S4 domain	GO:0003723
+ERR771001.2200_1_192_-	6c3190cc50a91b1f599a3d1cbb7f0a9a	64	Pfam	PF02562	PhoH-like protein	1	64	1.2E-25	T	21-05-2021	IPR003714	PhoH-like protein	GO:0005524
+ERR771001.1174_1_180_-	0585ff5962fa81a26ffc5007e406f321	60	Pfam	PF02082	Iron-dependent Transcriptional regulator	2	59	2.1E-17	T	21-05-2021	IPR000944	Transcription regulator Rrf2	
+ERR771001.2120_2_298_-	a62b86e2b37e591f6e8754a33903cf27	99	Pfam	PF07686	Immunoglobulin V-set domain	9	97	7.0E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.550_1_282_+	d2da10089df68d7f78450fad10cb8a3e	94	Pfam	PF00933	Glycosyl hydrolase family 3 N terminal domain	2	63	2.9E-10	T	21-05-2021	IPR001764	Glycoside hydrolase, family 3, N-terminal	GO:0004553|GO:0005975
+ERR771001.1537_3_299_+	6db3aa4fb80cf91e44241d560f4784e4	99	Pfam	PF04174	A circularly permuted ATPgrasp	1	99	8.1E-37	T	21-05-2021	IPR007302	Circularly permuted ATPgrasp domain	
+ERR771001.1476_3_298_-	1be806b37c468dcb106f8d5756a0ced9	98	Pfam	PF00153	Mitochondrial carrier protein	66	98	1.5E-6	T	21-05-2021	IPR018108	Mitochondrial substrate/solute carrier	
+ERR771001.1634_130_297_-	1b2c2e45a443fb00a1fe4554b8ebb29d	55	Pfam	PF13561	Enoyl-(Acyl carrier protein) reductase	4	51	8.5E-8	T	21-05-2021
+ERR771001.95_2_297_-	cbb8f6ec4d1baf4ea53dfe4a18985ecf	98	Pfam	PF02493	MORN repeat	79	98	1.1E-6	T	21-05-2021	IPR003409	MORN motif	
+ERR771001.1647_2_298_-	356a35011038a3a86349d10c28ee56be	99	Pfam	PF00289	Biotin carboxylase, N-terminal domain	18	99	3.0E-14	T	21-05-2021	IPR005481	Biotin carboxylase-like, N-terminal domain	
+ERR771001.2234_2_298_-	29f4e7927f4219fe3e63676b9fb9daab	99	Pfam	PF00069	Protein kinase domain	3	95	9.0E-12	T	21-05-2021	IPR000719	Protein kinase domain	GO:0004672|GO:0005524|GO:0006468
+ERR771001.1417_2_298_+	60e130dc27fbfd7dbfc20a7212c3e21a	99	Pfam	PF00849	RNA pseudouridylate synthase	12	61	1.2E-8	T	21-05-2021	IPR006145	Pseudouridine synthase, RsuA/RluA	GO:0001522|GO:0003723|GO:0009451|GO:0009982
+ERR771001.2243_1_297_-	9b8b5b073abcb6d4884247c2c498cab5	99	Pfam	PF02626	Carboxyltransferase domain, subdomain A and B	2	97	1.8E-22	T	21-05-2021	IPR003778	Carboxyltransferase domain, subdomain A and B	
+ERR771001.613_3_299_-	f6e82fb34dd4149b5ab2c26e0a4e0438	99	Pfam	PF07686	Immunoglobulin V-set domain	7	97	9.1E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.105_2_298_-	606ec8ad7737a22993d8b7ad3e2b58a3	99	Pfam	PF00573	Ribosomal protein L4/L1 family	1	97	1.8E-20	T	21-05-2021	IPR002136	Ribosomal protein L4/L1e	GO:0003735|GO:0005840|GO:0006412
+ERR771001.524_3_299_+	d9c812a5bbf6df7279e1c81f91d3d5bc	99	Pfam	PF11799	impB/mucB/samB family C-terminal domain	32	91	6.1E-8	T	21-05-2021	IPR017961	DNA polymerase, Y-family, little finger domain	GO:0003684|GO:0006281
+ERR771001.1585_1_297_-	e47f6ff119197aeef4d719391d6b290c	99	Pfam	PF08529	NusA N-terminal domain	1	78	1.9E-21	T	21-05-2021	IPR013735	Transcription factor NusA, N-terminal	GO:0003700|GO:0031554
+ERR771001.1032_2_298_+	7132e589ac8cfbc0fe6b37cd73fd6eda	99	Pfam	PF01315	Aldehyde oxidase and xanthine dehydrogenase, a/b hammerhead domain	1	98	1.6E-28	T	21-05-2021	IPR000674	Aldehyde oxidase/xanthine dehydrogenase, a/b hammerhead	
+ERR771001.1101_2_298_-	8d7af044d7c9aba9d783f4c0ca369db4	99	Pfam	PF00701	Dihydrodipicolinate synthetase family	2	98	1.8E-29	T	21-05-2021	IPR002220	DapA-like	GO:0016829
+ERR771001.1550_2_298_-	9fcac008c5173dc9725438b0edd6c683	99	Pfam	PF03446	NAD binding domain of 6-phosphogluconate dehydrogenase	2	99	3.3E-9	T	21-05-2021	IPR006115	6-phosphogluconate dehydrogenase, NADP-binding	GO:0050661
+ERR771001.491_3_299_+	1ee3baa601775910cb42df7c87630a44	99	Pfam	PF00189	Ribosomal protein S3, C-terminal domain	35	99	1.3E-29	T	21-05-2021	IPR001351	Ribosomal protein S3, C-terminal	GO:0003735|GO:0006412
+ERR771001.1442_2_298_+	3f94a6f60fdfd1834f799be63a7831f2	99	Pfam	PF00174	Oxidoreductase molybdopterin binding domain	15	99	1.3E-22	T	21-05-2021	IPR000572	Oxidoreductase, molybdopterin-binding domain	
+ERR771001.2150_1_297_-	80332a23ca1bbf12a86f21b5989e2be8	99	Pfam	PF02800	Glyceraldehyde 3-phosphate dehydrogenase, C-terminal domain	53	97	1.6E-16	T	21-05-2021	IPR020829	Glyceraldehyde 3-phosphate dehydrogenase, catalytic domain	GO:0016620|GO:0055114
+ERR771001.1760_3_299_+	c43c549f53075685ce04befa1e483f7d	99	Pfam	PF00106	short chain dehydrogenase	2	96	2.1E-15	T	21-05-2021	IPR002347	Short-chain dehydrogenase/reductase SDR	GO:0055114
+ERR771001.1280_3_299_+	fa0ab966a997b3d6988ea5082cdcfb69	99	Pfam	PF13439	Glycosyltransferase Family 4	34	90	7.0E-7	T	21-05-2021	IPR028098	Glycosyltransferase subfamily 4-like, N-terminal domain	
+ERR771001.220_2_298_-	9f0ba7c6923dfff28c62ba442f99d77d	99	Pfam	PF02867	Ribonucleotide reductase, barrel domain	1	99	8.4E-35	T	21-05-2021	IPR000788	Ribonucleotide reductase large subunit, C-terminal	GO:0006260|GO:0055114
+ERR771001.1134_1_299_-	e39619331806301758f9e26edc720d8f	99	Pfam	PF00430	ATP synthase B/B' CF(0)	40	97	1.3E-7	T	21-05-2021	IPR002146	ATP synthase, F0 complex, subunit b/b', bacterial/chloroplast	GO:0015078|GO:0015986|GO:0045263
+ERR771001.225_3_299_-	d2df75f2183126c3e0836cb6e97f86f6	99	Pfam	PF00175	Oxidoreductase NAD-binding domain	12	99	1.3E-18	T	21-05-2021	IPR001433	Oxidoreductase FAD/NAD(P)-binding	GO:0016491|GO:0055114
+ERR771001.1491_1_298_+	deaeeda2e720cdbcf601a348eb2c0010	100	Pfam	PF17921	Integrase zinc binding domain	1	57	2.8E-14	T	21-05-2021	IPR041588	Integrase zinc-binding domain	
+ERR771001.137_2_298_+	e4258ba1a8350aff7d9ce23a6062dc00	99	Pfam	PF01464	Transglycosylase SLT domain	12	97	9.7E-19	T	21-05-2021	IPR008258	Transglycosylase SLT domain 1	
+ERR771001.33_1_297_-	a543e917a802ca515021af6f7a0de978	99	Pfam	PF07859	alpha/beta hydrolase fold	14	96	6.3E-13	T	21-05-2021	IPR013094	Alpha/beta hydrolase fold-3	GO:0016787
+ERR771001.610_24_299_-	93802490aa006442674273c0335b5823	91	Pfam	PF18269	T3SS EscN ATPase C-terminal domain	15	83	2.3E-23	T	21-05-2021	IPR040627	T3SS EscN ATPase, C-terminal	
+ERR771001.1746_2_298_+	637a82a212c26b8855ca876ef73441f9	99	Pfam	PF08323	Starch synthase catalytic domain	22	99	1.2E-23	T	21-05-2021	IPR013534	Starch synthase, catalytic domain	
+ERR771001.46_2_160_-	2be8188d8a6df25df7058346f671b6d1	53	Pfam	PF05195	Aminopeptidase P, N-terminal domain	1	52	9.8E-11	T	21-05-2021	IPR007865	Aminopeptidase P, N-terminal	GO:0030145|GO:0070006
+ERR771001.87_1_297_+	ef066c72afd9e9279752041f9e303700	99	Pfam	PF00580	UvrD/REP helicase N-terminal domain	2	61	3.2E-15	T	21-05-2021	IPR034739	UvrD/AddA helicase, N-terminal	GO:0005524
+ERR771001.441_1_297_-	d4528ac69eb7f72528f0d2400cd08c81	99	Pfam	PF00248	Aldo/keto reductase family	5	98	8.9E-26	T	21-05-2021	IPR023210	NADP-dependent oxidoreductase domain	
+ERR771001.173_1_297_-	430df3a320b6ad6e4daa17f69cfdbf4d	99	Pfam	PF01970	Tripartite tricarboxylate transporter TctA family	1	99	4.8E-29	T	21-05-2021	IPR002823	Protein of unknown function DUF112, transmembrane	
+ERR771001.2459_3_299_-	6dd20c46bad730a3495fd920a453ecb3	99	Pfam	PF00977	Histidine biosynthesis protein	4	98	4.9E-24	T	21-05-2021	IPR006062	Histidine biosynthesis protein	GO:0000105
+ERR771001.1163_2_97_+	4f18c3d5bb24316f00ab4bafc56461bc	31	Pfam	PF07394	Protein of unknown function (DUF1501)	1	30	8.9E-6	T	21-05-2021	IPR010869	Protein of unknown function DUF1501	
+ERR771001.101_3_299_+	129b3d1effe6c5aad51951ebc317f4f8	99	Pfam	PF12915	Protein of unknown function (DUF3833)	1	99	6.6E-34	T	21-05-2021	IPR024409	Protein of unknown function DUF3833	
+ERR771001.2003_3_218_-	b31a9cd68ff4a036275bfa21ae5b6e21	72	Pfam	PF12680	SnoaL-like domain	7	72	2.8E-7	T	21-05-2021	IPR037401	SnoaL-like domain	
+ERR771001.1362_1_180_+	130a0988a0178b63bc236d6cc0645280	59	Pfam	PF02776	Thiamine pyrophosphate enzyme, N-terminal TPP binding domain	2	57	9.3E-10	T	21-05-2021	IPR012001	Thiamine pyrophosphate enzyme, N-terminal TPP-binding domain	GO:0030976
+ERR771001.1317_1_297_+	e5b68f91fe0f373c502e68e5fe30ca87	99	Pfam	PF07992	Pyridine nucleotide-disulphide oxidoreductase	13	97	1.1E-7	T	21-05-2021	IPR023753	FAD/NAD(P)-binding domain	GO:0016491|GO:0055114
+ERR771001.518_2_298_+	cd34c46d46f37b5a01e30c38c09b8d95	99	Pfam	PF00815	Histidinol dehydrogenase	1	99	3.7E-25	T	21-05-2021	IPR012131	Histidinol dehydrogenase	GO:0016616|GO:0046872|GO:0051287|GO:0055114
+ERR771001.2229_2_298_-	955be57f6f6dbe689ac2ff748d3337da	99	Pfam	PF00180	Isocitrate/isopropylmalate dehydrogenase	1	98	1.3E-37	T	21-05-2021	IPR024084	Isopropylmalate dehydrogenase-like domain	GO:0016616|GO:0055114
+ERR771001.57_1_297_-	f4fb4d9f54fa3e92c5858479d9d1e0b3	99	Pfam	PF00722	Glycosyl hydrolases family 16	10	79	5.9E-5	T	21-05-2021	IPR000757	Glycoside hydrolase family 16	GO:0004553|GO:0005975
+ERR771001.153_53_298_-	f23c9788d72b3b850e60e9fcd0199851	81	Pfam	PF00476	DNA polymerase family A	1	79	1.7E-17	T	21-05-2021	IPR001098	DNA-directed DNA polymerase, family A, palm domain	GO:0003677|GO:0003887|GO:0006260
+ERR771001.1907_2_298_-	50e05966449df9344195096f08e07feb	99	Pfam	PF00270	DEAD/DEAH box helicase	26	98	2.9E-20	T	21-05-2021	IPR011545	DEAD/DEAH box helicase domain	GO:0003676|GO:0005524
+ERR771001.1886_2_298_+	4307cf7e7f5ef3fe656eb942fb0de8bf	99	Pfam	PF00006	ATP synthase alpha/beta family, nucleotide-binding domain	1	99	6.8E-29	T	21-05-2021	IPR000194	ATPase, F1/V1/A1 complex, alpha/beta subunit, nucleotide-binding domain	GO:0005524
+ERR771001.2287_2_199_-	6d056ac6648aef864d6f88e4b7b9ee75	66	Pfam	PF00012	Hsp70 protein	2	65	4.2E-16	T	21-05-2021	IPR013126	Heat shock protein 70 family	
+ERR771001.811_1_297_+	26a7cc0c02d8ee0038e1095267dab8e4	99	Pfam	PF01545	Cation efflux family	1	98	1.3E-17	T	21-05-2021	IPR002524	Cation efflux protein	GO:0006812|GO:0008324|GO:0016021|GO:0055085
+ERR771001.2222_141_299_-	6a493557ee6bb9554614584700e42675	52	Pfam	PF03118	Bacterial RNA polymerase, alpha chain C terminal domain	2	25	4.4E-7	T	21-05-2021	IPR011260	RNA polymerase, alpha subunit, C-terminal	GO:0003677|GO:0003899|GO:0006351
+ERR771001.502_96_299_+	8742b73c266950d48c4c9a4a30c98de1	68	Pfam	PF03203	MerC mercury resistance protein	16	68	5.3E-13	T	21-05-2021	IPR004891	Mercury transport protein MerC	GO:0015097|GO:0015694|GO:0016020
+ERR771001.1388_3_299_+	df7ce65f9b12cf545910ed049626ae63	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	1.1E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.183_3_299_+	638b071116eb5452b86935525ceaad88	99	Pfam	PF17762	HTH domain found in ParB protein	8	57	4.9E-17	T	21-05-2021	IPR041468	ParB/Spo0J, HTH domain	
+ERR771001.2203_1_297_+	5edae3fd44f5d7ad170f9c3850936488	99	Pfam	PF00271	Helicase conserved C-terminal domain	4	75	3.1E-6	T	21-05-2021	IPR001650	Helicase, C-terminal	
+ERR771001.304_1_297_+	a2d14dcfefdfbe658dee79040b29bc8d	99	Pfam	PF02347	Glycine cleavage system P-protein	2	99	1.7E-41	T	21-05-2021	IPR020581	Glycine cleavage system P protein	GO:0004375|GO:0006546|GO:0055114
+ERR771001.993_3_299_+	5b66c1be53e2d6a9d73e3c77d35f955e	99	Pfam	PF00171	Aldehyde dehydrogenase family	2	99	5.2E-24	T	21-05-2021	IPR015590	Aldehyde dehydrogenase domain	GO:0016491|GO:0055114
+ERR771001.303_3_299_+	f490fd9ef00fb1f14de90ee75e4f21d7	99	Pfam	PF05222	Alanine dehydrogenase/PNT, N-terminal domain	2	98	1.9E-27	T	21-05-2021	IPR007886	Alanine dehydrogenase/pyridine nucleotide transhydrogenase, N-terminal	
+ERR771001.326_2_298_-	fccee6e750fb5f70fcda5eb1a8067655	99	Pfam	PF04898	Glutamate synthase central domain	1	35	1.8E-9	T	21-05-2021	IPR006982	Glutamate synthase, central-N	GO:0006807|GO:0015930|GO:0055114
+ERR771001.1012_1_297_-	e4dfe2d0aaee3adbdf85205111a23416	99	Pfam	PF03150	Di-haem cytochrome c peroxidase	2	88	1.6E-20	T	21-05-2021	IPR004852	Di-haem cytochrome c peroxidase	GO:0016491|GO:0055114
+ERR771001.1258_3_299_-	6f86c92170510cba8622cc31fbd70a64	99	Pfam	PF01925	Sulfite exporter TauE/SafE	3	96	9.6E-15	T	21-05-2021	IPR002781	Transmembrane protein TauE-like	GO:0016021
+ERR771001.2359_1_297_+	8db56dc1d31487bea22cb6aea70728d7	99	Pfam	PF13393	Histidyl-tRNA synthetase	12	98	1.4E-9	T	21-05-2021	IPR041715	Class II Histidinyl-tRNA synthetase (HisRS)-like catalytic core domain	
+ERR771001.1112_2_298_+	328a02df2fcb18fa33951f19dcf7ef78	99	Pfam	PF00155	Aminotransferase class I and II	11	99	4.8E-12	T	21-05-2021	IPR004839	Aminotransferase, class I/classII	GO:0009058|GO:0030170
+ERR771001.1899_2_298_-	4a4086e87b24515f7ab3ed26746d8d38	99	Pfam	PF00085	Thioredoxin	33	96	5.1E-11	T	21-05-2021	IPR013766	Thioredoxin domain	
+ERR771001.1812_1_132_+	ec103ed6e2939d8d40eb1ffb13d0de7d	43	Pfam	PF00162	Phosphoglycerate kinase	1	29	1.1E-7	T	21-05-2021	IPR001576	Phosphoglycerate kinase	GO:0004618|GO:0006096
+ERR771001.2483_2_274_+	4725367b3b55efaa69cbacdee163938d	91	Pfam	PF03972	MmgE/PrpD family	1	91	1.7E-17	T	21-05-2021	IPR005656	MmgE/PrpD	GO:0016829
+ERR771001.1509_74_298_-	9523e12ecd0f9570fceb120409eb1198	74	Pfam	PF00902	Sec-independent protein translocase protein (TatC)	1	58	1.5E-17	T	21-05-2021	IPR002033	Sec-independent periplasmic protein translocase TatC	GO:0016021
+ERR771001.2370_3_299_+	78dfd1c7df2a9a6892aec2f796276059	99	Pfam	PF14215	bHLH-MYC and R2R3-MYB transcription factors N-terminal	25	78	1.5E-7	T	21-05-2021	IPR025610	Transcription factor MYC/MYB N-terminal	
+ERR771001.764_2_286_-	b1d755be94a5408894d16eaa42ce1038	95	Pfam	PF00072	Response regulator receiver domain	1	66	4.5E-17	T	21-05-2021	IPR001789	Signal transduction response regulator, receiver domain	GO:0000160
+ERR771001.235_3_299_-	352e324628e2e9749457eb542272fc54	99	Pfam	PF01699	Sodium/calcium exchanger protein	51	99	4.0E-8	T	21-05-2021	IPR004837	Sodium/calcium exchanger membrane region	GO:0016021|GO:0055085
+ERR771001.1996_1_297_-	fbea30867d149b65ff5c567940ce8c0b	99	Pfam	PF04037	Domain of unknown function (DUF382)	2	99	4.7E-39	T	21-05-2021	IPR007180	Domain of unknown function DUF382	GO:0005634
+ERR771001.991_3_299_-	aaac9a8e40ead53295e286ec1261ef83	99	Pfam	PF00749	tRNA synthetases class I (E and Q), catalytic domain	1	98	2.0E-17	T	21-05-2021	IPR020058	Glutamyl/glutaminyl-tRNA synthetase, class Ib, catalytic domain	GO:0004812|GO:0005524|GO:0043039
+ERR771001.1548_2_298_+	6eeb1d651d708c08168d036201b15b0e	99	Pfam	PF07686	Immunoglobulin V-set domain	12	95	6.5E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.821_3_299_+	289d4f97dad81a447a783df2efdea9b5	99	Pfam	PF00310	Glutamine amidotransferases class-II	1	98	5.5E-47	T	21-05-2021	IPR017932	Glutamine amidotransferase type 2 domain	
+ERR771001.934_3_248_-	61730ec44ff35779e3194e31088ab047	82	Pfam	PF10150	Ribonuclease E/G family	2	82	1.1E-18	T	21-05-2021	IPR019307	RNA-binding protein AU-1/Ribonuclease E/G	GO:0003723
+ERR771001.1747_3_299_-	d0c2bfae0d85e266875ae176e829cd36	99	Pfam	PF00764	Arginosuccinate synthase	2	99	6.6E-36	T	21-05-2021	IPR001518	Argininosuccinate synthase	GO:0004055|GO:0005524|GO:0006526
+ERR771001.670_3_299_-	ed6ab9659a3002d7d08cb7ab9d1c9e3b	99	Pfam	PF02607	B12 binding domain	1	58	4.4E-21	T	21-05-2021	IPR003759	Cobalamin (vitamin B12)-binding module, cap domain	
+ERR771001.37_3_299_+	a8ca4e282ff2b63b414940ced63c5e76	99	Pfam	PF18962	Secretion system C-terminal sorting domain	41	99	2.4E-7	T	21-05-2021	IPR026444	Secretion system C-terminal sorting domain	
+ERR771001.949_1_297_+	6f0b1e41f28bf3c24b67bf0cdc663c7b	99	Pfam	PF08943	CsiD	5	99	1.4E-49	T	21-05-2021	IPR015038	Glutarate 2-hydroxylase GlaH	GO:0005506|GO:0050498
+ERR771001.181_193_297_+	63addfa595d574d0bede349585b09905	35	Pfam	PF07686	Immunoglobulin V-set domain	2	34	1.1E-6	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1249_1_297_-	b471f6118d6b67d336c6b9ee68b4d3d8	99	Pfam	PF11924	Inverse autotransporter, beta-domain	21	98	1.3E-7	T	21-05-2021	IPR024519	Inverse autotransporter, beta-domain	
+ERR771001.380_3_299_+	f431e8e57f6df8b79cb9b003b7c14c48	99	Pfam	PF00155	Aminotransferase class I and II	3	99	1.0E-13	T	21-05-2021	IPR004839	Aminotransferase, class I/classII	GO:0009058|GO:0030170
+ERR771001.1789_1_297_+	2a6f63e0c6560eeee6fa2629030178e9	99	Pfam	PF00892	EamA-like transporter family	2	97	3.2E-13	T	21-05-2021	IPR000620	EamA domain	GO:0016020|GO:0016021
+ERR771001.691_3_230_-	48b6efa2bafad08f6f58ac5fe4dc5003	76	Pfam	PF01494	FAD binding domain	27	76	5.5E-15	T	21-05-2021	IPR002938	FAD-binding domain	GO:0071949
+ERR771001.1991_3_299_+	c7f5aac189bf3d8838ead7208d74a339	99	Pfam	PF00344	SecY translocase	1	72	3.8E-15	T	21-05-2021	IPR002208	SecY/SEC61-alpha family	GO:0015031|GO:0016020
+ERR771001.230_3_299_-	9c87937c6fd13511e3c47a7b09021257	99	Pfam	PF06804	NlpB/DapX lipoprotein	8	96	7.7E-9	T	21-05-2021	IPR010653	NlpB/DapX lipoprotein	
+ERR771001.2446_1_297_+	0fa407d2829a72911e270cac2965f9de	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	7.3E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.714_3_299_-	97d406d51377538b5859051ffdcbc731	99	Pfam	PF01652	Eukaryotic initiation factor 4E	1	96	8.7E-23	T	21-05-2021	IPR001040	Translation Initiation factor eIF- 4e	GO:0003723|GO:0003743|GO:0006413
+ERR771001.1582_1_297_+	bb881596d6e5d8526175f519e3feaf43	99	Pfam	PF01636	Phosphotransferase enzyme family	5	76	7.8E-15	T	21-05-2021	IPR002575	Aminoglycoside phosphotransferase	
+ERR771001.634_3_239_+	e8efcf38b8e924ec504fd49e713f84c0	78	Pfam	PF02773	S-adenosylmethionine synthetase, C-terminal domain	1	68	2.7E-16	T	21-05-2021	IPR022630	S-adenosylmethionine synthetase, C-terminal	GO:0004478|GO:0006556
+ERR771001.1788_2_298_-	07875229ca40d25f85a3032e88e53bab	99	Pfam	PF02515	CoA-transferase family III	1	99	6.9E-25	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.622_1_156_+	2065b66e1e16bf8db77b42bc3c8f7f09	52	Pfam	PF01812	5-formyltetrahydrofolate cyclo-ligase family	5	51	3.2E-13	T	21-05-2021	IPR002698	5-formyltetrahydrofolate cyclo-ligase	
+ERR771001.767_2_259_+	caab32b263512f5b2f850a681baddb10	86	Pfam	PF01425	Amidase	1	84	1.1E-25	T	21-05-2021	IPR023631	Amidase signature domain	
+ERR771001.2209_3_299_-	72b721d86c7108f992a59b93e08dedaa	99	Pfam	PF06808	Tripartite ATP-independent periplasmic transporter, DctM component	2	99	1.4E-21	T	21-05-2021	IPR010656	TRAP C4-dicarboxylate transport system permease DctM subunit	
+ERR771001.1326_3_299_-	17a518e2c68355609c44d401838cde16	99	Pfam	PF00239	Resolvase, N terminal domain	1	71	1.2E-7	T	21-05-2021	IPR006119	Resolvase, N-terminal catalytic domain	GO:0000150|GO:0003677|GO:0006310
+ERR771001.497_2_298_-	ca4671bc23c2b14cf544d7372751f0c3	99	Pfam	PF03721	UDP-glucose/GDP-mannose dehydrogenase family, NAD binding domain	1	97	4.8E-31	T	21-05-2021	IPR001732	UDP-glucose/GDP-mannose dehydrogenase, N-terminal	GO:0016616|GO:0051287|GO:0055114
+ERR771001.2242_2_298_+	507e38d21489d6ffae43b7efe0d0c5b5	99	Pfam	PF00984	UDP-glucose/GDP-mannose dehydrogenase family, central domain	1	57	6.9E-11	T	21-05-2021	IPR014026	UDP-glucose/GDP-mannose dehydrogenase, dimerisation	GO:0016616|GO:0051287|GO:0055114
+ERR771001.1328_80_298_-	42ee6200b539613298dbd379ce057192	72	Pfam	PF13807	G-rich domain on putative tyrosine kinase	25	65	1.5E-8	T	21-05-2021	IPR032807	Tyrosine kinase, G-rich domain	
+ERR771001.1196_1_297_+	4fb90ae18d4111583de582f980dbc2b9	99	Pfam	PF04257	Exodeoxyribonuclease V, gamma subunit	36	90	5.5E-7	T	21-05-2021
+ERR771001.887_2_298_+	cf7583bdaf58936db5a3ba1543eaf338	99	Pfam	PF00912	Transglycosylase	1	99	2.6E-26	T	21-05-2021	IPR001264	Glycosyl transferase, family 51	
+ERR771001.1412_2_298_-	f81e164d90e15323de4117949ed30ab7	99	Pfam	PF17848	Acetyl-coA carboxylase zinc finger domain	22	47	5.4E-9	T	21-05-2021	IPR041010	Acetyl-coA carboxylase zinc finger domain	
+ERR771001.1917_3_191_+	c12c323e7bb74a6bfa56eb12a202ae58	63	Pfam	PF01118	Semialdehyde dehydrogenase, NAD binding domain	2	57	1.2E-12	T	21-05-2021	IPR000534	Semialdehyde dehydrogenase, NAD-binding	GO:0016620|GO:0051287|GO:0055114
+ERR771001.2358_2_283_+	783d58e89456de25198b7ce956e97cc2	93	Pfam	PF00107	Zinc-binding dehydrogenase	2	68	1.1E-10	T	21-05-2021	IPR013149	Alcohol dehydrogenase, C-terminal	GO:0055114
+ERR771001.438_3_299_+	4b4169f2ebc71edd50fbae99787e515a	99	Pfam	PF07686	Immunoglobulin V-set domain	11	97	5.2E-14	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1395_1_297_-	bf0ba5e2484703c7c8f570d18386f854	99	Pfam	PF00120	Glutamine synthetase, catalytic domain	1	98	8.0E-16	T	21-05-2021	IPR008146	Glutamine synthetase, catalytic domain	GO:0004356|GO:0006807
+ERR771001.831_2_297_+	a6babdc565d0786d5f8a64c0dd711da9	99	Pfam	PF02738	Molybdopterin-binding domain of aldehyde dehydrogenase	3	79	5.5E-22	T	21-05-2021	IPR008274	Aldehyde oxidase/xanthine dehydrogenase, molybdopterin binding	GO:0016491|GO:0055114
+ERR771001.145_3_299_+	a8c6d942671b4e001b4320dc42e8d2f7	99	Pfam	PF07686	Immunoglobulin V-set domain	12	99	8.1E-16	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2086_1_207_-	ce6d69bc0e2e2b3ab4e81df415710613	69	Pfam	PF01116	Fructose-bisphosphate aldolase class-II	5	67	1.6E-9	T	21-05-2021	IPR000771	Fructose-bisphosphate aldolase, class-II	GO:0005975|GO:0008270|GO:0016832
+ERR771001.1610_39_299_-	0ea46d430aec4bb219a66ece29431ddc	86	Pfam	PF14572	Phosphoribosyl synthetase-associated domain	3	86	7.5E-21	T	21-05-2021	IPR005946	Ribose-phosphate pyrophosphokinase	GO:0000287|GO:0004749|GO:0009165
+ERR771001.628_3_299_-	aff2e99cf1142e5b50740b869156e52d	99	Pfam	PF00753	Metallo-beta-lactamase superfamily	1	99	3.6E-13	T	21-05-2021	IPR001279	Metallo-beta-lactamase	
+ERR771001.472_1_297_-	44e21205104a76f04dc2774cfd2845ef	99	Pfam	PF03851	UV-endonuclease UvdE	2	99	1.9E-15	T	21-05-2021	IPR004601	UV-endonuclease UvdE	GO:0004519|GO:0006289|GO:0009411
+ERR771001.1398_1_291_+	27ebc4c6e92008ab1ce298ec73c8b745	97	Pfam	PF04561	RNA polymerase Rpb2, domain 2	4	88	8.1E-8	T	21-05-2021	IPR007642	RNA polymerase Rpb2, domain 2	GO:0003677|GO:0003899|GO:0006351
+ERR771001.172_1_111_+	5e7e51329862e0094d7c59d6f98e8484	37	Pfam	PF02401	LytB protein	1	37	8.6E-12	T	21-05-2021	IPR003451	4-hydroxy-3-methylbut-2-enyl diphosphate reductase	GO:0019288|GO:0046872|GO:0050992|GO:0051745
+ERR771001.2073_1_297_-	6bb9f72b7325d8f7775682ddbbba4966	99	Pfam	PF03900	Porphobilinogen deaminase, C-terminal domain	56	95	4.6E-14	T	21-05-2021	IPR022418	Porphobilinogen deaminase, C-terminal	GO:0004418|GO:0033014
+ERR771001.2073_1_297_-	6bb9f72b7325d8f7775682ddbbba4966	99	Pfam	PF01379	Porphobilinogen deaminase, dipyromethane cofactor binding domain	1	40	3.2E-6	T	21-05-2021	IPR022417	Porphobilinogen deaminase, N-terminal	GO:0004418|GO:0033014
+ERR771001.1194_3_297_-	8eab2ea95b50166105248fbbeedbd865	98	Pfam	PF01351	Ribonuclease HII	14	96	4.3E-12	T	21-05-2021	IPR024567	Ribonuclease HII/HIII domain	
+ERR771001.2138_1_297_+	cb422e9bc31885d6a916072aae3f449a	99	Pfam	PF05762	VWA domain containing CoxE-like protein	1	99	9.9E-25	T	21-05-2021	IPR008912	Uncharacterised protein family CoxE-like	
+ERR771001.2259_2_220_+	09012bb72465c060e92c38d83c76cff7	72	Pfam	PF00542	Ribosomal protein L7/L12 C-terminal domain	6	72	2.0E-31	T	21-05-2021	IPR013823	Ribosomal protein L7/L12, C-terminal	GO:0003735|GO:0006412
+ERR771001.465_1_297_+	c80bc94326b5fd8d8da8819903e8aaa8	99	Pfam	PF13264	Domain of unknown function (DUF4055)	5	98	2.1E-15	T	21-05-2021	IPR025129	Domain of unknown function DUF4055	
+ERR771001.1177_2_298_-	b9269681bf64d0861d437208d42dbe97	99	Pfam	PF01494	FAD binding domain	6	96	5.2E-5	T	21-05-2021	IPR002938	FAD-binding domain	GO:0071949
+ERR771001.1499_3_299_-	7619a2a0d65884079f689f403beeca6d	99	Pfam	PF05063	MT-A70	10	91	5.0E-8	T	21-05-2021	IPR007757	MT-A70-like	
+ERR771001.621_2_298_+	4a6bea70c281dd3c4fa5aff9e3078fa9	99	Pfam	PF02779	Transketolase, pyrimidine binding domain	3	83	1.1E-20	T	21-05-2021	IPR005475	Transketolase-like, pyrimidine-binding domain	
+ERR771001.77_1_297_-	1ebdbfcd8caf09534409589c84ad67b7	99	Pfam	PF11753	Protein of unknwon function (DUF3310)	37	97	9.8E-16	T	21-05-2021	IPR021739	SaV-like	
+ERR771001.1180_1_297_+	b5dd493fb70ea5f794e84bf9aea49da3	99	Pfam	PF02768	DNA polymerase III beta subunit, C-terminal domain	1	99	1.2E-29	T	21-05-2021	IPR022635	DNA polymerase III, beta sliding clamp, C-terminal	GO:0003677|GO:0003887|GO:0006260|GO:0008408|GO:0009360
+ERR771001.853_3_299_+	8a265140426dc038b225f511d00a5482	99	Pfam	PF08502	LeuA allosteric (dimerisation) domain	42	99	2.7E-8	T	21-05-2021	IPR013709	2-isopropylmalate synthase LeuA, allosteric (dimerisation) domain	GO:0003852|GO:0009098
+ERR771001.1222_2_298_-	f0946d5ad345876863f2954e18f4133a	99	Pfam	PF00022	Actin	23	99	3.7E-18	T	21-05-2021	IPR004000	Actin family	
+ERR771001.151_3_299_+	3c5797f538db05bbabd5cc6c9fda0fef	99	Pfam	PF01315	Aldehyde oxidase and xanthine dehydrogenase, a/b hammerhead domain	4	43	1.2E-8	T	21-05-2021	IPR000674	Aldehyde oxidase/xanthine dehydrogenase, a/b hammerhead	
+ERR771001.1069_1_297_+	58ab2a34a7b219300d5d947033020c5a	99	Pfam	PF05746	DALR anticodon binding domain	16	99	7.1E-21	T	21-05-2021	IPR008909	DALR anticodon binding	GO:0004814|GO:0005524|GO:0006420
+ERR771001.1325_22_297_+	9cf8a151152371883edc470d24e6536a	92	Pfam	PF14127	Domain of unknown function (DUF4294)	34	91	7.4E-14	T	21-05-2021	IPR025636	Protein of unknown function DUF4294	
+ERR771001.1764_3_287_+	e4f3a2b352bc831061252f4ce5182038	95	Pfam	PF00884	Sulfatase	1	64	2.1E-13	T	21-05-2021	IPR000917	Sulfatase, N-terminal	GO:0008484
+ERR771001.1675_3_299_+	77f9bc196fb3dc8425dd6f51e15fdddb	99	Pfam	PF00133	tRNA synthetases class I (I, L, M and V)	1	93	1.0E-23	T	21-05-2021	IPR002300	Aminoacyl-tRNA synthetase, class Ia	GO:0000166|GO:0004812|GO:0005524|GO:0006418
+ERR771001.1969_2_298_-	8d4f3a79841e78fc4c437da0ffc4ab7f	99	Pfam	PF01578	Cytochrome C assembly protein	3	99	4.0E-15	T	21-05-2021	IPR002541	Cytochrome c assembly protein	GO:0017004|GO:0020037
+ERR771001.259_2_211_-	cccdd0824a25609b8f08ac560cca3491	70	Pfam	PF13604	AAA domain	11	70	1.5E-14	T	21-05-2021
+ERR771001.813_3_299_-	23a9b931165f476df92657888e0d0f01	99	Pfam	PF13524	Glycosyl transferases group 1	52	99	8.0E-6	T	21-05-2021
+ERR771001.1563_3_299_-	62c71ecdd4227fc4e5922c38bc618ac6	99	Pfam	PF13936	Helix-turn-helix domain	15	57	1.3E-16	T	21-05-2021	IPR025246	Transposase IS30-like HTH domain	
+ERR771001.490_3_299_-	2f6642a4433b8acae5bbe7bb7ed90add	99	Pfam	PF03104	DNA polymerase family B, exonuclease domain	5	92	1.2E-6	T	21-05-2021	IPR006133	DNA-directed DNA polymerase, family B, exonuclease domain	
+ERR771001.392_3_298_-	dfd4cc579faed28fdd3f214245a939ed	98	Pfam	PF00106	short chain dehydrogenase	55	97	2.7E-8	T	21-05-2021	IPR002347	Short-chain dehydrogenase/reductase SDR	GO:0055114
+ERR771001.1109_1_297_+	baac445f2fe7fffc99c428817a6838e3	99	Pfam	PF12626	Polymerase A arginine-rich C-terminus	17	99	6.4E-28	T	21-05-2021	IPR025866	Polymerase A arginine-rich C-terminal domain	
+ERR771001.1011_16_297_-	43fd254070cfe65a6f1abae6ae138eae	93	Pfam	PF04977	Septum formation initiator	13	92	6.6E-11	T	21-05-2021	IPR007060	Septum formation initiator FtsL/DivIC	
+ERR771001.162_1_297_+	8978cbc46cb5b4bd3c15967bf9ddf388	99	Pfam	PF00496	Bacterial extracellular solute-binding proteins, family 5 Middle	6	93	4.3E-25	T	21-05-2021	IPR000914	Solute-binding protein family 5 domain	
+ERR771001.1047_3_299_+	0e80540759abfa9c410a9fc783e78fa0	99	Pfam	PF00152	tRNA synthetases class II (D, K and N)	2	88	1.5E-32	T	21-05-2021	IPR004364	Aminoacyl-tRNA synthetase, class II (D/K/N)	GO:0000166|GO:0004812|GO:0005524|GO:0006418
+ERR771001.1277_3_299_+	698f9f418bf9a0050a56084e7281f2e5	99	Pfam	PF05977	Transmembrane secretion effector	2	90	1.3E-8	T	21-05-2021	IPR010290	Transmembrane secretion effector	
+ERR771001.2307_3_299_-	4c7775ed7ea873948d87a64dd7230fa8	99	Pfam	PF14495	Cytochrome c-550 domain	2	99	1.0E-37	T	21-05-2021	IPR029490	Cytochrome c-550 domain	
+ERR771001.624_1_297_+	b6206920ffe9e678006a97183a927c83	99	Pfam	PF00728	Glycosyl hydrolase family 20, catalytic domain	21	92	5.5E-13	T	21-05-2021	IPR015883	Glycoside hydrolase family 20, catalytic domain	GO:0004553|GO:0005975
+ERR771001.2172_3_299_+	fd5f5a51476806090dfde31ffeeb45cb	99	Pfam	PF00005	ABC transporter	3	96	1.5E-8	T	21-05-2021	IPR003439	ABC transporter-like	GO:0005524
+ERR771001.247_2_298_-	4a3e01651e90252fb32668aa9c169a6a	99	Pfam	PF00593	TonB dependent receptor	6	93	3.8E-12	T	21-05-2021	IPR000531	TonB-dependent receptor-like, beta-barrel	
+ERR771001.396_2_298_+	53d63511a0c5ccb0dfe42d6705022e2d	99	Pfam	PF01425	Amidase	16	98	2.7E-20	T	21-05-2021	IPR023631	Amidase signature domain	
+ERR771001.279_2_298_+	2185a03932b6f3cbaddfd704ee2203a4	99	Pfam	PF00118	TCP-1/cpn60 chaperonin family	2	91	1.9E-9	T	21-05-2021	IPR002423	Chaperonin Cpn60/TCP-1 family	GO:0005524
+ERR771001.1051_3_299_+	45737f8c79fd45c736e5234ea7268289	99	Pfam	PF00198	2-oxoacid dehydrogenases acyltransferase (catalytic domain)	2	98	4.6E-37	T	21-05-2021	IPR001078	2-oxoacid dehydrogenase acyltransferase, catalytic domain	GO:0016746
+ERR771001.118_1_297_-	cf5c5e12cdfbea9c4807c184f028e49a	99	Pfam	PF03900	Porphobilinogen deaminase, C-terminal domain	41	98	3.4E-15	T	21-05-2021	IPR022418	Porphobilinogen deaminase, C-terminal	GO:0004418|GO:0033014
+ERR771001.228_2_298_-	781d1c8b1daf4912522c9c03c89c556e	99	Pfam	PF04127	DNA / pantothenate metabolism flavoprotein	27	98	1.2E-30	T	21-05-2021	IPR007085	DNA/pantothenate metabolism flavoprotein, C-terminal	
+ERR771001.1237_1_297_-	8c8f41ecf9aa839df63c771d0f288900	99	Pfam	PF03739	Lipopolysaccharide export system permease LptF/LptG	2	94	1.6E-13	T	21-05-2021	IPR005495	Permease LptG/LptF-related	GO:0016021
+ERR771001.2016_3_257_+	ab0d02a7c2e3ca35fbc444d8e967494f	85	Pfam	PF00919	Uncharacterized protein family UPF0004	47	84	1.7E-4	T	21-05-2021	IPR013848	Methylthiotransferase, N-terminal	GO:0035596|GO:0051539
+ERR771001.1107_1_298_-	af3f3bae6c38eb998eb7a78bf0f801f8	99	Pfam	PF01624	MutS domain I	31	99	1.9E-26	T	21-05-2021	IPR007695	DNA mismatch repair protein MutS-like, N-terminal	GO:0005524|GO:0006298|GO:0030983
+ERR771001.1504_1_159_-	825bd0ba9d1e953b8e04a50a5a37b4b9	53	Pfam	PF00005	ABC transporter	11	49	1.1E-10	T	21-05-2021	IPR003439	ABC transporter-like	GO:0005524
+ERR771001.568_1_297_+	e6d286428e50370c14dbe3717f27b335	99	Pfam	PF00579	tRNA synthetases class I (W and Y)	1	78	1.6E-16	T	21-05-2021	IPR002305	Aminoacyl-tRNA synthetase, class Ic	GO:0000166|GO:0004812|GO:0005524|GO:0006418
+ERR771001.655_2_298_-	53d14ba7c471fd902239c63592b40c15	99	Pfam	PF00300	Histidine phosphatase superfamily (branch 1)	18	62	5.6E-5	T	21-05-2021	IPR013078	Histidine phosphatase superfamily, clade-1	
+ERR771001.1607_66_299_-	c43eaaf8940b0f508f5cf94dc5a810c8	77	Pfam	PF00588	SpoU rRNA Methylase family	1	72	1.6E-18	T	21-05-2021	IPR001537	tRNA/rRNA methyltransferase, SpoU type	GO:0003723|GO:0006396|GO:0008173
+ERR771001.511_1_297_-	86b773863f95ddc8ed5664f0dfa64bf3	99	Pfam	PF13091	PLD-like domain	22	73	3.8E-11	T	21-05-2021	IPR025202	Phospholipase D-like domain	
+ERR771001.288_2_298_+	d0c25cd50150f57ed180f1a4333e41b2	99	Pfam	PF13692	Glycosyl transferases group 1	5	98	6.2E-19	T	21-05-2021
+ERR771001.376_2_298_+	606ee00b4733ebaf8bf7c9849e2d53ea	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	7.3E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1178_1_297_+	ed5d26f5f52de9d8841ff496e0ad07a4	99	Pfam	PF01450	Acetohydroxy acid isomeroreductase, catalytic domain	1	98	4.3E-18	T	21-05-2021	IPR000506	Ketol-acid reductoisomerase, C-terminal	GO:0004455|GO:0009082|GO:0055114
+ERR771001.529_1_297_+	4a30d91a4d6116cb1465a83e4747eebc	99	Pfam	PF13673	Acetyltransferase (GNAT) domain	9	95	1.3E-12	T	21-05-2021	IPR000182	GNAT domain	GO:0008080
+ERR771001.26_1_297_-	358c1000d482a7ba6689a5a353dee6a1	99	Pfam	PF00132	Bacterial transferase hexapeptide (six repeats)	53	87	2.3E-7	T	21-05-2021	IPR001451	Hexapeptide repeat	
+ERR771001.957_3_299_-	a848cbe01094bd6b53c1516a464d8365	99	Pfam	PF08712	Scaffold protein Nfu/NifU N terminal	33	97	1.5E-12	T	21-05-2021	IPR014824	Scaffold protein Nfu/NifU, N-terminal	
+ERR771001.2387_3_299_+	02da31077a1a9f2ddca7434987cae850	99	Pfam	PF04413	3-Deoxy-D-manno-octulosonic-acid transferase (kdotransferase)	2	51	1.1E-7	T	21-05-2021	IPR007507	3-deoxy-D-manno-octulosonic-acid transferase, N-terminal	
+ERR771001.1677_3_299_-	e6d709be91278b420e84ddd0fb58b1c7	99	Pfam	PF02897	Prolyl oligopeptidase, N-terminal beta-propeller domain	21	99	6.5E-16	T	21-05-2021	IPR023302	Peptidase S9A, N-terminal domain	GO:0004252
+ERR771001.2320_3_299_-	1d29086a6a4157f24e1b9cb079fcb6c6	99	Pfam	PF02355	Protein export membrane protein	1	98	6.7E-41	T	21-05-2021	IPR022813	Protein-export membrane protein SecD/SecF, archaeal and bacterial	
+ERR771001.1725_1_297_-	1b17122786b179c76911157e8dd5db6a	99	Pfam	PF07686	Immunoglobulin V-set domain	10	77	1.3E-9	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1133_3_299_+	56603aae69817a6def6d55c8ba5f6717	99	Pfam	PF04665	Poxvirus A32 protein	12	80	3.7E-5	T	21-05-2021	IPR006758	Poxvirus A32	
+ERR771001.483_1_297_+	131c283f94f4d78ea21068ff0fd2f1f1	99	Pfam	PF13868	Trichohyalin-plectin-homology domain	1	86	1.2E-17	T	21-05-2021	IPR043597	Trichohyalin-plectin-homology domain	
+ERR771001.850_1_297_+	6893b63199794d0e5f32fb47d233274d	99	Pfam	PF00275	EPSP synthase (3-phosphoshikimate 1-carboxyvinyltransferase)	1	96	5.3E-19	T	21-05-2021	IPR001986	Enolpyruvate transferase domain	GO:0016765
+ERR771001.52_3_299_+	88628a638ea1f299cf0874c759fdbfbc	99	Pfam	PF01933	Uncharacterised protein family UPF0052	6	98	4.7E-40	T	21-05-2021	IPR002882	LPPG:FO 2-phospho-L-lactate transferase CofD/UPF0052	
+ERR771001.723_125_298_-	dce396f9b3ffac0ed5d5e504d0fcd371	57	Pfam	PF08443	RimK-like ATP-grasp domain	2	50	2.2E-9	T	21-05-2021	IPR013651	ATP-grasp fold, RimK-type	
+ERR771001.1522_3_299_+	14cdfdce16011dab1524361e621df064	99	Pfam	PF18559	Galactose-binding domain-like	1	84	1.8E-20	T	21-05-2021	IPR041443	ExoP, galactose-binding-like domain	
+ERR771001.389_1_297_-	6dc3ff7580672dfd1f6d8a96dc2fa12c	99	Pfam	PF13561	Enoyl-(Acyl carrier protein) reductase	55	92	1.1E-9	T	21-05-2021
+ERR771001.1457_2_298_+	d04737e5bf4fdfb505dbe70ee0e164f2	99	Pfam	PF01523	Putative modulator of DNA gyrase	8	83	8.1E-6	T	21-05-2021	IPR002510	Metalloprotease TldD/PmbA	GO:0006508|GO:0008237
+ERR771001.1574_1_111_+	e0928e5d24ec3f0a9c83613a92106ac5	37	Pfam	PF02502	Ribose/Galactose Isomerase	2	36	1.5E-9	T	21-05-2021	IPR003500	Sugar-phosphate isomerase, RpiB/LacA/LacB family	GO:0005975|GO:0016853
+ERR771001.272_1_297_+	218703c7b38e820afea688074fdc60c1	99	Pfam	PF01145	SPFH domain / Band 7 family	2	99	1.1E-9	T	21-05-2021	IPR001107	Band 7 domain	
+ERR771001.310_1_297_-	0e6e2d8e82500f503e6e270414226f90	99	Pfam	PF13347	MFS/sugar transport protein	1	82	6.6E-7	T	21-05-2021
+ERR771001.1473_2_298_+	b018813de26d8e1c9d8d87e9bddf6fb7	99	Pfam	PF03781	Sulfatase-modifying factor enzyme 1	5	99	3.2E-8	T	21-05-2021	IPR005532	Sulfatase-modifying factor enzyme	
+ERR771001.2190_3_299_+	4e9b6a8d4a00bc85bf0792ef31756f2c	99	Pfam	PF00441	Acyl-CoA dehydrogenase, C-terminal domain	20	98	6.1E-17	T	21-05-2021	IPR009075	Acyl-CoA dehydrogenase/oxidase C-terminal	GO:0016627|GO:0055114
+ERR771001.1871_2_199_+	20751a46f20a94a1775e69f5e8d52d5e	66	Pfam	PF08240	Alcohol dehydrogenase GroES-like domain	1	66	1.6E-15	T	21-05-2021	IPR013154	Alcohol dehydrogenase, N-terminal	GO:0055114
+ERR771001.2373_2_289_+	646a4d7dd9b4d45ffec8d8b4aabcf4ac	95	Pfam	PF11026	Protein of unknown function (DUF2721)	9	86	5.5E-15	T	21-05-2021	IPR021279	Protein of unknown function DUF2721	
+ERR771001.1487_1_297_-	1405230384b67d06755980412f2cf6b5	99	Pfam	PF00124	Photosynthetic reaction centre protein	1	99	8.2E-27	T	21-05-2021	IPR000484	Photosynthetic reaction centre, L/M	GO:0009772|GO:0019684|GO:0045156
+ERR771001.2207_2_298_-	9518cf0e0060634181cff4aae78067d8	99	Pfam	PF01751	Toprim domain	3	86	2.5E-8	T	21-05-2021	IPR006171	TOPRIM  domain	
+ERR771001.158_1_297_-	7e6606bbab6d11c60faa48043bdb48f8	99	Pfam	PF02586	SOS response associated peptidase (SRAP)	10	96	7.3E-15	T	21-05-2021	IPR003738	SOS response associated peptidase (SRAP)	GO:0003697|GO:0006974|GO:0018142
+ERR771001.1165_2_298_-	903d2221816a5f32b24e9a5bb1afb648	99	Pfam	PF00800	Prephenate dehydratase	2	91	6.6E-28	T	21-05-2021	IPR001086	Prephenate dehydratase	GO:0004664|GO:0009094
+ERR771001.2239_2_298_-	071186681ac0c3fb2d04ffd73f975ecc	99	Pfam	PF01638	HxlR-like helix-turn-helix	18	97	4.5E-12	T	21-05-2021	IPR002577	Helix-turn-helix, HxlR type	
+ERR771001.1240_1_297_+	4d5a9e3c5f8fd4209955721e2206fa50	99	Pfam	PF01619	Proline dehydrogenase	18	99	1.2E-8	T	21-05-2021	IPR002872	Proline dehydrogenase domain	
+ERR771001.2381_3_299_+	29ee122108a5f658df6148e229d5f7e4	99	Pfam	PF01182	Glucosamine-6-phosphate isomerases/6-phosphogluconolactonase	1	97	8.3E-23	T	21-05-2021	IPR006148	Glucosamine/galactosamine-6-phosphate isomerase	GO:0005975
+ERR771001.1860_3_299_-	5320573b39f2ccd73c753a943af25598	99	Pfam	PF00206	Lyase	2	64	1.1E-14	T	21-05-2021	IPR022761	Fumarate lyase, N-terminal	
+ERR771001.201_2_298_+	718820c167756f9c5094357957ccd029	99	Pfam	PF07686	Immunoglobulin V-set domain	12	96	1.6E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1806_1_297_-	35e916947fa461c2f60a5296d40101f0	99	Pfam	PF01138	3' exoribonuclease family, domain 1	19	95	1.4E-12	T	21-05-2021	IPR001247	Exoribonuclease, phosphorolytic domain 1	
+ERR771001.1957_3_299_+	71972c7e4976d056a7e6c750287250ee	99	Pfam	PF00069	Protein kinase domain	8	96	8.2E-16	T	21-05-2021	IPR000719	Protein kinase domain	GO:0004672|GO:0005524|GO:0006468
+ERR771001.1132_1_186_+	531dcbf5b91ce2c12e56a79a93ee3e0b	62	Pfam	PF02074	Carboxypeptidase Taq (M32) metallopeptidase	1	62	1.4E-29	T	21-05-2021	IPR001333	Peptidase M32, carboxypeptidase Taq	GO:0004181|GO:0006508
+ERR771001.1393_1_297_+	fabfd38ec66d132f310f0785deccd90f	99	Pfam	PF00892	EamA-like transporter family	1	97	3.0E-14	T	21-05-2021	IPR000620	EamA domain	GO:0016020|GO:0016021
+ERR771001.2124_3_245_+	f3cb6a61ed56b6397e73ebe580ddfb20	81	Pfam	PF00171	Aldehyde dehydrogenase family	2	73	9.5E-20	T	21-05-2021	IPR015590	Aldehyde dehydrogenase domain	GO:0016491|GO:0055114
+ERR771001.4_3_299_+	b28b5374ddcd530be2e2330861241e47	99	Pfam	PF13177	DNA polymerase III, delta subunit	1	80	1.5E-26	T	21-05-2021
+ERR771001.522_1_297_+	d960445c9171409e5fb72e1a91eecead	99	Pfam	PF02515	CoA-transferase family III	4	88	1.6E-9	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.603_114_299_-	b15bba8f476e6eeec872d31af7584d10	61	Pfam	PF10981	Protein of unknown function (DUF2788)	9	58	3.0E-14	T	21-05-2021	IPR021249	Protein of unknown function DUF2788	
+ERR771001.2149_1_297_-	aa18877913763de2398aa85d45765465	99	Pfam	PF07686	Immunoglobulin V-set domain	3	96	2.0E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.348_1_267_-	453e834df44210eb60d7bfd873f9efe8	89	Pfam	PF08757	CotH kinase protein	2	86	2.0E-21	T	21-05-2021	IPR014867	Spore coat protein CotH	
+ERR771001.641_3_299_+	06cee5dca36df15979dc7a58d3d789af	99	Pfam	PF12228	Protein of unknown function (DUF3604)	6	99	1.5E-32	T	21-05-2021	IPR022028	Protein of unknown function DUF3604	
+ERR771001.120_2_298_-	63d3241dde3007a635cc74786f858ee7	99	Pfam	PF00205	Thiamine pyrophosphate enzyme, central domain	1	94	2.1E-17	T	21-05-2021	IPR012000	Thiamine pyrophosphate enzyme, central domain	GO:0000287|GO:0030976
+ERR771001.625_3_236_-	f81435600fcb62a086deaec03f578d3c	78	Pfam	PF00326	Prolyl oligopeptidase family	3	77	3.7E-19	T	21-05-2021	IPR001375	Peptidase S9, prolyl oligopeptidase, catalytic domain	GO:0006508|GO:0008236
+ERR771001.1765_2_262_-	e56959172b0398603c8f531c061ead9d	87	Pfam	PF00237	Ribosomal protein L22p/L17e	7	87	2.1E-21	T	21-05-2021	IPR001063	Ribosomal protein L22/L17	GO:0003735|GO:0005840|GO:0006412
+ERR771001.65_2_298_+	bc6890decc27d5a9d23b694ee7d1103d	99	Pfam	PF03382	Mycoplasma protein of unknown function, DUF285	15	99	6.1E-27	T	21-05-2021	IPR005046	Protein of unknown function DUF285	
+ERR771001.299_3_299_+	a6a23276db166935ddb93b954a80b0ed	99	Pfam	PF02515	CoA-transferase family III	1	99	2.0E-23	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.1071_1_297_-	75f33974f1ca49bfad2c535c7dcca5ea	99	Pfam	PF00672	HAMP domain	38	93	1.5E-8	T	21-05-2021	IPR003660	HAMP domain	GO:0007165|GO:0016021
+ERR771001.1121_76_174_-	e70c57d55305be0c1d4078f509a09396	32	Pfam	PF05221	S-adenosyl-L-homocysteine hydrolase	1	31	6.4E-10	T	21-05-2021	IPR000043	Adenosylhomocysteinase-like	
+ERR771001.1158_2_298_-	68a2ac8baaa68e0618edd4ff37919604	99	Pfam	PF02875	Mur ligase family, glutamate ligase domain	41	98	8.7E-13	T	21-05-2021	IPR004101	Mur ligase, C-terminal	GO:0005524|GO:0009058|GO:0016874
+ERR771001.1153_3_299_+	a46e0a8ae6618025bd187ed602dad214	99	Pfam	PF02775	Thiamine pyrophosphate enzyme, C-terminal TPP binding domain	8	97	2.8E-23	T	21-05-2021	IPR011766	Thiamine pyrophosphate enzyme, C-terminal TPP-binding	GO:0003824|GO:0030976
+ERR771001.495_2_244_+	d26d8e75fb165802c81e442e0ef538ee	80	Pfam	PF00557	Metallopeptidase family M24	2	51	1.2E-5	T	21-05-2021	IPR000994	Peptidase M24	
+ERR771001.1508_3_299_+	70e0ba4ff100123ce6bfb8e20208b3e3	99	Pfam	PF03572	Peptidase family S41	2	99	1.0E-29	T	21-05-2021	IPR005151	Tail specific protease	GO:0006508|GO:0008236
+ERR771001.2451_2_298_+	d9f9e0fbf6463922ad49bae7312dcfef	99	Pfam	PF00224	Pyruvate kinase, barrel domain	5	86	5.6E-29	T	21-05-2021	IPR015793	Pyruvate kinase, barrel	GO:0000287|GO:0004743|GO:0006096|GO:0030955
+ERR771001.2402_97_297_-	5d0465d54b05f52053323b124e2f5efa	66	Pfam	PF00037	4Fe-4S binding domain	1	21	2.3E-8	T	21-05-2021	IPR017896	4Fe-4S ferredoxin-type, iron-sulphur binding domain	
+ERR771001.1600_1_297_+	972f6ce239b1b81206c8f6504df45c1a	99	Pfam	PF02934	GatB/GatE catalytic domain	2	98	2.1E-39	T	21-05-2021	IPR006075	Aspartyl/Glutamyl-tRNA(Gln) amidotransferase, subunit B/E, catalytic	GO:0016874
+ERR771001.1460_3_297_+	257fc942af9964d52b1b1ebd56b56073	99	Pfam	PF13392	HNH endonuclease	1	40	8.2E-9	T	21-05-2021	IPR003615	HNH nuclease	
+ERR771001.2248_1_165_+	c7f4660d08da2342749a784e5b71fb59	54	Pfam	PF01103	Omp85 superfamily domain	10	54	1.8E-10	T	21-05-2021	IPR000184	Bacterial surface antigen (D15)	GO:0019867
+ERR771001.1219_3_218_-	c93c806c860b71ee2682f2641bd4e116	72	Pfam	PF00171	Aldehyde dehydrogenase family	10	72	1.6E-8	T	21-05-2021	IPR015590	Aldehyde dehydrogenase domain	GO:0016491|GO:0055114
+ERR771001.405_2_298_-	0afdefa39d472613a225d29144e28db2	99	Pfam	PF00521	DNA gyrase/topoisomerase IV, subunit A	2	98	3.9E-22	T	21-05-2021	IPR002205	DNA topoisomerase, type IIA, subunit A/C-terminal	GO:0003677|GO:0003918|GO:0005524|GO:0006265
+ERR771001.1561_3_299_+	64cf66d80ec486ab06095a88246b8438	99	Pfam	PF00342	Phosphoglucose isomerase	13	97	8.8E-21	T	21-05-2021	IPR001672	Phosphoglucose isomerase (PGI)	GO:0004347|GO:0006094|GO:0006096
+ERR771001.369_3_299_+	3757ed2fb222eb76f9763f802e0a6178	99	Pfam	PF00793	DAHP synthetase I family	10	97	1.9E-23	T	21-05-2021	IPR006218	DAHP synthetase I/KDSA	GO:0009058
+ERR771001.1953_3_299_-	395648b4eaf29f51e644afe81d186696	99	Pfam	PF02142	MGS-like domain	5	70	1.5E-9	T	21-05-2021	IPR011607	Methylglyoxal synthase-like domain	
+ERR771001.645_99_299_-	bbb00f8d55dca38e88d07c93ae0b0010	66	Pfam	PF01725	Ham1 family	4	61	2.6E-20	T	21-05-2021	IPR002637	Ham1-like protein	GO:0009143|GO:0047429
+ERR771001.1856_19_297_-	8e701ba7d3ba0570573810c1a7a39384	92	Pfam	PF06723	MreB/Mbl protein	1	86	2.6E-29	T	21-05-2021
+ERR771001.2439_2_298_-	e294bd802bc929237a60884053429a0b	99	Pfam	PF00202	Aminotransferase class-III	19	99	9.2E-29	T	21-05-2021	IPR005814	Aminotransferase class-III	GO:0008483|GO:0030170
+ERR771001.1530_2_298_+	c791d6fb1548b2c81c30b35587db27b3	99	Pfam	PF00749	tRNA synthetases class I (E and Q), catalytic domain	6	85	4.3E-12	T	21-05-2021	IPR020058	Glutamyl/glutaminyl-tRNA synthetase, class Ib, catalytic domain	GO:0004812|GO:0005524|GO:0043039
+ERR771001.2233_3_299_-	3b4ab02298c29352061fe54559c29c86	99	Pfam	PF02585	GlcNAc-PI de-N-acetylase	26	87	1.3E-7	T	21-05-2021	IPR003737	N-acetylglucosaminyl phosphatidylinositol deacetylase-related	
+ERR771001.82_1_270_-	de576965d54be0b3c71fddf7022eb507	90	Pfam	PF02403	Seryl-tRNA synthetase N-terminal domain	1	90	3.8E-19	T	21-05-2021	IPR015866	Serine-tRNA synthetase, type1, N-terminal	
+ERR771001.1523_1_297_+	74fff528cc0ea0461045cb149e03ae88	99	Pfam	PF07686	Immunoglobulin V-set domain	13	97	3.1E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.907_3_299_-	e4e332ada88b7f110666dbd2aa56c2d8	99	Pfam	PF13512	Tetratricopeptide repeat	1	96	7.8E-32	T	21-05-2021
+ERR771001.1266_3_299_-	763822d2d4bf057f0053c7ea2c08c0d5	99	Pfam	PF00501	AMP-binding enzyme	2	99	2.8E-15	T	21-05-2021	IPR000873	AMP-dependent synthetase/ligase	
+ERR771001.407_2_298_-	35ceb621265894770b7f74193e68d524	99	Pfam	PF07566	Domain of Unknown Function (DUF1543)	71	98	1.0E-8	T	21-05-2021	IPR011440	Domain of unknown function DUF1543	
+ERR771001.407_2_298_-	35ceb621265894770b7f74193e68d524	99	Pfam	PF07566	Domain of Unknown Function (DUF1543)	1	36	2.7E-12	T	21-05-2021	IPR011440	Domain of unknown function DUF1543	
+ERR771001.2100_1_297_-	aad0e7dec4f125605fad7a6f6bbd2760	99	Pfam	PF02515	CoA-transferase family III	2	97	9.4E-19	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.1052_2_298_-	cb8492c871296b044f7f89462c787a17	99	Pfam	PF04998	RNA polymerase Rpb1, domain 5	44	96	3.1E-22	T	21-05-2021	IPR007081	RNA polymerase Rpb1, domain 5	GO:0003677|GO:0003899|GO:0006351
+ERR771001.1052_2_298_-	cb8492c871296b044f7f89462c787a17	99	Pfam	PF05000	RNA polymerase Rpb1, domain 4	1	41	8.8E-9	T	21-05-2021	IPR007083	RNA polymerase Rpb1, domain 4	GO:0003677|GO:0003899|GO:0006351
+ERR771001.2012_1_297_-	ec8a7168fc3f32a0dec656db47741c6a	99	Pfam	PF00158	Sigma-54 interaction domain	3	99	3.9E-37	T	21-05-2021	IPR002078	RNA polymerase sigma factor 54 interaction domain	GO:0005524|GO:0006355|GO:0008134
+ERR771001.1345_1_297_-	c8593873f6b874ed45558922b28fbbc7	99	Pfam	PF00441	Acyl-CoA dehydrogenase, C-terminal domain	44	98	6.6E-5	T	21-05-2021	IPR009075	Acyl-CoA dehydrogenase/oxidase C-terminal	GO:0016627|GO:0055114
+ERR771001.6_2_298_-	2fb2dccfc650989b05a7f249cc0e4256	99	Pfam	PF13090	Polyphosphate kinase C-terminal domain 2	7	99	3.0E-36	T	21-05-2021	IPR025200	Polyphosphate kinase C-terminal domain 2	
+ERR771001.2131_2_298_-	0ea904536166dd321c76dc5c87aefa88	99	Pfam	PF00108	Thiolase, N-terminal domain	5	98	7.1E-27	T	21-05-2021	IPR020616	Thiolase, N-terminal	GO:0016747
+ERR771001.1497_3_299_-	9121b17f11aec9d98d962673a22b3bc3	99	Pfam	PF03971	Monomeric isocitrate dehydrogenase	3	99	5.9E-41	T	21-05-2021	IPR004436	Isocitrate dehydrogenase NADP-dependent, monomeric	GO:0004450|GO:0006099|GO:0055114
+ERR771001.2297_2_283_-	7758e7427b96bb937488d59056b2b53b	94	Pfam	PF04371	Porphyromonas-type peptidyl-arginine deiminase	1	89	3.4E-23	T	21-05-2021	IPR007466	Peptidyl-arginine deiminase, Porphyromonas-type	GO:0004668|GO:0009446
+ERR771001.2014_3_299_-	57ea1eb6109d7887be6e2bd31818684d	99	Pfam	PF04055	Radical SAM superfamily	2	98	9.1E-8	T	21-05-2021	IPR007197	Radical SAM	GO:0003824|GO:0051536
+ERR771001.1468_1_297_-	1ce623de145cb786f4981eca029ccfde	99	Pfam	PF00078	Reverse transcriptase (RNA-dependent DNA polymerase)	2	95	4.2E-7	T	21-05-2021	IPR000477	Reverse transcriptase domain	
+ERR771001.1230_1_297_+	ab37b7ab872de3accd8612d22642ff6f	99	Pfam	PF01512	Respiratory-chain NADH dehydrogenase 51 Kd subunit	1	98	2.9E-17	T	21-05-2021	IPR011538	NADH-ubiquinone oxidoreductase 51kDa subunit, FMN-binding domain	
+ERR771001.73_3_299_+	ef2c329e3211c9ee7fe3f93f47da7baf	99	Pfam	PF00448	SRP54-type protein, GTPase domain	35	97	6.3E-20	T	21-05-2021	IPR000897	Signal recognition particle, SRP54 subunit, GTPase domain	GO:0005525|GO:0006614
+ERR771001.1641_2_298_+	8c63116a8e3ae23154c59a149fccd76d	99	Pfam	PF00881	Nitroreductase family	2	82	4.8E-12	T	21-05-2021	IPR029479	Nitroreductase	
+ERR771001.115_18_299_-	2897396fc115c90609a3e2eab19f52a5	93	Pfam	PF04085	rod shape-determining protein MreC	2	88	6.8E-13	T	21-05-2021	IPR007221	Rod shape-determining protein MreC	GO:0008360
+ERR771001.2437_99_299_-	2a15d7eea057d955896a01e1446b5252	66	Pfam	PF02091	Glycyl-tRNA synthetase alpha subunit	2	65	5.5E-22	T	21-05-2021	IPR002310	Glycine-tRNA ligase, alpha subunit	GO:0000166|GO:0004820|GO:0005524|GO:0005737|GO:0006426
+ERR771001.2028_1_297_-	10faf0a821e2e55e8d0d4937dcd203a8	99	Pfam	PF17835	NOG1 N-terminal helical domain	1	99	1.1E-31	T	21-05-2021	IPR041623	NOG1, N-terminal helical domain	
+ERR771001.1307_2_115_+	a52273653c1816167fefaed4617c214f	38	Pfam	PF00724	NADH:flavin oxidoreductase / NADH oxidase family	1	37	1.0E-12	T	21-05-2021	IPR001155	NADH:flavin oxidoreductase/NADH oxidase, N-terminal	GO:0010181|GO:0016491|GO:0055114
+ERR771001.971_2_298_-	929e3379fe6925bcea1e7d5314d05ac1	99	Pfam	PF00459	Inositol monophosphatase family	27	99	9.8E-16	T	21-05-2021	IPR000760	Inositol monophosphatase-like	GO:0046855
+ERR771001.1573_2_298_-	d5d54023cebf44371855c0ae42cf8a0a	99	Pfam	PF00333	Ribosomal protein S5, N-terminal domain	17	80	9.4E-23	T	21-05-2021	IPR013810	Ribosomal protein S5, N-terminal	GO:0003723|GO:0003735|GO:0005840|GO:0006412
+ERR771001.2422_3_299_+	5b38932366019e279c847a30a63c3aac	99	Pfam	PF04280	Tim44-like domain	34	99	1.1E-16	T	21-05-2021	IPR007379	Tim44-like domain	
+ERR771001.986_3_299_+	7008d0d52adc71849e33c55c5bbc4431	99	Pfam	PF02733	Dak1 domain	1	98	1.7E-37	T	21-05-2021	IPR004006	DhaK domain	GO:0004371|GO:0006071
+ERR771001.1414_1_299_-	99532e301db51480f2c3f795f3768822	99	Pfam	PF02547	Queuosine biosynthesis protein	38	99	1.9E-19	T	21-05-2021	IPR003699	S-adenosylmethionine:tRNA ribosyltransferase-isomerase,  QueA	GO:0016740|GO:0016853
+ERR771001.2173_3_299_-	a192f97659ed3bab54f9137649f876b3	99	Pfam	PF00013	KH domain	61	94	1.2E-4	T	21-05-2021	IPR004088	K Homology domain, type 1	GO:0003723
+ERR771001.308_3_290_-	dd94ed28a603f31b1433047bd3d121a0	96	Pfam	PF01435	Peptidase family M48	1	93	9.0E-13	T	21-05-2021	IPR001915	Peptidase M48	GO:0004222|GO:0006508
+ERR771001.216_3_299_-	ce92ea9003bd2c708a2a141db5640b66	99	Pfam	PF02910	Fumarate reductase flavoprotein C-term	10	99	3.6E-30	T	21-05-2021	IPR015939	Fumarate reductase/succinate dehydrogenase flavoprotein-like, C-terminal	GO:0016491|GO:0055114
+ERR771001.1_2_297_+	0782b58d9ee936a15939c7834785ffe1	99	Pfam	PF13393	Histidyl-tRNA synthetase	13	97	1.4E-7	T	21-05-2021	IPR041715	Class II Histidinyl-tRNA synthetase (HisRS)-like catalytic core domain	
+ERR771001.940_1_297_-	df37b37b6367d734221c06218541b62d	99	Pfam	PF02515	CoA-transferase family III	1	96	4.8E-16	T	21-05-2021	IPR003673	CoA-transferase family III	GO:0008410
+ERR771001.2418_3_143_+	91dc5f39140f57b85b1851dbad3648a4	47	Pfam	PF12974	ABC transporter, phosphonate, periplasmic substrate-binding protein	1	47	5.1E-14	T	21-05-2021
+ERR771001.1590_2_298_-	d137cc2b6a2811e82f13bd90e1cf0e2e	99	Pfam	PF13616	PPIC-type PPIASE domain	17	97	3.3E-6	T	21-05-2021
+ERR771001.1527_3_299_-	4e289b1d77564fb0faf0b75ca9f054ef	99	Pfam	PF01264	Chorismate synthase	2	99	2.8E-48	T	21-05-2021	IPR000453	Chorismate synthase	GO:0004107|GO:0009073
+ERR771001.647_3_299_-	735c5860d719f9b67d4b48bcf799dedd	99	Pfam	PF07686	Immunoglobulin V-set domain	4	97	1.0E-8	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1296_3_299_+	59b7addefcec5d380194e98eeb67c867	99	Pfam	PF04998	RNA polymerase Rpb1, domain 5	31	96	4.0E-25	T	21-05-2021	IPR007081	RNA polymerase Rpb1, domain 5	GO:0003677|GO:0003899|GO:0006351
+ERR771001.1335_1_204_+	e2914f779df6d9ca90ac94491088411a	68	Pfam	PF00231	ATP synthase	1	67	3.8E-10	T	21-05-2021	IPR000131	ATP synthase, F1 complex, gamma subunit	GO:0015986|GO:0045261|GO:0046933
+ERR771001.1314_1_297_-	ec66f99cde75c8d33917cefbaad27c90	99	Pfam	PF07686	Immunoglobulin V-set domain	5	74	2.0E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.130_3_299_+	6bbd5eb4ae833980dde4723b810288a7	99	Pfam	PF00248	Aldo/keto reductase family	3	99	1.0E-19	T	21-05-2021	IPR023210	NADP-dependent oxidoreductase domain	
+ERR771001.1542_3_299_+	a9b3dbe9c9c542481ff520b4209f4794	99	Pfam	PF01451	Low molecular weight phosphotyrosine protein phosphatase	3	88	9.6E-9	T	21-05-2021	IPR023485	Phosphotyrosine protein phosphatase I	
+ERR771001.1283_3_299_-	e939546b251420bad1da5910d424e1e3	99	Pfam	PF00561	alpha/beta hydrolase fold	2	86	7.1E-10	T	21-05-2021	IPR000073	Alpha/beta hydrolase fold-1	
+ERR771001.1400_2_298_+	868069f53ced17a4376eff18ea3a55df	99	Pfam	PF08436	1-deoxy-D-xylulose 5-phosphate reductoisomerase C-terminal domain	2	63	1.0E-29	T	21-05-2021	IPR013644	1-deoxy-D-xylulose 5-phosphate reductoisomerase, C-terminal	GO:0005515
+ERR771001.2346_34_297_+	96c5396c43c86968f32b421cdceff6a0	88	Pfam	PF01344	Kelch motif	4	65	3.6E-13	T	21-05-2021	IPR006652	Kelch repeat type 1	GO:0005515
+ERR771001.2348_2_298_-	94661fa11676b31dd234f736c9e316ce	99	Pfam	PF03159	XRN 5'-3' exonuclease N-terminus	6	98	5.9E-31	T	21-05-2021	IPR004859	Putative 5-3 exonuclease	GO:0003676|GO:0004527
+ERR771001.644_3_95_-	779ec99ab77aa6a77b667291d1a2392c	31	Pfam	PF00779	BTK motif	3	24	1.5E-5	T	21-05-2021	IPR001562	Zinc finger, Btk motif	GO:0035556
+ERR771001.1623_3_299_-	9fef33b47fd44af828a3158121952230	99	Pfam	PF07977	FabA-like domain	64	99	6.0E-8	T	21-05-2021	IPR013114	Beta-hydroxydecanoyl thiol ester dehydrase, FabA/FabZ	
+ERR771001.2301_2_298_-	7df568f5a423e35f7e635268a4501b4d	99	Pfam	PF01642	Methylmalonyl-CoA mutase	1	99	4.6E-44	T	21-05-2021	IPR006099	Methylmalonyl-CoA mutase, alpha/beta chain, catalytic	GO:0016866|GO:0031419
+ERR771001.448_3_299_-	81539b1041a022c6ff5f73e8811c1821	99	Pfam	PF01965	DJ-1/PfpI family	17	75	8.4E-8	T	21-05-2021	IPR002818	DJ-1/PfpI	
+ERR771001.2365_2_299_+	99f0740c444e48112f277a3eb8242bb1	100	Pfam	PF03746	LamB/YcsF family	2	85	3.0E-21	T	21-05-2021	IPR005501	LamB/YcsF/PxpA-like	
+ERR771001.1501_1_297_+	c524962a3d3b80e01ed2162bd5320b1b	99	Pfam	PF00441	Acyl-CoA dehydrogenase, C-terminal domain	2	61	3.2E-11	T	21-05-2021	IPR009075	Acyl-CoA dehydrogenase/oxidase C-terminal	GO:0016627|GO:0055114
+ERR771001.2180_1_255_+	ce95972089e6f47a7ebd2271f2d240e1	84	Pfam	PF00687	Ribosomal protein L1p/L10e family	2	75	1.1E-15	T	21-05-2021	IPR028364	Ribosomal protein L1/ribosomal biogenesis protein	
+ERR771001.2097_3_299_+	b63c94d86bd7a177583b8ed1a321b33b	99	Pfam	PF13347	MFS/sugar transport protein	1	96	1.1E-17	T	21-05-2021
+ERR771001.1409_2_298_+	ef7752bc6b59378a5159c8b76bc74a51	99	Pfam	PF07686	Immunoglobulin V-set domain	12	96	2.1E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.2338_2_298_+	1488b911ca64aac4fcc4cd92fe31535c	99	Pfam	PF00587	tRNA synthetase class II core domain (G, H, P, S and T)	2	57	3.9E-11	T	21-05-2021	IPR002314	Aminoacyl-tRNA synthetase, class II (G/ P/ S/T)	GO:0000166|GO:0004812|GO:0005524|GO:0006418
+ERR771001.1407_1_297_-	9b045a3dfe81830eba16b15d8107b7e8	99	Pfam	PF13537	Glutamine amidotransferase domain	14	98	4.6E-11	T	21-05-2021	IPR017932	Glutamine amidotransferase type 2 domain	
+ERR771001.1250_3_98_-	6c99ae591c8cb23cfb00f830dab17671	32	Pfam	PF13041	PPR repeat family	2	31	1.7E-7	T	21-05-2021	IPR002885	Pentatricopeptide repeat	
+ERR771001.2032_3_299_-	cf3a840d91714c7f6ed46a91c7ada58f	99	Pfam	PF01025	GrpE	1	99	2.0E-28	T	21-05-2021	IPR000740	GrpE nucleotide exchange factor	GO:0000774|GO:0006457|GO:0042803|GO:0051087
+ERR771001.851_3_299_+	b84b327335834ceb6c6cbb12fda77820	99	Pfam	PF04546	Sigma-70, non-essential region	18	99	5.4E-13	T	21-05-2021	IPR007631	RNA polymerase sigma factor 70, non-essential domain	GO:0003677|GO:0003700|GO:0006352|GO:0006355|GO:0016987
+ERR771001.2146_2_298_+	73a879fca24bbcc766d72c4c4723730a	99	Pfam	PF02569	Pantoate-beta-alanine ligase	1	98	2.4E-38	T	21-05-2021	IPR003721	Pantoate-beta-alanine ligase	GO:0004592|GO:0015940
+ERR771001.257_1_297_-	317b7a4131b909a6cd25b2eca7d13cfd	99	Pfam	PF18566	Linalool dehydratase/isomerase	1	99	1.9E-23	T	21-05-2021	IPR041411	Linalool dehydratase/isomerase	
+ERR771001.2129_83_298_+	89746233eeb38eae6ae6d119fe25e62e	72	Pfam	PF01379	Porphobilinogen deaminase, dipyromethane cofactor binding domain	4	72	1.4E-14	T	21-05-2021	IPR022417	Porphobilinogen deaminase, N-terminal	GO:0004418|GO:0033014
+ERR771001.599_2_298_-	a5248f13285ba2e11586367d31fc1238	99	Pfam	PF05089	Alpha-N-acetylglucosaminidase (NAGLU) tim-barrel domain	1	68	8.7E-17	T	21-05-2021	IPR024733	Alpha-N-acetylglucosaminidase, tim-barrel domain	
+ERR771001.252_3_299_+	6547f6e9fe689a3570eeca425f5b515e	99	Pfam	PF12849	PBP superfamily domain	1	98	7.8E-23	T	21-05-2021	IPR024370	PBP domain	
+ERR771001.2492_2_298_-	53ca23aeb87a7f39a979a184cc5e6fd2	99	Pfam	PF02867	Ribonucleotide reductase, barrel domain	1	98	7.7E-20	T	21-05-2021	IPR000788	Ribonucleotide reductase large subunit, C-terminal	GO:0006260|GO:0055114
+ERR771001.2089_3_299_-	2ee46a7e10f716b514c017d864f4e244	99	Pfam	PF07686	Immunoglobulin V-set domain	10	97	1.3E-10	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.61_2_298_+	159f371aadb245ff99e51421787ea416	99	Pfam	PF00120	Glutamine synthetase, catalytic domain	1	98	2.8E-33	T	21-05-2021	IPR008146	Glutamine synthetase, catalytic domain	GO:0004356|GO:0006807
+ERR771001.2267_13_297_+	a764634f7e3d7f60b0a76c56127e5d47	95	Pfam	PF02668	Taurine catabolism dioxygenase TauD, TfdA family	8	87	2.2E-9	T	21-05-2021	IPR003819	TauD/TfdA-like domain	GO:0016491|GO:0055114
+ERR771001.1495_3_299_-	74addbcd765bf03cc2dc210ba34532d7	99	Pfam	PF00204	DNA gyrase B	36	98	2.6E-8	T	21-05-2021	IPR013506	DNA topoisomerase, type IIA, subunit B, domain 2	GO:0003677|GO:0003918|GO:0005524|GO:0006265
+ERR771001.56_1_297_+	b62b9684e430a45d938738ac414e3467	99	Pfam	PF07686	Immunoglobulin V-set domain	13	97	7.0E-14	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.414_1_297_-	698c9ecd0f793cae655359782edafc27	99	Pfam	PF13481	AAA domain	17	93	1.4E-7	T	21-05-2021
+ERR771001.870_1_297_+	0c0b338df582f17388b8a61431b7479b	99	Pfam	PF07883	Cupin domain	26	80	1.6E-7	T	21-05-2021	IPR013096	Cupin 2, conserved barrel	
+ERR771001.1945_1_297_+	61e61489e0c1747a87a0f0e6d2f27557	99	Pfam	PF00884	Sulfatase	7	58	4.4E-13	T	21-05-2021	IPR000917	Sulfatase, N-terminal	GO:0008484
+ERR771001.2148_3_299_-	1f702324e8e7d62a5fea91cfc84ae1fa	99	Pfam	PF07686	Immunoglobulin V-set domain	5	98	4.9E-11	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1382_1_195_+	3c9272e4313adbc4b32a67a91f013c86	64	Pfam	PF00550	Phosphopantetheine attachment site	1	59	1.1E-12	T	21-05-2021	IPR009081	Phosphopantetheine binding ACP domain	
+ERR771001.2361_1_297_+	e54f95b3ce3f40b593852da3f1f2f272	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	6.8E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.632_1_243_-	8301247cc1c023de2d1796ae4039ce24	81	Pfam	PF01321	Creatinase/Prolidase N-terminal domain	28	76	2.0E-6	T	21-05-2021	IPR000587	Creatinase, N-terminal	GO:0016787
+ERR771001.752_3_299_+	26f322037cc6b373f4c61961f288575a	99	Pfam	PF07686	Immunoglobulin V-set domain	12	96	1.2E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.338_2_298_-	32377a496406038a636ba103209c91ac	99	Pfam	PF00593	TonB dependent receptor	3	92	2.9E-5	T	21-05-2021	IPR000531	TonB-dependent receptor-like, beta-barrel	
+ERR771001.1829_1_297_+	69508b80ec5d195df65543028780cf8f	99	Pfam	PF12796	Ankyrin repeats (3 copies)	33	80	3.1E-7	T	21-05-2021	IPR020683	Ankyrin repeat-containing domain	
+ERR771001.1547_1_297_-	f6898caace4f8042d492f6f30a5ae272	99	Pfam	PF13407	Periplasmic binding protein domain	3	96	4.4E-21	T	21-05-2021	IPR025997	Periplasmic binding protein	
+ERR771001.2360_3_299_-	b86eb6e36797785b80502b100ebc33a1	99	Pfam	PF13407	Periplasmic binding protein domain	2	84	1.1E-12	T	21-05-2021	IPR025997	Periplasmic binding protein	
+ERR771001.2467_1_297_+	d117beb8b4a7c6f679f6e5e6843534b6	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	4.7E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1977_2_298_-	c4c6cf0f2be4938afa78a7bf24f852a2	99	Pfam	PF00063	Myosin head (motor domain)	1	97	4.6E-20	T	21-05-2021	IPR001609	Myosin head, motor domain	GO:0003774|GO:0005524|GO:0016459
+ERR771001.743_1_297_+	d8fbf5da0f829f72485a20f88d1501d4	99	Pfam	PF02805	Metal binding domain of Ada	1	60	1.4E-25	T	21-05-2021	IPR004026	Ada DNA repair, metal-binding	GO:0003677|GO:0006281|GO:0006355|GO:0008168|GO:0008270
+ERR771001.1190_1_297_-	afe7930b44b8543d18ae2723f13b7c27	99	Pfam	PF17645	Arylmalonate decarboxylase	4	64	2.5E-9	T	21-05-2021	IPR026286	Maleate isomerase/Arylmalonate decarboxylase	
+ERR771001.445_2_298_-	01ccffe6369d7a48ef329961d5e300e4	99	Pfam	PF07973	Threonyl and Alanyl tRNA synthetase second additional domain	2	34	4.0E-14	T	21-05-2021	IPR012947	Threonyl/alanyl tRNA synthetase, SAD	GO:0004812|GO:0005524|GO:0043039
+ERR771001.1751_2_298_-	296d13bd7a69391b321b6453d51561ff	99	Pfam	PF02606	Tetraacyldisaccharide-1-P 4'-kinase	4	97	3.3E-25	T	21-05-2021	IPR003758	Tetraacyldisaccharide 4'-kinase	GO:0005524|GO:0009029|GO:0009245
+ERR771001.131_3_299_-	eeb40784cece18a51c43ea6b3c3d1103	99	Pfam	PF01583	Adenylylsulphate kinase	1	98	5.1E-29	T	21-05-2021
+ERR771001.823_2_298_+	760c116522cbaaa2678ebcb5e93e1e3e	99	Pfam	PF05221	S-adenosyl-L-homocysteine hydrolase	6	99	7.3E-55	T	21-05-2021	IPR000043	Adenosylhomocysteinase-like	
+ERR771001.1660_3_299_+	77a021985c9e4ba64b273c5a0dd9af3d	99	Pfam	PF00585	C-terminal regulatory domain of Threonine dehydratase	13	97	3.6E-20	T	21-05-2021	IPR001721	Threonine dehydratase, ACT-like domain	
+ERR771001.817_2_298_-	eccdb585296f94f17916e64a9f5c044c	99	Pfam	PF00534	Glycosyl transferases group 1	31	98	4.5E-7	T	21-05-2021	IPR001296	Glycosyl transferase, family 1	
+ERR771001.817_2_298_-	eccdb585296f94f17916e64a9f5c044c	99	Pfam	PF00544	Pectate lyase	12	88	3.0E-5	T	21-05-2021	IPR002022	Pectate lyase	
+ERR771001.914_3_297_+	3d8fa18aa594fe48d311d04a29969712	99	Pfam	PF00633	Helix-hairpin-helix motif	10	33	1.5E-6	T	21-05-2021	IPR000445	Helix-hairpin-helix motif	GO:0003677
+ERR771001.948_1_297_+	da58550cedf61df64e182d703c948a40	99	Pfam	PF07690	Major Facilitator Superfamily	6	99	6.0E-11	T	21-05-2021	IPR011701	Major facilitator superfamily	GO:0022857|GO:0055085
+ERR771001.1588_3_299_+	cf9ca6991591705330e87d552040be46	99	Pfam	PF16870	2-oxoglutarate dehydrogenase C-terminal	61	97	1.3E-6	T	21-05-2021	IPR031717	Multifunctional 2-oxoglutarate metabolism enzyme, C-terminal	
+ERR771001.1588_3_299_+	cf9ca6991591705330e87d552040be46	99	Pfam	PF02779	Transketolase, pyrimidine binding domain	1	57	1.4E-15	T	21-05-2021	IPR005475	Transketolase-like, pyrimidine-binding domain	
+ERR771001.790_1_297_+	cdfabc16982ed8edb4ca3606a191de61	99	Pfam	PF00440	Bacterial regulatory proteins, tetR family	29	74	3.2E-7	T	21-05-2021	IPR001647	DNA-binding HTH domain, TetR-type	GO:0003677
+ERR771001.1913_1_267_+	1d12b8d23c6d5c690d51608b302c7250	88	Pfam	PF18962	Secretion system C-terminal sorting domain	6	86	8.9E-7	T	21-05-2021	IPR026444	Secretion system C-terminal sorting domain	
+ERR771001.383_1_297_+	b8e52588ee5c7966350a4c8090eaed08	99	Pfam	PF04963	Sigma-54 factor, core binding domain	1	85	1.3E-23	T	21-05-2021	IPR007046	RNA polymerase sigma factor 54, core-binding domain	GO:0003677|GO:0006352
+ERR771001.2082_3_299_+	a0d14831043ff7aeefb4179ed0aaf018	99	Pfam	PF17806	Sarcosine oxidase A3 domain	76	99	2.1E-5	T	21-05-2021	IPR041117	SoxA, A3 domain	
+ERR771001.1480_3_299_-	e92d7ba510444f99fd82308b48338341	99	Pfam	PF02798	Glutathione S-transferase, N-terminal domain	7	41	5.4E-9	T	21-05-2021	IPR004045	Glutathione S-transferase, N-terminal	GO:0005515
+ERR771001.430_1_297_+	86ef2adc762e728c945fbf239b9fd72a	99	Pfam	PF08007	Cupin superfamily protein	3	99	9.0E-9	T	21-05-2021	IPR003347	JmjC domain	
+ERR771001.1402_3_297_-	4aa2c64b1c9582ca0d13916d7fe58e21	98	Pfam	PF00168	C2 domain	49	98	2.5E-5	T	21-05-2021	IPR000008	C2 domain	
+ERR771001.1578_45_299_-	df522acd99f8768c9663d53733969686	84	Pfam	PF00155	Aminotransferase class I and II	6	79	1.3E-9	T	21-05-2021	IPR004839	Aminotransferase, class I/classII	GO:0009058|GO:0030170
+ERR771001.731_3_299_-	b8f2b3bf46eb0f2d7523c6ad9e2e549d	99	Pfam	PF01132	Elongation factor P (EF-P) OB domain	1	40	1.0E-11	T	21-05-2021	IPR001059	Translation elongation factor P/YeiP, central	GO:0003746|GO:0006414
+ERR771001.731_3_299_-	b8f2b3bf46eb0f2d7523c6ad9e2e549d	99	Pfam	PF09285	Elongation factor P, C-terminal	48	98	6.2E-18	T	21-05-2021	IPR015365	Elongation factor P, C-terminal	GO:0005737|GO:0043043
+ERR771001.1429_2_262_+	4fa3c12d81e251fa55cffe358fcf6e7b	86	Pfam	PF00459	Inositol monophosphatase family	4	68	8.2E-15	T	21-05-2021	IPR000760	Inositol monophosphatase-like	GO:0046855
+ERR771001.262_2_298_+	f9203debd825d191a86680b389e89aec	99	Pfam	PF01551	Peptidase family M23	2	79	6.7E-23	T	21-05-2021	IPR016047	Peptidase M23	
+ERR771001.534_1_297_+	707852a3901d0c02f0f283a22956bc86	99	Pfam	PF02601	Exonuclease VII, large subunit	1	99	2.8E-37	T	21-05-2021	IPR020579	Exonuclease VII, large subunit, C-terminal	GO:0008855
+ERR771001.970_3_299_+	305b780b8caabc47c1fc0a9602fbb311	99	Pfam	PF13407	Periplasmic binding protein domain	8	90	1.5E-14	T	21-05-2021	IPR025997	Periplasmic binding protein	
+ERR771001.1334_1_297_+	aa40ce49eb79f884ecc371dad5fff2ac	99	Pfam	PF02518	Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	16	96	7.0E-16	T	21-05-2021	IPR003594	Histidine kinase/HSP90-like ATPase	
+ERR771001.1386_2_298_-	5928a4b1f985227187ffc9636c0ab986	99	Pfam	PF05992	SbmA/BacA-like family	3	98	4.7E-32	T	21-05-2021	IPR009248	SbmA/BacA-like	GO:0015833|GO:0016021|GO:1904680
+ERR771001.694_2_298_+	b0d96da63076e9a406bc86520fa941ad	99	Pfam	PF12831	FAD dependent oxidoreductase	50	89	2.8E-10	T	21-05-2021
+ERR771001.2382_1_297_+	6c1157197c1407198303aa6119554e95	99	Pfam	PF07686	Immunoglobulin V-set domain	12	97	2.2E-13	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.762_56_298_+	4fd5fe4519dbcf996ad88239ea160ec5	81	Pfam	PF08529	NusA N-terminal domain	4	78	8.0E-19	T	21-05-2021	IPR013735	Transcription factor NusA, N-terminal	GO:0003700|GO:0031554
+ERR771001.2262_1_298_-	c21985482f41a7856d68c2a0496e5606	99	Pfam	PF01144	Coenzyme A transferase	38	98	1.5E-8	T	21-05-2021	IPR004165	Coenzyme A transferase family I	GO:0008410
+ERR771001.1103_70_297_+	98fe7e5bc0cdaa7bc25b854af50073fe	76	Pfam	PF01370	NAD dependent epimerase/dehydratase family	7	76	2.2E-12	T	21-05-2021	IPR001509	NAD-dependent epimerase/dehydratase	GO:0003824
+ERR771001.2023_2_298_-	4fcdb62fbe25ae8ecaecc1e5b04d2aed	99	Pfam	PF00109	Beta-ketoacyl synthase, N-terminal domain	5	69	9.2E-16	T	21-05-2021	IPR014030	Beta-ketoacyl synthase, N-terminal	
+ERR771001.2277_3_299_+	8f2eb389d9e1152f1dcb94bf89b56ec0	99	Pfam	PF00306	ATP synthase alpha/beta chain, C terminal domain	81	99	4.2E-5	T	21-05-2021	IPR000793	ATP synthase, alpha subunit, C-terminal	GO:0015986
+ERR771001.2277_3_299_+	8f2eb389d9e1152f1dcb94bf89b56ec0	99	Pfam	PF00006	ATP synthase alpha/beta family, nucleotide-binding domain	1	74	4.4E-20	T	21-05-2021	IPR000194	ATPase, F1/V1/A1 complex, alpha/beta subunit, nucleotide-binding domain	GO:0005524
+ERR771001.1340_55_297_+	82227fb99157fcfab1b14ccbd7d135b6	81	Pfam	PF05368	NmrA-like family	9	79	1.0E-5	T	21-05-2021	IPR008030	NmrA-like domain	
+ERR771001.1077_126_299_+	8c95d1cf094da32f7b2c139f3a7dbfac	58	Pfam	PF01220	Dehydroquinase class II	2	58	9.7E-15	T	21-05-2021	IPR001874	Dehydroquinase, class II	GO:0003855
+ERR771001.545_3_299_+	edbd28ad774133d1e497dfd76501d5c6	99	Pfam	PF07686	Immunoglobulin V-set domain	12	96	3.0E-12	T	21-05-2021	IPR013106	Immunoglobulin V-set domain	
+ERR771001.1656_2_297_-	97c1048b3a5ddda5d34a0e03769fcadd	98	Pfam	PF00749	tRNA synthetases class I (E and Q), catalytic domain	56	98	7.6E-19	T	21-05-2021	IPR020058	Glutamyl/glutaminyl-tRNA synthetase, class Ib, catalytic domain	GO:0004812|GO:0005524|GO:0043039
+ERR771001.1918_2_298_-	af61cc7498fa737244b14ea97506038b	99	Pfam	PF00155	Aminotransferase class I and II	8	98	2.5E-5	T	21-05-2021	IPR004839	Aminotransferase, class I/classII	GO:0009058|GO:0030170
+ERR771001.2409_1_129_+	1949bf0f3a658d3edcb0cbf4b123a127	43	Pfam	PF00231	ATP synthase	3	43	7.0E-15	T	21-05-2021	IPR000131	ATP synthase, F1 complex, gamma subunit	GO:0015986|GO:0045261|GO:0046933
+ERR771001.328_1_297_+	3ef9fb022782ffb2efa8d2efb6991176	99	Pfam	PF01970	Tripartite tricarboxylate transporter TctA family	1	83	6.3E-16	T	21-05-2021	IPR002823	Protein of unknown function DUF112, transmembrane	
+ERR771001.1875_2_298_-	9030217a40169ac2c9e7443d6e3f3f0e	99	Pfam	PF00308	Bacterial dnaA  protein	1	99	1.4E-37	T	21-05-2021	IPR013317	Chromosomal replication initiator protein DnaA	
+ERR771001.439_1_297_+	d3b8907c059b75772f1a205dfb8ba4b2	99	Pfam	PF01255	Putative undecaprenyl diphosphate synthase	2	98	4.2E-23	T	21-05-2021	IPR001441	Decaprenyl diphosphate synthase-like	GO:0016765
+ERR771001.874_1_297_-	fc30303058a58c81b27453c0bf7eb464	99	Pfam	PF00892	EamA-like transporter family	2	68	3.3E-10	T	21-05-2021	IPR000620	EamA domain	GO:0016020|GO:0016021
+ERR771001.874_1_297_-	fc30303058a58c81b27453c0bf7eb464	99	Pfam	PF11177	Protein of unknown function (DUF2964)	55	93	1.8E-4	T	21-05-2021	IPR021347	Protein of unknown function DUF2964	
