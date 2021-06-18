@@ -18,7 +18,7 @@ import os
 import re
 import shutil
 import sys
-import configparser
+import yaml
 import time
 from Bio import SeqIO, Seq
 
@@ -78,34 +78,35 @@ class QCPipeline:
         :param fp: string path to config file
         :return:
         """
-        config = configparser.ConfigParser()
-        config.read(self.config_fp)
-        # self.paired_ends = int(config["DEFAULT"]["paired_ends"])
-        # self.in_dir = config["DEFAULT"]["in_dir"]
-        # self.out_dir = config["DEFAULT"]["out_dir"]
-        self.threads = config["DEFAULT"]["threads"]
-        self.debug = int(config["DEFAULT"]["debug"])
-        self.trim_adapter_fasta = config["DEFAULT"]["adapter_fasta"]
-        self.trim_seed_mismatches = config["DEFAULT"]["seed_mismatches"]
-        self.trim_palindrome_clip_thresh = config["DEFAULT"][
+        config_in = open(self.config_fp, "r")
+        config = yaml.load(config_in)
+        #self.paired_ends = int(config["DEFAULT"]["paired_ends"])
+        #self.in_dir = config["DEFAULT"]["in_dir"]
+        #self.out_dir = config["DEFAULT"]["out_dir"]
+        self.threads = config["pipeline"]["threads"]
+        self.debug = int(config["pipeline"]["debug"])
+        self.trim_adapter_fasta = config["pipeline"]["adapter_fasta"]
+        self.trim_seed_mismatches = config["pipeline"]["seed_mismatches"]
+        self.trim_palindrome_clip_thresh = config["pipeline"][
             "palindrome_clip_thresh"]
-        self.trim_simple_clip_thresh = config["DEFAULT"]["simple_clip_thresh"]
-        self.trim_min_adapter_length = config["DEFAULT"]["min_adapter_length"]
-        self.trim_keep_both_reads = config["DEFAULT"]["keep_both_reads"]
-        self.trim_min_quality = config["DEFAULT"]["min_quality"]
-        self.trim_min_len = config["DEFAULT"]["trim_min_length"]
-        self.pear_min_overlap = config["DEFAULT"]["pear_min_length"]
-        self.pear_max_assembly_length = config["DEFAULT"]["pear_max_assembly"]
-        self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
-        self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
-        self.vsearch_filter_minlen = 75
-        # self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
-        # self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
-        # self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
-        self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
-        self.frag_train_file = config["DEFAULT"]["frag_train_file"]
-        self.delete_intermediates = int(config["DEFAULT"]["delete_intermediates"])
+        self.trim_simple_clip_thresh = config["pipeline"]["simple_clip_thresh"]
+        self.trim_min_adapter_length = config["pipeline"]["min_adapter_length"]
+        self.trim_keep_both_reads = config["pipeline"]["keep_both_reads"]
+        self.trim_min_quality = config["pipeline"]["min_quality"]
+        self.trim_min_len = config["pipeline"]["trim_min_length"]
+        self.pear_min_overlap = config["pipeline"]["pear_min_length"]
+        self.pear_max_assembly_length = config["pipeline"]["pear_max_assembly"]
+        self.pear_min_assembly_length = config["pipeline"]["pear_min_assembly"]
+        self.vsearch_filter_maxee = config["pipeline"]["vsearch_filter_maxee"]
+        self.vsearch_filter_minlen = config["pipeline"]["vsearch_filter_minlen"]
+        #self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
+        #self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
+        #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
+        self.frag_train_file = config["pipeline"]["frag_train_file"]
+        self.delete_intermediates = int(config["pipeline"]["delete_intermediates"])
+        config_in.close()
         return
+
 
     def run(self):
         """
@@ -265,7 +266,7 @@ class QCPipeline:
             run_arr.append("SE")
             out_base = re.sub(string=os.path.basename(input_file),
                               pattern=r'.(fastq|fq)',
-                              repl=".fastq")
+                              repl="_trimmed.fastq")
             run_arr.extend([
                 "-threads",
                 str(self.threads), "-trimlog", trim_log, input_file,
@@ -466,7 +467,7 @@ class QCPipeline:
                 output_file_basename = re.sub(
                     string=input_file_basename,
                     pattern='\.fastq*',
-                    repl='.ee{}minlen{}.fasta'.format(
+                    repl='_qcd.fasta'.format(
                         self.vsearch_filter_maxee, self.vsearch_filter_minlen))
                 output_fasta_fp = os.path.join(output_dir,
                                                output_file_basename)

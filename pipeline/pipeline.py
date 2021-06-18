@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
 """
 Design principles:
   1. reading this script should not require a high level of Python experience
@@ -18,7 +18,7 @@ import os
 import re
 import shutil
 import sys
-import configparser
+import yaml
 import time
 from Bio import SeqIO, Seq
 
@@ -84,34 +84,34 @@ class Pipeline:
         Takes a path to a config file containing parameters for the pipeline
         :param fp: string path to config file
         :return:
-        """
-        config = configparser.ConfigParser()
-        config.read(self.config_fp)
+        """ 
+        config_in = open(self.config_fp, "r")
+        config = yaml.load(config_in)
         #self.paired_ends = int(config["DEFAULT"]["paired_ends"])
         #self.in_dir = config["DEFAULT"]["in_dir"]
         #self.out_dir = config["DEFAULT"]["out_dir"]
-        self.threads = config["DEFAULT"]["threads"]
-        self.debug = int(config["DEFAULT"]["debug"])
-        self.trim_adapter_fasta = config["DEFAULT"]["adapter_fasta"]
-        self.trim_seed_mismatches = config["DEFAULT"]["seed_mismatches"]
-        self.trim_palindrome_clip_thresh = config["DEFAULT"][
+        self.threads = config["pipeline"]["threads"]
+        self.debug = int(config["pipeline"]["debug"])
+        self.trim_adapter_fasta = config["pipeline"]["adapter_fasta"]
+        self.trim_seed_mismatches = config["pipeline"]["seed_mismatches"]
+        self.trim_palindrome_clip_thresh = config["pipeline"][
             "palindrome_clip_thresh"]
-        self.trim_simple_clip_thresh = config["DEFAULT"]["simple_clip_thresh"]
-        self.trim_min_adapter_length = config["DEFAULT"]["min_adapter_length"]
-        self.trim_keep_both_reads = config["DEFAULT"]["keep_both_reads"]
-        self.trim_min_quality = config["DEFAULT"]["min_quality"]
-        self.trim_min_len = config["DEFAULT"]["trim_min_length"]
-        self.pear_min_overlap = config["DEFAULT"]["pear_min_length"]
-        self.pear_max_assembly_length = config["DEFAULT"]["pear_max_assembly"]
-        self.pear_min_assembly_length = config["DEFAULT"]["pear_min_assembly"]
-        self.vsearch_filter_maxee = config["DEFAULT"]["vsearch_filter_maxee"]
-        self.vsearch_filter_minlen = 75
+        self.trim_simple_clip_thresh = config["pipeline"]["simple_clip_thresh"]
+        self.trim_min_adapter_length = config["pipeline"]["min_adapter_length"]
+        self.trim_keep_both_reads = config["pipeline"]["keep_both_reads"]
+        self.trim_min_quality = config["pipeline"]["min_quality"]
+        self.trim_min_len = config["pipeline"]["trim_min_length"]
+        self.pear_min_overlap = config["pipeline"]["pear_min_length"]
+        self.pear_max_assembly_length = config["pipeline"]["pear_max_assembly"]
+        self.pear_min_assembly_length = config["pipeline"]["pear_min_assembly"]
+        self.vsearch_filter_maxee = config["pipeline"]["vsearch_filter_maxee"]
+        self.vsearch_filter_minlen = config["pipeline"]["vsearch_filter_minlen"]
         #self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]
         #self.vsearch_filter_trunclen = config["DEFAULT"]["vsearch_filter_trunclen"]
         #self.vsearch_derep_minuniquesize = config["DEFAULT"]["vsearch_derep_minuniquesize"]
-        self.centrifuge_db = config["DEFAULT"]["centrifuge_db"]
-        self.frag_train_file = config["DEFAULT"]["frag_train_file"]
-        self.delete_intermediates = int(config["DEFAULT"]["delete_intermediates"])
+        self.frag_train_file = config["pipeline"]["frag_train_file"]
+        self.delete_intermediates = int(config["pipeline"]["delete_intermediates"])
+        config_in.close()
         return
 
     def run(self):
@@ -628,7 +628,7 @@ class Pipeline:
                     output_dir,
                     re.sub(string=os.path.basename(fp),
                            pattern='\.fasta',
-                           repl='.frags'))
+                           repl='_frags'))
                 log.info(f"writing output of {fp} to {out_fp}")
                 run_cmd(
                     [
@@ -657,13 +657,13 @@ class Pipeline:
                      '\n\t'.join(os.listdir(input_dir)))
             input_files_glob = os.path.join(
                 input_dir,
-                f'*.ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}*.faa'
+                f'*_trimmed_qcd_frags.faa'
             )
             #log.info('input file glob: "%s"', input_files_glob)
             input_fp_list = sorted(glob.glob(input_files_glob))
             if len(input_fp_list) == 0:
                 raise PipelineException(
-                    f'found no .ee{self.vsearch_filter_maxee}minlen{self.vsearch_filter_minlen}.faa files in directory "{input_dir}"'
+                    f'found no _trimmed_qcd_frags.faa files in directory "{input_dir}"'
                 )
             log.info(f"input file list: {input_fp_list}")
             chunk_size = 10000
