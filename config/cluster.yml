@@ -3,7 +3,8 @@ __default__:
   group: 'bhurwitz' #MODIFY
   M: 'mattmiller899@email.arizona.edu' #MODIFY
   time: '24:00:00'
-  n: "5"
-  m: '25gb'
+  n: "10"
+  m: '50gb'
   o: 'out/{rule}.{wildcards}.out'
   e: 'err/{rule}.{wildcards}.err'
+  N: "1"
