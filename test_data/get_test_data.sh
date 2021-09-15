@@ -22,7 +22,7 @@ set -u
 ## Datasets very likly for inclusion: ##
 
 # Amazon Plume Metagenomes #Illumina #2.9 Gb #largest in dataset
-curl -O ftp.sra.ebi.ac.uk/vol1/fastq/SRR483/004/SRR4831664/SRR4831664.fastq.gz
+#curl -O ftp.sra.ebi.ac.uk/vol1/fastq/SRR483/004/SRR4831664/SRR4831664.fastq.gz
 
 # Amazon River Metagenomes #Illumina #3.6 Gb #largest in dataset
 curl -O ftp.sra.ebi.ac.uk/vol1/fastq/SRR179/006/SRR1796116/SRR1796116_1.fastq.gz
@@ -42,13 +42,13 @@ curl -O ftp.sra.ebi.ac.uk/vol1/fastq/ERR599/ERR599164/ERR599164_1.fastq.gz
 ## Datasets to maybe include: TBD ##
 
 # GOS #454 #0.7302 Gb #largest in dataset
-curl -O ftp.sra.ebi.ac.uk/vol1/fastq/ERR986/ERR986609/ERR986609.fastq.gz
+#curl -O ftp.sra.ebi.ac.uk/vol1/fastq/ERR986/ERR986609/ERR986609.fastq.gz
 
 # HOT DeLong #454 #1.9 Gb #largest in dataset
 curl -O ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/001/SRR1303821/SRR1303821.fastq.gz
 
 # HOT DeLong Metatranscriptomes #454 #0.2838 Gb #largest in dataset, our data only includes metagenomes not metatrancriptome, small and probably not worth including
-curl -O ftp.sra.ebi.ac.uk/vol1/fastq/SRR020/SRR020491/SRR020491.fastq.gz
+#curl -O ftp.sra.ebi.ac.uk/vol1/fastq/SRR020/SRR020491/SRR020491.fastq.gz
 
 # OSD #Illumina #1.1 Gb #largest in dataset
-curl -O ftp.sra.ebi.ac.uk/vol1/fastq/ERR771/ERR771040/ERR771040_1.fastq.gz
+#curl -O ftp.sra.ebi.ac.uk/vol1/fastq/ERR771/ERR771040/ERR771040_1.fastq.gz

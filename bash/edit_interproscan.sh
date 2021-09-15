@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -u
-cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/planet-microbe-functional-annotation
+cd $SLURM_SUBMIT_DIR
+#cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/planet-microbe-functional-annotation
 
 IPS="/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.properties"
 

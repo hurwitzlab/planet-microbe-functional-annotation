@@ -12,4 +12,4 @@
 set -u
 
 cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/mattmiller899/my_databases/interproscan/lookup_service_5.46-81.0
-java -Xmx3500m -jar server-5.46-81.0-jetty-console.war --headless --port 1234
+java -Xmx8000m -jar server-5.46-81.0-jetty-console.war --headless --port 1234

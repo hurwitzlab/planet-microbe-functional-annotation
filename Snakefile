@@ -17,7 +17,8 @@ rule bowtie_cleaning:
         "results/{base}/bowtie/{base}.fastq.gz"
     params:
         idx="data/bowtie_index/human+phiX",
-        image="/groups/bhurwitz/planet-microbe-functional-annotation/singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+        #image="/groups/bhurwitz/planet-microbe-functional-annotation/singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+        image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
     shell:
         "singularity exec {params.image} -x {params.idx} -U {input} --un-gz {output} -p 4"
 

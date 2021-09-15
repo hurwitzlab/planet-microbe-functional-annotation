@@ -1,6 +1,8 @@
 samples:
     ERR771001_1: "data/ERR771001_1"
-    ERR771001_2: "data/ERR771001_2"
+    #ERR771001_2: "data/ERR771001_2"
+    #SRR4831664: "data/SRR4831664"
+    #SRR1796116_1: "data/SRR1796116_1"
 
 run_settings:
     local_run: "false"

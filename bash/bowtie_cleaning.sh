@@ -4,7 +4,7 @@ set -u
 #module load singularity
 
 BOWTIE_IDX="human+phiX"
-cd /groups/bhurwitz/planet-microbe-functional-annotation/data/bowtie_index
+cd $SLURM_SUBMIT_DIR/data/bowtie_index
 INPUT="$1"
 OUTPUT_DIR="$2"
 THREADS=4

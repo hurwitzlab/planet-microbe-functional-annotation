@@ -1,9 +1,10 @@
 #!/bin/bash
 set -u
 
+#cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/planet-microbe-functional-annotation
+cd $SLURM_SUBMIT_DIR
 OUT_DIR="./out"
 ERR_DIR="./err"
-cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/planet-microbe-functional-annotation
 
 #ARGS="-q standard -W group_list=bhurwitz -M mattmiller899@email.arizona.edu -m a"
 ARGS="--partition=standard --account=bhurwitz"

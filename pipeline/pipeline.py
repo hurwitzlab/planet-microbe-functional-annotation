@@ -70,9 +70,9 @@ class Pipeline:
 
         #print(f"trim = {self.trim_executable_fp}")
         self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl',
-                                                 default='run_FragGeneScan.pl')
+                                                 default='/groups/bhurwitz/tools/FragGeneScan1.31/run_FragGeneScan.pl')
         self.interproscan_executable_fp = os.environ.get(
-            'INTERPROSCAN.SH', default='interproscan.sh')
+            'INTERPROSCAN.SH', default='/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.sh')
         self.pear_executable_fp = os.environ.get('PEAR', default='pear')
         self.config_fp = config
         self.read_config()
