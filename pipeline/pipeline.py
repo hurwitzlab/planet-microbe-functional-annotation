@@ -58,7 +58,7 @@ def get_args():
 
 class Pipeline:
     def __init__(self, config, input_dir, out_dir):
-        self.java_executable_fp = os.environ.get('JAVA', default='java')
+        self.java_executable_fp = os.environ.get('JAVA', default='/groups/bhurwitz/tools/jdk-11.0.8/bin')
         self.vsearch_executable_fp = os.environ.get('vsearch',
                                                     default='vsearch')
         # self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR',
