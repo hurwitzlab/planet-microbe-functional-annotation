@@ -56,7 +56,7 @@ def get_args():
     arg_parser.add_argument(
         '-t',
         '--threads',
-        default=1,
+        required=True,
         help='number of threads to use')
 
     return arg_parser.parse_args()
@@ -641,7 +641,7 @@ class Pipeline:
                         self.frag_executable_fp, f"-genome={fp}",
                         f"-out={out_fp}", "-complete=0",
                         f"-train={self.frag_train_file}",
-                        f"thread={self.threads}"
+                        f"-thread={str(self.threads)}"
                         # INCLUDE MORE ARGS
                     ],
                     log_file=os.path.join(output_dir, 'log'),
