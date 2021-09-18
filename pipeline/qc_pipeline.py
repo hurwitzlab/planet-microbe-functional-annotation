@@ -53,11 +53,16 @@ def get_args():
         '--out_dir',
         required=True,
         help='path to output directory')
+    arg_parser.add_argument(
+        '-t',
+        '--threads',
+        default=1,
+        help='number of threads to use')
     return arg_parser.parse_args()
 
 
 class QCPipeline:
-    def __init__(self, config, input_file, out_dir):
+    def __init__(self, config, input_file, out_dir, threads):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.vsearch_executable_fp = os.environ.get('vsearch',
                                                     default='/groups/bhurwitz/tools/vsearch')
@@ -71,6 +76,7 @@ class QCPipeline:
         self.read_config()
         self.input_file = input_file
         self.out_dir = out_dir
+        self.threads = threads
 
     def read_config(self):
         """
@@ -83,7 +89,6 @@ class QCPipeline:
         #self.paired_ends = int(config["DEFAULT"]["paired_ends"])
         #self.in_dir = config["DEFAULT"]["in_dir"]
         #self.out_dir = config["DEFAULT"]["out_dir"]
-        self.threads = config["pipeline"]["threads"]
         self.debug = int(config["pipeline"]["debug"])
         self.trim_adapter_fasta = config["pipeline"]["adapter_fasta"]
         self.trim_seed_mismatches = config["pipeline"]["seed_mismatches"]

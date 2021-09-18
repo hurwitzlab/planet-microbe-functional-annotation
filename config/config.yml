@@ -10,7 +10,7 @@ run_settings:
     scheduler: "sbatch"
 
 pipeline:
-    threads: 10
+    threads: 4
     debug: 1
     paired_ends: 0
     adapter_fasta: "data/configs/TruSeq3-PE.fa"
@@ -28,4 +28,16 @@ pipeline:
     vsearch_filter_minlen: 75
     frag_train_file: "illumina_10"
     delete_intermediates: 0
+
+snakemake:
+    threads_small: 4
+    mem_small: 20000
+    threads_big: 15
+    mem_big: 75000
+
+dummy:
+    threads_small: 4
+    mem_small: 20000
+    threads_big: 15
+    mem_big: 75000
 

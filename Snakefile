@@ -1,9 +1,12 @@
 configfile: "config/config.yml"
-
+threads_small=config["snakemake"]["threads_small"]
+mem_small=config["snakemake"]["mem_small"]
+threads_big=config["snakemake"]["threads_big"]
+mem_big=config["snakemake"]["mem_big"]
 
 rule all:
     input:
-        #expand("results/{sample}/{sample}.fastq.gz", sample=config["samples"]),
+        #expand("results/{sample}/bowtie/{sample}.fastq.gz", sample=config["samples"]),
         #expand("results/{sample}/step_02_qc_reads_with_vsearch/{sample}.ee{ee}minlen{minlen}.fasta", sample=config["samples"], ee=config["pipeline"]["vsearch_filter_maxee"], minlen=config["pipeline"]["vsearch_filter_minlen"]),
         expand("results/{sample}/step_07_combine_tsv/{sample}_trimmed_qcd_frags_interpro_combined.tsv", sample=config["samples"]),
         expand("results/{sample}/bracken/{sample}_profiles.txt", sample=config["samples"]),
@@ -19,13 +22,19 @@ rule bowtie_cleaning:
         idx="data/bowtie_index/human+phiX",
         #image="/groups/bhurwitz/planet-microbe-functional-annotation/singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
         image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+    threads: threads_small
+    resources:
+        mem_mb=mem_small
     shell:
-        "singularity exec {params.image} -x {params.idx} -U {input} --un-gz {output} -p 4"
+        "singularity exec {params.image} -x {params.idx} -U {input} --un-gz {output} -p {threads}"
 
 
 rule start_server:
     output:
         "results/interproscan.txt"
+    threads: 1
+    resources:
+        mem_mb=4000
     shell:
         """
         set -u
@@ -42,10 +51,13 @@ rule qc_pipeline:
     params:
         config="config/config.yml",
         outdir="results/{base}/",
+    threads: threads_small
+    resources:
+        mem_mb=mem_small
     shell:
         """
         set -u
-        python pipeline/qc_pipeline.py -c {params.config} -i {input.fa} -o {params.outdir}
+        python pipeline/qc_pipeline.py -c {params.config} -i {input.fa} -o {params.outdir} -t {threads}
         """
 
 
@@ -54,6 +66,9 @@ rule check_qc:
         "results/{base}/step_02_qc_reads_with_vsearch/log"
     output:
         "results/{base}/step_02_qc_reads_with_vsearch/logcheck"
+    threads: 1
+    resources:
+        mem_mb=4000
     shell:
         """
         set -u
@@ -67,14 +82,16 @@ rule kraken2:
         cf="results/{base}/kraken2/{base}_classified.fasta",
         rep="results/{base}/kraken2/{base}_report.tsv"
     params:
-        threads={config["pipeline"]["threads"]},
         db="/xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_scripts/readbased_metagenomes_snakemake/PBS_pipeline/databases/k2_pluspf_20210127"
+    threads: threads_big
+    resources:
+        mem_mb=mem_big
     shell:
         """
         bash -c '
             . $HOME/.bashrc
             conda activate kraken2
-            kraken2 --db {params.db} --classified-out {output.cf} --report {output.rep} --threads {params.threads} {input}
+            kraken2 --db {params.db} --classified-out {output.cf} --report {output.rep} --threads {threads} {input}
             '
         """
     
@@ -88,6 +105,9 @@ rule bracken:
     params:
         length=300,
         db="/xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_scripts/readbased_metagenomes_snakemake/PBS_pipeline/databases/k2_pluspf_20210127"
+    threads: threads_big
+    resources:
+        mem_mb=mem_big
     shell:
         """
         bash -c '
@@ -109,10 +129,13 @@ rule run_pipeline:
         indir="results/{base}/step_02_qc_reads_with_vsearch/",
         config="config/config.yml",
         outdir="results/{base}",
+    threads: threads_small
+    resources:
+        mem_mb=mem_small
     shell:
         """
         set -u
-        python pipeline/pipeline.py -c {params.config} -i {params.indir} -o {params.outdir}
+        python pipeline/pipeline.py -c {params.config} -i {params.indir} -o {params.outdir} -t {threads}
         """
 
 rule stop_server:
@@ -120,6 +143,9 @@ rule stop_server:
         expand("results/{sample}/step_07_combine_tsv/{sample}_trimmed_qcd_frags_interpro_combined.tsv", sample=config["samples"])
     output:
         "results/killed_interproscan.txt"
+    threads: 1
+    resources:
+        mem_mb=4000
     shell:
         """
         JOB=$(squeue -u $USER | grep "lookup" | head -1 | xargs | cut -d" " -f1)

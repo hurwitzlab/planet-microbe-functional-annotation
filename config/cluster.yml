@@ -3,8 +3,8 @@ __default__:
   group: 'bhurwitz' #MODIFY
   M: 'mattmiller899@email.arizona.edu' #MODIFY
   time: '24:00:00'
-  n: "15"
-  m: '75gb'
+  n: "{threads}"
+  m: "{resources[mem_mb]}mb"
   o: 'out/{rule}.{wildcards}.out'
   e: 'err/{rule}.{wildcards}.err'
   N: "1"

@@ -53,11 +53,17 @@ def get_args():
         '--out_dir',
         required=True,
         help='path to output directory')
+    arg_parser.add_argument(
+        '-t',
+        '--threads',
+        default=1,
+        help='number of threads to use')
+
     return arg_parser.parse_args()
 
 
 class Pipeline:
-    def __init__(self, config, input_dir, out_dir):
+    def __init__(self, config, input_dir, out_dir, threads):
         self.java_executable_fp = os.environ.get('JAVA', default='/groups/bhurwitz/tools/jdk-11.0.8/bin')
         self.vsearch_executable_fp = os.environ.get('vsearch',
                                                     default='vsearch')
@@ -78,6 +84,7 @@ class Pipeline:
         self.read_config()
         self.input_dir = input_dir
         self.out_dir = out_dir
+        self.threads = threads
 
     def read_config(self):
         """
@@ -90,7 +97,6 @@ class Pipeline:
         #self.paired_ends = int(config["DEFAULT"]["paired_ends"])
         #self.in_dir = config["DEFAULT"]["in_dir"]
         #self.out_dir = config["DEFAULT"]["out_dir"]
-        self.threads = config["pipeline"]["threads"]
         self.debug = int(config["pipeline"]["debug"])
         self.trim_adapter_fasta = config["pipeline"]["adapter_fasta"]
         self.trim_seed_mismatches = config["pipeline"]["seed_mismatches"]
@@ -666,7 +672,7 @@ class Pipeline:
                     f'found no _trimmed_qcd_frags.faa files in directory "{input_dir}"'
                 )
             log.info(f"input file list: {input_fp_list}")
-            chunk_size = 10000
+            chunk_size = 40000
             for input_fp in input_fp_list:
                 i = 0
                 log.info(f"reading input file {input_fp}")
@@ -709,12 +715,13 @@ class Pipeline:
         """
         log, output_dir = self.initialize_step()
         start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
+        num_chunks = len(os.listdir(input_dir))
+        if len(os.listdir(output_dir)) == num_chunks * 4:
             log.warning(
-                'output directory "%s" is not empty, this step will be skipped',
+                'output directory "%s" has finished every chunk, this step will be skipped',
                 output_dir)
         else:
-            input_fp_list = glob.glob(f"{input_dir}/*.faa")
+            input_fp_list = sorted(glob.glob(f"{input_dir}/*.faa"))
             if len(input_fp_list) == 0:
                 raise PipelineException(
                     f'found no faa files in directory "{input_dir}"')

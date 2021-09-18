@@ -21,7 +21,9 @@ while [[ ${JOB: -1} == ")" ]]; do
     JOB=$(squeue -u $USER | grep "lookup" | head -1 | xargs)
 done
 
-NODE=${JOB: -7}
+echo "job $JOB"
+NODE=$(echo "$JOB" | tr -s " " | cut -d" " -f8)
+#NODE=${JOB: -7}
 echo "node $NODE"
 sed -i "s/^precalculated\.match\.lookup\.service\.url=.*/precalculated\.match\.lookup\.service\.url=http:\/\/${NODE}:1234/" $IPS
 touch $1
