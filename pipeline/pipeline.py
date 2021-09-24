@@ -132,12 +132,14 @@ class Pipeline:
         #_ = self.step_03_centrifuge_taxonomy(input_dir=output_dir_list[-1])
         output_dir_list.append(
             self.step_04_get_gene_reads(input_dir=self.input_dir))
+        """
         output_dir_list.append(
             self.step_05_chunk_reads(input_dir=output_dir_list[-1]))
         output_dir_list.append(
             self.step_06_get_orfs(input_dir=output_dir_list[-1]))
         output_dir_list.append(
             self.step_07_combine_tsv(input_dir=output_dir_list[-1]))
+        """
         print(f"delete intermediates = {self.delete_intermediates}")
         if self.delete_intermediates == 1:
             print(f"deleting intermediates")
