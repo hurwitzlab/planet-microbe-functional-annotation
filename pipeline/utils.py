@@ -79,27 +79,40 @@ def ungzip_files(*fp_list, target_dir, debug=False):
     return uncompressed_fps
 
 
-def run_cmd(cmd_line_list, log_file, debug=False, **kwargs):
+def run_cmd(cmd_line_list, logfile="", debug=True, **kwargs):
     log = logging.getLogger(name=__name__)
     if debug:
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
     try:
-        with open(log_file, 'at') as log_file:
+        print(f"logfile = {logfile}")
+        if logfile != "":
+            print("in here!")
+            with open(logfile, "at") as out:
+                cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
+                out.write(f'executing "{cmd_line_str}"')
+                output = subprocess.run(
+                    cmd_line_list,
+                    stdout=out,
+                    stderr=subprocess.STDOUT,
+                    universal_newlines=True,
+                    **kwargs)
+                log.info(output)
+                return output
+        else:
+            print("pver here!")
             cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
-            log.info('executing "%s"', cmd_line_str)
-            if debug:
-                log_file.write('executing "{}"\n'.format(cmd_line_str))
+            log.info(f'executing "{cmd_line_str}"')
             output = subprocess.run(
                 cmd_line_list,
-                stdout=log_file,
-                stderr=subprocess.STDOUT,
+                #stdout=log_file,
+                #stderr=subprocess.STDOUT,
                 universal_newlines=True,
                 **kwargs)
-            #output = subprocess.run(cmd_line_list)
             log.info(output)
-        return output
+            return output
+
     except subprocess.CalledProcessError as c:
         logging.exception(c)
         print(c.message)

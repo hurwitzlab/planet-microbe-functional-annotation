@@ -274,7 +274,7 @@ class QCPipeline:
                               repl="_trimmed.fastq")
             run_arr.extend([
                 "-threads",
-                str(self.threads), "-trimlog", trim_log, input_file,
+                str(self.threads), input_file,
                 os.path.join(output_dir, out_base)
             ])
             illuminaclip_str = (f"ILLUMINACLIP:{self.trim_adapter_fasta}:"
@@ -292,9 +292,10 @@ class QCPipeline:
             run_arr.append(minlen_str)
             log.info(f"writing output of {input_file} to {output_dir}/{out_base}")
             # run_arr = [self.java_executable_fp, "-jar", self.trim_executable_fp]
+            logfile = os.path.join(output_dir, "log")
             run_cmd(run_arr,
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug)
+                    debug=self.debug,
+                    logfile=logfile)
             # Check the log to make sure most reads were trimmed properly
             with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
                 percent_surviving = 0.0
@@ -479,6 +480,7 @@ class QCPipeline:
                 log.info('vsearch executable: "%s"',
                          self.vsearch_executable_fp)
                 log.info('filtering "%s"', input_fastq_fp)
+                logfile = os.path.join(output_dir, "log")
                 run_cmd(
                     [
                         self.vsearch_executable_fp,
@@ -493,9 +495,9 @@ class QCPipeline:
                         # '-fastq_trunclen', str(self.vsearch_filter_trunclen),
                         '-threads',
                         str(self.threads)
-                    ],
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug)
+                    ], 
+                    debug=self.debug,
+                    logfile=logfile)
             # gzip_glob = glob.glob(os.path.join(output_dir, '*.fastq'))
             # log.info(f"zipping files {gzip_glob}")
             # gzip_files(gzip_glob, debug=self.debug)

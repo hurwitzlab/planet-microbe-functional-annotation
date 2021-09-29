@@ -646,7 +646,6 @@ class Pipeline:
                         f"-thread={str(self.threads)}"
                         # INCLUDE MORE ARGS
                     ],
-                    log_file=os.path.join(output_dir, 'log'),
                     debug=self.debug)
         end_time = time.time()
         log.info(f"Time taken for this step: {int((end_time - start_time))}s")

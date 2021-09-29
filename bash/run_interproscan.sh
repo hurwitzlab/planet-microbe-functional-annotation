@@ -21,7 +21,7 @@ DATASET_NAME=$(echo ${FILE_BN} | cut -d"_" -f1)
 echo "datasetname = ${DATASET_NAME}"
 #echo "$FILE_BN"
 NUM_LINES=$(wc -l $IN_FILE | cut -d" " -f1)
-CHUNK_SIZE=200000
+CHUNK_SIZE=20000
 CURR_LC=0
 CURR_CHUNK=0
 echo "$NUM_LINES"
@@ -72,7 +72,7 @@ done
 ALL_CHUNKS=$( seq 0 $((TOTAL_CHUNKS - 1)) )
 touch ${OUT_FILE}
 for i in ${ALL_CHUNKS[@]}; do
-    CURR_IPS_OUT="${IPS_DIR}/${FILE_BN}_${CURR_CHUNK}_interpro.tsv"
+    CURR_IPS_OUT="${IPS_DIR}/${FILE_BN}_${i}_interpro.tsv"
     cat $CURR_IPS_OUT >> $OUT_FILE
 done
 echo "Successfully finished interproscan for every chunk"
