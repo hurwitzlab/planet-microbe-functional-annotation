@@ -733,6 +733,9 @@ class Pipeline:
                     re.sub(string=os.path.basename(fp),
                            pattern='\.faa',
                            repl='_interpro'))
+                if os.path.isfile(f"{out_basename}.tsv") and os.path.getsize(f"{out_basename}.tsv") > 0:
+                    log.info(f"{out_basename} already ran to completion, skipping")
+                    continue
                 log.info(f"writing output of {fp} to {out_basename}")
                 run_cmd(
                     [
