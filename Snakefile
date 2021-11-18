@@ -123,12 +123,12 @@ rule bracken:
 rule run_pipeline:
     input:
         fa="results/{base}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta",
-        #ips="results/interproscan.txt",
+        ips="results/interproscan.txt",
         logcheck="results/{base}/step_02_qc_reads_with_vsearch/logcheck",
     output:
-        #"results/{base}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
+        "results/{base}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
         #"results/{base}/step_05_chunk_reads/{base}_trimmed_qcd_frags_{chunk}.faa"
-        "results/{base}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa"
+        #"results/{base}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa"
     params:
         indir="results/{base}/step_02_qc_reads_with_vsearch/",
         config="config/config.yml",
@@ -142,25 +142,25 @@ rule run_pipeline:
         python pipeline/pipeline.py -c {params.config} -i {params.indir} -o {params.outdir} -t {threads}
         """
 
-rule interproscan:
-    input:
-        faa="results/{base}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa",
-        ips="results/interproscan.txt",
-    output:
-        "results/{base}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
-    params:
-        interproscan="/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.sh",
-        chunks_dir="results/{base}/step_05_chunk_reads/",
-        ips_dir="results/{base}/step_06_get_orfs/",
-    threads: 1
-    resources:
-        mem_mb=4000
-    shell:
-        """
-        set -u
-        echo "sh bash/run_interproscan.sh {input.faa} {output} {params.interproscan} {params.chunks_dir} {params.ips_dir}"
-        sh bash/run_interproscan.sh {input.faa} {output} {params.interproscan} {params.chunks_dir} {params.ips_dir}
-        """
+#rule interproscan:
+#    input:
+#        faa="results/{base}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa",
+#        ips="results/interproscan.txt",
+#    output:
+#        "results/{base}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
+#    params:
+#        interproscan="/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.sh",
+#        chunks_dir="results/{base}/step_05_chunk_reads/",
+#        ips_dir="results/{base}/step_06_get_orfs/",
+#    threads: 1
+#    resources:
+#        mem_mb=4000
+#    shell:
+#        """
+#        set -u
+#        echo "sh bash/run_interproscan.sh {input.faa} {output} {params.interproscan} {params.chunks_dir} {params.ips_dir}"
+#        sh bash/run_interproscan.sh {input.faa} {output} {params.interproscan} {params.chunks_dir} {params.ips_dir}
+#        """
 
 rule stop_server:
     input:
