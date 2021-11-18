@@ -2,7 +2,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --mem=20gb
-#SBATCH --time=12:00:00
+#SBATCH --time=60:00:00
 
 
 
