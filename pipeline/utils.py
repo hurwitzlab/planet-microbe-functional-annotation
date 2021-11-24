@@ -85,46 +85,44 @@ def run_cmd(cmd_line_list, logfile="", debug=True, **kwargs):
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
-    try:
-        print(f"logfile = {logfile}")
-        if logfile != "":
-            print("in here!")
-            with open(logfile, "at") as out:
+    while True:
+        try:
+            if logfile != "":
+                with open(logfile, "at") as out:
+                    cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
+                    out.write(f'executing "{cmd_line_str}"')
+                    output = subprocess.run(
+                        cmd_line_list,
+                        stdout=out,
+                        stderr=subprocess.STDOUT,
+                        universal_newlines=True,
+                        **kwargs)
+                    log.info(output)
+                    return output
+            else:
                 cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
-                out.write(f'executing "{cmd_line_str}"')
+                log.info(f'executing "{cmd_line_str}"')
                 output = subprocess.run(
                     cmd_line_list,
-                    stdout=out,
-                    stderr=subprocess.STDOUT,
+                    #stdout=log_file,
+                    #stderr=subprocess.STDOUT,
                     universal_newlines=True,
                     **kwargs)
                 log.info(output)
                 return output
-        else:
-            print("pver here!")
-            cmd_line_str = ' '.join((str(x) for x in cmd_line_list))
-            log.info(f'executing "{cmd_line_str}"')
-            output = subprocess.run(
-                cmd_line_list,
-                #stdout=log_file,
-                #stderr=subprocess.STDOUT,
-                universal_newlines=True,
-                **kwargs)
-            log.info(output)
-            return output
 
-    except subprocess.CalledProcessError as c:
-        logging.exception(c)
-        print(c.message)
-        print(c.cmd)
-        print(c.output)
-        raise c
-    except Exception as e:
-        logging.exception(e)
-        print('blarg!')
-        print(e)
-        traceback.print_exc()
-        raise e
+        except subprocess.CalledProcessError as c:
+            logging.exception(c)
+            print(c.message)
+            print(c.cmd)
+            print(c.output)
+            #raise c
+        except Exception as e:
+            logging.exception(e)
+            print('blarg!')
+            print(e)
+            traceback.print_exc()
+            #raise e
 
 
 def get_forward_fastq_files(input_dir, debug=False):
