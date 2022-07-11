@@ -23,13 +23,13 @@ rule bowtie_cleaning:
         "results/{base}/bowtie/{base}.fastq.gz"
     params:
         idx="data/bowtie_index/human+phiX",
-        #image="/groups/bhurwitz/planet-microbe-functional-annotation/singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
-        image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+        #image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
     threads: threads_small
     resources:
         mem_mb=mem_small
     shell:
-        "singularity exec {params.image} -x {params.idx} -U {input} --un-gz {output} -p {threads}"
+        #"singularity exec {params.image} -x {params.idx} -U {input} --un-gz {output} -p {threads}"
+        "bowtie2 -x {params.idx} -U {input} --un-gz {output} -p {threads}"
 
 
 rule start_server:

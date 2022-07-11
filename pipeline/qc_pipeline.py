@@ -65,12 +65,13 @@ class QCPipeline:
     def __init__(self, config, input_file, out_dir, threads):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
         self.vsearch_executable_fp = os.environ.get('vsearch',
-                                                    default='/groups/bhurwitz/tools/vsearch')
+                                                    #default='/groups/bhurwitz/tools/vsearch')
+                                                    default='../tools/vsearch')
         self.trim_executable_fp = os.environ.get(
             'TRIMMOMATIC-0.39.JAR',
             default=
-            '/groups/bhurwitz/tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
-
+            #'/groups/bhurwitz/tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
+            '../tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
         # print(f"trim = {self.trim_executable_fp}")
         self.config_fp = config
         self.read_config()

@@ -1,5 +1,5 @@
 samples:
-    ERR771001_1: "data/ERR771001_1"
+    ERR771001_1: "data/in_small/ERR771001_1"
     #ERR771001_2: "data/ERR771001_2"
     #SRR4831664: "data/SRR4831664"
     #SRR1796116_1: "data/SRR1796116_1"
@@ -13,7 +13,7 @@ pipeline:
     threads: 4
     debug: 1
     paired_ends: 0
-    adapter_fasta: "data/configs/TruSeq3-PE.fa"
+    adapter_fasta: "data/configs/TruSeq3-SE.fa"
     seed_mismatches: 2
     palindrome_clip_thresh: 30
     simple_clip_thresh: 10

@@ -66,20 +66,22 @@ class Pipeline:
     def __init__(self, config, input_dir, out_dir, threads):
         self.java_executable_fp = os.environ.get('JAVA', default='/groups/bhurwitz/tools/jdk-11.0.8/bin')
         self.vsearch_executable_fp = os.environ.get('vsearch',
-                                                    default='vsearch')
+                                                    default='../tools/vsearch')
         # self.trim_executable_fp = os.environ.get('TRIMMOMATIC-0.39.JAR',
         # default='/home/matt/Trimmomatic-0.39/trimmomatic-0.39.jar')
         self.trim_executable_fp = os.environ.get(
             'TRIMMOMATIC-0.39.JAR',
             default=
-            '/home/u29/mattmiller899/Trimmomatic-0.39/trimmomatic-0.39.jar')
-
+            #'/home/u29/mattmiller899/Trimmomatic-0.39/trimmomatic-0.39.jar')
+            '../tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
         #print(f"trim = {self.trim_executable_fp}")
         self.frag_executable_fp = os.environ.get('run_FragGeneScan.pl',
-                                                 default='/groups/bhurwitz/tools/FragGeneScan1.31/run_FragGeneScan.pl')
+                                                 #default='/groups/bhurwitz/tools/FragGeneScan1.31/run_FragGeneScan.pl')
         self.interproscan_executable_fp = os.environ.get(
-            'INTERPROSCAN.SH', default='/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.sh')
-        self.pear_executable_fp = os.environ.get('PEAR', default='pear')
+            'INTERPROSCAN.SH', 
+            #default='/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.sh')
+            default='../tools/tools/interproscan-5.56-89.0/interproscan.sh')
+        #self.pear_executable_fp = os.environ.get('PEAR', default='pear')
         self.config_fp = config
         self.read_config()
         self.input_dir = input_dir
