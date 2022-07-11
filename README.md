@@ -22,15 +22,19 @@ Pipeline steps:
 5b) InterProScan (https://github.com/ebi-pf-team/interproscan)
 
 ## Required Software
--Python3
--Singularity ** Check Singularity version **
--Anaconda
--SLURM ** Prolly state this elsewhere **
--Java (we used jdk-11.0.8)
+Python3
+
+Singularity ** Check Singularity version **
+
+Anaconda
+
+SLURM ** Prolly state this elsewhere **
+
+Java (we used jdk-11.0.8)
 
 ## Tool and Database Installation
 
-The pipeline uses Snakemake to submit SLURM jobs for each step of the pipeline. To install it and the main environment the pipeline uses:
+The pipeline uses Snakemake to submit SLURM jobs for each step of the pipeline. The instructions below install the tools to a default directory, `planet-microbe-functional-annotation/tools`. The tools can be installed wherever you please as long as `vsearch`, `FragGeneScan1.31`, `Trimmomatic-0.39`, `interproscan-5.56-89.0`, and `lookup_service_5.56-89.0` are in your $PATH. To install it and the main environment the pipeline uses:
 ```
 # Install the pipeline
 git clone git@github.com:hurwitzlab/planet-microbe-functional-annotation.git
@@ -80,7 +84,7 @@ tar -pxvzf lookup_service_5.56-89.0.tar.gz
 rm lookup_service_5.56-89.0.tar.gz lookup_service_5.56-89.0.tar.gz.md5
 ```
 
-** TODO: fix the bash/edit_interproscan.sh path to interproscan.properties **
+**TODO: fix the bash/edit_interproscan.sh path to interproscan.properties**
 
 How the pipeline works:
 1. Download the sequences (snakemake)
