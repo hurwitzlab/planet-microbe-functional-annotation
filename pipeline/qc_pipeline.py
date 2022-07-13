@@ -64,15 +64,15 @@ def get_args():
 class QCPipeline:
     def __init__(self, config, input_file, out_dir, threads):
         self.java_executable_fp = os.environ.get('JAVA', default='java')
-        self.vsearch_executable_fp = os.environ.get('vsearch',
-                                                    #default='/groups/bhurwitz/tools/vsearch')
-                                                    default='../tools/vsearch')
         self.trim_executable_fp = os.environ.get(
-            'TRIMMOMATIC-0.39.JAR',
+            'TRIMMOMATIC',
             default=
             #'/groups/bhurwitz/tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
-            '../tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
-        # print(f"trim = {self.trim_executable_fp}")
+            './tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
+        print(f"trim = {self.trim_executable_fp}")
+        self.vsearch_executable_fp = os.environ.get('VSEARCH',
+            default='./tools/vsearch')
+        print(f"vsearch = {self.vsearch_executable_fp}")
         self.config_fp = config
         self.read_config()
         self.input_file = input_file
@@ -100,9 +100,6 @@ class QCPipeline:
         self.trim_keep_both_reads = config["pipeline"]["keep_both_reads"]
         self.trim_min_quality = config["pipeline"]["min_quality"]
         self.trim_min_len = config["pipeline"]["trim_min_length"]
-        self.pear_min_overlap = config["pipeline"]["pear_min_length"]
-        self.pear_max_assembly_length = config["pipeline"]["pear_max_assembly"]
-        self.pear_min_assembly_length = config["pipeline"]["pear_min_assembly"]
         self.vsearch_filter_maxee = config["pipeline"]["vsearch_filter_maxee"]
         self.vsearch_filter_minlen = config["pipeline"]["vsearch_filter_minlen"]
         #self.vsearch_filter_minlen = config["DEFAULT"]["vsearch_filter_minlen"]

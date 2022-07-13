@@ -23,18 +23,23 @@ Pipeline steps:
 
 ## Required Software
 Python3
-
-Singularity ** Check Singularity version **
-
+Singularity **Check Singularity version**
 Anaconda
-
-SLURM ** Prolly state this elsewhere **
-
+SLURM **Prolly state this elsewhere**
 Java (we used jdk-11.0.8)
 
 ## Tool and Database Installation
 
-The pipeline uses Snakemake to submit SLURM jobs for each step of the pipeline. The instructions below install the tools to a default directory, `planet-microbe-functional-annotation/tools`. The tools can be installed wherever you please as long as `vsearch`, `FragGeneScan1.31`, `Trimmomatic-0.39`, `interproscan-5.56-89.0`, and `lookup_service_5.56-89.0` are in your $PATH. To install it and the main environment the pipeline uses:
+The pipeline uses Snakemake to submit SLURM jobs for each step of the pipeline. The instructions below install the tools to a default directory, `planet-microbe-functional-annotation/tools`. The tools `vsearch`, `FragGeneScan1.31`, and `Trimmomatic-0.39` can be installed elsewhere, but if they are not in `planet-microbe-functional-annotation/tools`, you will need to export environmental variables for them like so: 
+```
+export VSEARCH="/path/to/vsearch"
+export FRAGGENESCAN="/path/to/run_FragGeneScan.pl"
+export TRIMMOMATIC="/path/to/trimmomatic-0.39.jar"
+```
+
+**InterProScan and the lookup server MUST BE INSTALLED IN THE TOOLS DIRECTORY!!!**
+
+Installation directions:
 ```
 # Install the pipeline
 git clone git@github.com:hurwitzlab/planet-microbe-functional-annotation.git
@@ -84,14 +89,11 @@ tar -pxvzf lookup_service_5.56-89.0.tar.gz
 rm lookup_service_5.56-89.0.tar.gz lookup_service_5.56-89.0.tar.gz.md5
 ```
 
-**TODO: fix the bash/edit_interproscan.sh path to interproscan.properties**
+**TODO: files that need paths fixed:
+bash/edit_interproscan.sh
+bash/run_start_lookup_server.sh**
 
-How the pipeline works:
-1. Download the sequences (snakemake)
-2. Run sh edit_interproscan.sh to start interproscan server
-3. Run sh bowtie_cleaning.sh /path/to/input/file /path/to/output/dir (will output unmatched reads to the output dir with the basename of the input file)
-4. Run sh run_qc_pipeline.sh /path/to/config /path/to/bowtie/cleaning/output/file /path/to/output/dir
-5. Check results of QC (snakemake)
-6. Run kraken2 on the qc output (snakemake)
-7. Run sh run_pipeline.sh /path/to/config /path/to/step_02_qc_reads_with_vsearch/ /path/to/step_02_qc_reads_with_vsearch/.. (arg 2 is path to the directory not the file in there, can change it if you want)
-8. A final combined tsv file with be in step_07_combine_tsv.
+**TODO: export the conda envs to ymls when finished**
+
+## Running the pipeline
+The pipeline runs SLURM jobs for each step. The file `config/cluster.yml` is used by Snakemake to submit SLURM jobs. Change `partition`, `group`, and `M` to your HPC's information. The config file `config/config.yml` contains settings and parameters for the various tools used in the pipeline, and the list of samples the pipeline will be ran on. Add your samples to the list.

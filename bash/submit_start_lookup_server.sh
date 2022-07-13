@@ -6,8 +6,15 @@ cd $SLURM_SUBMIT_DIR
 OUT_DIR="./out"
 ERR_DIR="./err"
 
-#ARGS="-q standard -W group_list=bhurwitz -M mattmiller899@email.arizona.edu -m a"
-ARGS="--partition=standard --account=bhurwitz"
+# Parse config/cluster.yml for the user's info for SLURM
+. ./bash/parse_yaml.sh
+eval $(parse_yaml ./config/cluster.yml "config_")
+tmp=$(sed -e "s/'//" -e "s/'//" <<<"$config___default___partition")
+PARTITION="${tmp%%[[:space:]]*}"
+tmp=$(sed -e "s/'//" -e "s/'//" <<<"$config___default___group")
+ACCT="${tmp%%[[:space:]]*}"
+ARGS="--partition=${PARTITION} --account=${ACCT}"
+
 #JOB_ID=`qsub $ARGS -N annot_pipeline -e $ERR_DIR -o $OUT_DIR ./run_annot_pipeline.sh`
 JOB_ID=`sbatch $ARGS --job-name=lookup_server -e $ERR_DIR/server.err -o $OUT_DIR/server.out ./bash/run_start_lookup_server.sh`
 if [ "${JOB_ID}x" != "x" ]; then

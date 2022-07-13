@@ -1,7 +1,0 @@
-/home/u29/mattmiller899/FragGeneScan1.31/FragGeneScan -s ../data/out_small/step_02_qc_reads_with_vsearch/ERR771001_1.ee20minlen75.fasta -o ../data/out_small/step_04_get_gene_reads/ERR771001_1.ee20minlen75.frags -w 0 -t illumina_10 -p 1
-Using 1 threads.
-no. of seqs: 2474
-Clock time used (by 1 threads) = 0.03 mins
-prepare gff file..
-Time elapsed: 0 hours 0 minutes and 2 seconds.
-executing "run_FragGeneScan.pl -genome=../data/out_small/step_02_qc_reads_with_vsearch/ERR771001_1.ee20minlen75.fasta -out=../data/out_small/step_04_get_gene_reads/ERR771001_1.ee20minlen75.frags -complete=0 -train=illumina_10 thread=4"

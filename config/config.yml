@@ -21,9 +21,6 @@ pipeline:
     keep_both_reads: "keepBothReads"
     min_quality: 3
     trim_min_length: 36
-    pear_min_length: 1
-    pear_max_assembly: 1000
-    pear_min_assembly: 2
     vsearch_filter_maxee: 20
     vsearch_filter_minlen: 75
     frag_train_file: "illumina_10"
@@ -34,10 +31,3 @@ snakemake:
     mem_small: 20000
     threads_big: 15
     mem_big: 75000
-
-dummy:
-    threads_small: 4
-    mem_small: 20000
-    threads_big: 15
-    mem_big: 75000
-

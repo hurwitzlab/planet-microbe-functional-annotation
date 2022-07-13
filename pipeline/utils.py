@@ -85,8 +85,10 @@ def run_cmd(cmd_line_list, logfile="", debug=True, **kwargs):
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.WARNING)
-    while True:
+    counter = 0
+    while counter < 100:
         try:
+            counter += 1
             if logfile != "":
                 with open(logfile, "at") as out:
                     cmd_line_str = ' '.join((str(x) for x in cmd_line_list))

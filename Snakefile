@@ -28,7 +28,6 @@ rule bowtie_cleaning:
     resources:
         mem_mb=mem_small
     shell:
-        #"singularity exec {params.image} -x {params.idx} -U {input} --un-gz {output} -p {threads}"
         "bowtie2 -x {params.idx} -U {input} --un-gz {output} -p {threads}"
 
 
