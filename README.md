@@ -23,7 +23,6 @@ Pipeline steps:
 
 ## Required Software
 Python3
-Singularity **Check Singularity version**
 Anaconda
 SLURM **Prolly state this elsewhere**
 Java (we used jdk-11.0.8)
