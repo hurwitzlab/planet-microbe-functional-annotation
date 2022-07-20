@@ -64,16 +64,13 @@ def get_args():
 
 class Pipeline:
     def __init__(self, config, input_dir, out_dir, threads):
-        self.java_executable_fp = os.environ.get('JAVA', default='java')
-        self.vsearch_executable_fp = os.environ.get('VSEARCH',
-            default='./tools/vsearch')
-        self.frag_executable_fp = os.environ.get('FRAGGENESCAN',
-            #default='/groups/bhurwitz/tools/FragGeneScan1.31/run_FragGeneScan.pl
-            default='./tools/FragGeneScan1.31/run_FragGeneScan.pl')
+        self.java_executable_fp = shutil.which('java')
+        self.vsearch_executable_fp = shutil.which('vsearch')
+        self.frag_executable_fp = shutil.which('run_FragGeneScan.pl')
         #self.interproscan_executable_fp = glob.glob('/groups/bhurwitz/tools/interproscan-*/interproscan.sh')[0]
         self.interproscan_executable_fp = glob.glob('./tools/interproscan-*/interproscan.sh')[0]
+        #self.interproscan_executable_fp = shutil.which('interproscan.sh')
         print(f"java = {self.java_executable_fp}\nFragGeneScan = {self.frag_executable_fp}\nInterProScan = {self.interproscan_executable_fp}")
-        #self.pear_executable_fp = os.environ.get('PEAR', default='pear')
         self.config_fp = config
         self.read_config()
         self.input_dir = input_dir

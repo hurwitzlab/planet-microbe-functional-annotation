@@ -5,6 +5,9 @@ cd $SLURM_SUBMIT_DIR
 #cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/planet-microbe-functional-annotation
 #IPS="/groups/bhurwitz/tools/interproscan-*/interproscan.properties"
 IPS="./tools/interproscan-*/interproscan.properties"
+#IPSSH=$(which interproscan.sh)
+#IPSDIR=$(dirname $IPSSH)
+#IPS="${IPSDIR}/interproscan.properties"
 JOB=$(squeue -u $USER | grep "lookup" | head -1 | xargs)
 if [[ $JOB == "" ]]; then
     echo "server not running, submitting a server"
