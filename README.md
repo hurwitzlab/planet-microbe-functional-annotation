@@ -98,6 +98,9 @@ bash/run_start_lookup_server.sh**
 **TODO: finish clearing out old configs and other old files**
 **TODO: export the conda envs to ymls when finished**
 
+##Building the Bowtie Index
+The pipeline uses Bowtie2 to clean the datasets for human and phi-X174 contamination. To build the bowtie index, run `sh bash/create_bowtie_index.sh`
+
 ## Running the pipeline
 The pipeline runs SLURM jobs for each step. The file `config/cluster.yml` is used by Snakemake to submit SLURM jobs. Change `partition`, `group`, and `M` to your HPC's information. The config file `config/config.yml` contains settings and parameters for the various tools used in the pipeline, and the list of samples the pipeline will be ran on. Add your samples to the list. To submit your pipeline to the SLURM job scheduler, run `sh submit_snakemake.sh` which will submit a job for `run_snakemake.sh` which will run Snakemake on your samples.
 
