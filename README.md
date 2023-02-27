@@ -90,14 +90,6 @@ export PATH="/path/to/planet-microbe-functional-annotation/tools":$PATH
 export PATH="/path/to/planet-microbe-functional-annotation/tools/FragGeneScan1.31":$PATH
 ```
 
-**TODO: files that need paths fixed:
-bash/edit_interproscan.sh
-bash/run_start_lookup_server.sh**
-
-**TODO: finish cleaning up pipeline/pipeline.py and pipeline/qc_pipeline.py**
-**TODO: finish clearing out old configs and other old files**
-**TODO: export the conda envs to ymls when finished**
-
 ##Building the Bowtie Index
 The pipeline uses Bowtie2 to clean the datasets for human and phi-X174 contamination. To build the bowtie index, run `sh bash/create_bowtie_index.sh`
 
