@@ -90,7 +90,7 @@ export PATH="/path/to/planet-microbe-functional-annotation/tools":$PATH
 export PATH="/path/to/planet-microbe-functional-annotation/tools/FragGeneScan1.31":$PATH
 ```
 
-##Building the Bowtie Index
+## Building the Bowtie Index
 The pipeline uses Bowtie2 to clean the datasets for human and phi-X174 contamination. To build the bowtie index, run `sh bash/create_bowtie_index.sh`
 
 ## Running the pipeline
