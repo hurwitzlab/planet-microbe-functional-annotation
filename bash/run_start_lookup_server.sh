@@ -11,6 +11,6 @@
 
 set -u
 
-cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/mattmiller899/my_databases/interproscan/lookup_service*
-#cd $SLURM_SUBMIT_DIR/tools/lookup_service*
+#cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/mattmiller899/my_databases/interproscan/lookup_service*
+cd $SLURM_SUBMIT_DIR/tools/lookup_service*
 java -Xmx8000m -jar server-*.war --headless --port 1234
