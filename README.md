@@ -23,8 +23,11 @@ Pipeline steps:
 
 ## Required Software
 Python3
+
 Anaconda
-SLURM **Prolly state this elsewhere**
+
+SLURM 
+
 Java (we used jdk-11.0.8)
 
 ## Tool and Database Installation
