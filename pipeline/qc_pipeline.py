@@ -63,14 +63,8 @@ def get_args():
 
 class QCPipeline:
     def __init__(self, config, input_file, out_dir, threads):
-        #self.java_executable_fp = os.environ.get('JAVA', default='java')
-        self.java_executable_fp = shutil.which('java')
         self.vsearch_executable_fp = shutil.which('vsearch')
-        self.trim_executable_fp = os.environ.get(
-            'TRIMMOMATIC',
-            default=
-            #'/groups/bhurwitz/tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
-            './tools/Trimmomatic-0.39/trimmomatic-0.39.jar')
+        self.trim_executable_fp = shutil.which('trimmomatic')
         print(f"trim = {self.trim_executable_fp}")
         #self.vsearch_executable_fp = os.environ.get('VSEARCH',
         #    default='./tools/vsearch')
@@ -160,66 +154,6 @@ class QCPipeline:
                 'ERROR: no output files in directory "{}"'.format(output_dir))
         return
 
-    """
-    def step_01_copy_and_compress(self, input_dir):
-        log, output_dir = self.initialize_step()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning('output directory "%s" is not empty, this step will be skipped', output_dir)
-        else:
-            log.debug('output_dir: %s', output_dir)
-            # Check for fasta and qual files
-            fasta_files = []
-            types = ['*.fasta*', '*.fa*']
-            for t in types:
-                fasta_files.extend(glob.glob(os.path.join(input_dir, t)))
-            fasta_files = sorted(fasta_files)
-            log.info('possible fasta files: "%s"', fasta_files)
-            qual_file_glob = os.path.join(input_dir, '*.qual*')
-            qual_files = sorted(glob.glob(qual_file_glob))
-            log.info('qual files: "%s"', qual_files)
-            fastas_no_slashes = [fasta.replace('\\', ' ').replace('/', ' ').split()[-1] for fasta in fasta_files]
-            quals_no_slashes = [qual.replace('\\', ' ').replace('/', ' ').split()[-1] for qual in qual_files]
-            fastas = [fasta.split(".")[0] for fasta in fastas_no_slashes]
-            quals = [qual.split('.')[0] for qual in quals_no_slashes]
-            for fasta in fastas:
-                for qual in quals:
-                    if fasta == qual:
-                        tmpfasta = os.path.join(input_dir, fasta + ".fasta")
-                        tmpqual = os.path.join(input_dir, qual + ".qual")
-                        tmpfastq = os.path.join(input_dir, fasta + ".fastq")
-                        log.info("Creating %s", tmpfastq)
-                        fasta_qual_to_fastq(tmpfasta, tmpqual, tmpfastq)
-                        log.info('%s created', tmpfastq)
-                        quals.remove(qual)
-                        break
-            input_fp_list = []
-            types = ['*.fastq*', '*.fq*']
-            for t in types:
-                input_fp_list.extend(glob.glob(os.path.join(input_dir, t)))
-            log.info('input files: %s', input_fp_list)
-
-            if len(input_fp_list) == 0:
-                raise PipelineException('found no fastq files in directory "{}"'.format(input_dir))
-
-            for input_fp in input_fp_list:
-                destination_name = re.sub(
-                                        string=os.path.basename(input_fp),
-                                        pattern='\.fq',
-                                        repl='.fastq')
-                destination_fp = os.path.join(output_dir, destination_name)
-                if input_fp.endswith('.gz'):
-                    log.info(f"already compressed, copying {input_fp} to {destination_fp}")
-                    with open(input_fp, 'rb') as f, open(destination_fp, 'wb') as g:
-                        shutil.copyfileobj(fsrc=f, fdst=g)
-                else:
-                    destination_fp = destination_fp + '.gz'
-                    log.info(f"compressing {input_fp} to {destination_fp}")
-                    with open(input_fp, 'rt') as f, gzip.open(destination_fp, 'wt') as g:
-                        shutil.copyfileobj(fsrc=f, fdst=g)
-
-        self.complete_step(log, output_dir)
-        return output_dir
-    """
 
     def step_01_trimming(self, input_file):
         """
@@ -235,39 +169,13 @@ class QCPipeline:
                 output_dir)
         else:
             input_fp_list = []
-            """
-            types = ['*.fastq*', '*.fq*']
-            if self.paired_ends:
-                input_fp_list = get_forward_fastq_files(input_dir, self.debug)
-            else:
-                for t in types:
-                    input_fp_list.extend(glob.glob(os.path.join(input_dir, t)))
-            if len(input_fp_list) == 0:
-                raise PipelineException(
-                    f'found no fastq files in directory "{input_dir}"')
-            log.info(f"input files = {input_fp_list}")
-            """
             if not os.path.isfile(input_file):
                 raise PipelineException(f'input file {input_file} is not a file or does not exist')
                 exit()
             run_arr = [
-                self.java_executable_fp, "-jar", self.trim_executable_fp
+                self.trim_executable_fp
             ]
             trim_log = f"{output_dir}/trim_log"
-            """
-            if self.paired_ends:
-                run_arr.append("PE")
-                out_base = re.sub(string=os.path.basename(input_file),
-                                  pattern=r'_1\.(fastq|fq)',
-                                  repl=".fastq")
-                run_arr.extend([
-                    "-threads", self.threads, "-trimlog", trim_log,
-                    "-basein", fp, "-baseout",
-                    os.path.join(output_dir, out_base)
-                ])
-
-            else:
-            """
             run_arr.append("SE")
             out_base = re.sub(string=os.path.basename(input_file),
                               pattern=r'.(fastq|fq)',
@@ -326,120 +234,6 @@ class QCPipeline:
         self.complete_step(log, output_dir)
         return output_dir
 
-    """
-    def step_01_1_merge_paired_end_reads(self, input_dir):
-        log, output_dir = self.initialize_step()
-        start_time = time.time()
-        if len(os.listdir(output_dir)) > 0:
-            log.warning(
-                'output directory "%s" is not empty, this step will be skipped',
-                output_dir)
-        else:
-            log.info('PEAR executable: "%s"', self.pear_executable_fp)
-
-            # for compressed_forward_fastq_fp in get_trimmed_forward_fastq_files(input_dir=input_dir, debug=self.debug):
-            #    compressed_reverse_fastq_fp = get_associated_reverse_fastq_fp(forward_fp=compressed_forward_fastq_fp)
-
-            # forward_fastq_fp, reverse_fastq_fp = ungzip_files(
-            #    compressed_forward_fastq_fp,
-            #    compressed_reverse_fastq_fp,
-            #    target_dir=output_dir,
-            #    debug=self.debug
-            # )
-            for forward_fastq_fp in get_trimmed_forward_fastq_files(
-                    input_dir=input_dir, debug=self.debug):
-                reverse_fastq_fp = get_associated_reverse_fastq_fp(
-                    forward_fp=forward_fastq_fp)
-
-                joined_fastq_basename = re.sub(
-                    string=os.path.basename(forward_fastq_fp),
-                    pattern=r'_1P.fastq',
-                    repl=lambda m: '_merged')
-
-                joined_fastq_fp_prefix = os.path.join(output_dir,
-                                                      joined_fastq_basename)
-                log.info('joining paired ends from "%s" and "%s"',
-                         forward_fastq_fp, reverse_fastq_fp)
-                log.info('writing joined paired-end reads to "%s"',
-                         joined_fastq_fp_prefix)
-                run_cmd([
-                    self.pear_executable_fp, '-f', forward_fastq_fp, '-r',
-                    reverse_fastq_fp, '-o', joined_fastq_fp_prefix,
-                    '--min-overlap',
-                    str(self.pear_min_overlap), '--max-assembly-length',
-                    str(self.pear_max_assembly_length),
-                    '--min-assembly-length',
-                    str(self.pear_min_assembly_length), '-j',
-                    str(self.threads)
-                ],
-                    log_file=os.path.join(output_dir, 'log'),
-                    debug=self.debug)
-
-                # gzip_files(glob.glob(joined_fastq_fp_prefix + '.*.fastq'), debug=self.debug)
-                # Check log file to make sure most reads were assembled
-                with open(os.path.join(output_dir, 'log'), 'r') as logcheck:
-                    num_assembled = 0
-                    num_discarded = 0
-                    forward_fp = ""
-                    reverse_fp = ""
-                    for l in logcheck:
-                        if 'Forward reads file' in l:
-                            forward_fp = l.split(' ')[-1]
-                        elif 'Reverse reads file' in l:
-                            reverse_fp = l.split(' ')[-1]
-                        elif 'Assembled reads' in l and 'file' not in l:
-                            num_assembled = int(
-                                l.split(' ')[3].replace(',', ''))
-                        elif 'Discarded reads' in l and 'file' not in l:
-                            num_discarded = int(
-                                l.split(' ')[3].replace(',', ''))
-                            log.info("num_assembled = {}, num_discarded = {}".
-                                     format(num_assembled, num_discarded))
-                            if num_discarded > num_assembled:
-                                log.warning(
-                                    "More sequences discarded than kept by PEAR for files '{}' and '{}'"
-                                        .format(forward_fp, reverse_fp))
-                            if num_assembled == 0:
-                                log.error(
-                                    f"All sequences discarded by PEAR for files '{forward_fp}' and '{reverse_fp}'... Exiting"
-                                )
-                                exit(1)
-
-        end_time = time.time()
-        log.info(f"Time taken for this step: {int((end_time - start_time))}s")
-        self.complete_step(log, output_dir)
-        return output_dir
-    """
-
-    """
-    def step_01_2_fastqc(self, input_dir):
-
-         Uses FastQC to get the sequence length distribution for vsearch
-        :param input_dir: string path to input files
-        :return: string path to output directory
-
-        log, output_dir = self.initialize_step()
-        if self.paired_ends:
-            input_fps = glob.glob(f"{input_dir}/*.assembled*.fastq")
-        else:
-            input_fps = glob.glob(f"{input_dir}/*.fastq")
-        log.info(f"input files = {input_fps}")
-        if len(input_fps) == 0:
-            raise PipelineException(f'found no fastq files in directory "{input_dir}"')
-        for fp in input_fps:
-            log.info(f"qc on {fp}")
-            run_cmd([
-                self.fastqc_executable_fp,
-                fp,
-                f"--outdir={output_dir}"
-                # INCLUDE MORE ARGS
-            ],
-                log_file=os.path.join(output_dir, 'log'),
-                debug=self.debug
-            )
-        self.complete_step(log, output_dir)
-        return output_dir
-    """
 
     def step_02_qc_reads_with_vsearch(self, input_dir):
         log, output_dir = self.initialize_step()
@@ -449,10 +243,6 @@ class QCPipeline:
                 'output directory "%s" is not empty, this step will be skipped',
                 output_dir)
         else:
-            # if self.paired_ends:
-            #    input_files_glob = os.path.join(input_dir,
-            #                                    '*.assembled*.fastq*')
-            # else:
             input_files_glob = os.path.join(input_dir, '*.fastq*')
             input_fp_list = glob.glob(input_files_glob)
             if len(input_fp_list) == 0:

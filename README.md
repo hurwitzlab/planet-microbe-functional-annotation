@@ -1,8 +1,10 @@
 # planet-microbe-functional-annotation
 EBI Functional Annotation Pipeline For Planet Microbe
-Matt Miller, Kai Blumberg
+Kai Blumberg, Matthew Miller, Alise Ponsero, Bonnie Hurwitz
 
 Based on the EBI functional pipeline version 4.1 (https://www.ebi.ac.uk/metagenomics/pipelines/4.1)
+
+This pipeline analyzes metagenomic datasets on a SLURM HPC environment using Snakemake. It generates taxonomic classifications of reads using Kraken2 and Bracken and functional analyses of the reads using InterProScan.
 
 Pipeline steps: 
 1) Bowtie2 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
@@ -21,6 +23,8 @@ Pipeline steps:
 
 5b) InterProScan (https://github.com/ebi-pf-team/interproscan)
 
+## INSERT IMAGE HERE
+
 ## Required Software
 Python3
 
@@ -28,83 +32,43 @@ Anaconda
 
 SLURM 
 
-Java (we used jdk-11.0.8)
-
+Snakemake
 ## Tool and Database Installation
 
-The pipeline uses Snakemake to submit SLURM jobs for each step of the pipeline. The instructions below install the tools to a default directory, `planet-microbe-functional-annotation/tools`. The tools `vsearch` and `FragGeneScan1.31` can be installed elsewhere as long as they are in your $PATH, and `Trimmomatic-0.39` can be installed elsewhere but needs an environmental variable with its path like below.
-```
-export TRIMMOMATIC="/path/to/trimmomatic-0.39.jar"
-```
-
-**InterProScan and the lookup server MUST BE INSTALLED IN THE TOOLS DIRECTORY!!!**
-
+# WARNING: The InterProScan Lookup Service download will be very large (~2 TB). Ensure you have space for it
 Installation directions:
 ```
-# Install the pipeline
-git clone git@github.com:hurwitzlab/planet-microbe-functional-annotation.git
-cd planet-microbe-functional-annotation
-
-# Install the conda environments with bowtie2, kraken2, bracken, FragGeneScan, and snakemake
-conda env create -f ./conda_envs/pm_env.yml
-conda env create -f ./conda_envs/kraken2.yml
-conda env create -f ./conda_envs/bracken.yml
-
-# Install Trimmmomatic
-cd tools
-wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip
-unzip Trimmomatic-0.39.zip
-rm Trimmomatic-0.39.zip
-
-# Install vsearch
-wget https://github.com/torognes/vsearch/releases/download/v2.21.1/vsearch-2.21.1-linux-x86_64.tar.gz
-tar -xvf vsearch-2.21.1-linux-x86_64.tar.gz
-rm vsearch-2.21.1-linux-x86_64.tar.gz
-cp vsearch-2.21.1-linux-x86_64/bin/vsearch .
-rm -r vsearch-2.21.1-linux-x86_64
-
-# Install InterProScan
-wget http://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.56-89.0/interproscan-5.56-89.0-64-bit.tar.gz
-wget https://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.56-89.0/interproscan-5.56-89.0-64-bit.tar.gz.md5
-
-# Recommended checksum to confirm the download was successful:
-md5sum -c interproscan-5.56-89.0-64-bit.tar.gz.md5
-# Must return *interproscan-5.56-89.0-64-bit.tar.gz: OK*
-# If not - try downloading the file again as it may be a corrupted copy.
-
-tar -pxvzf interproscan-5.56-89.0-64-bit.tar.gz
-rm interproscan-5.56-89.0-64-bit.tar.gz
-cd interproscan-5.56-89.0
-python3 initial_setup.py
-cd ..
-
-# Install InterProScan's local match server
-wget https://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/lookup_service/lookup_service_5.56-89.0.tar.gz
-wget https://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/lookup_service/lookup_service_5.56-89.0.tar.gz.md5
-
-# Recommended checksum to confirm the download was successful:
-md5sum -c lookup_service_5.56-89.0.tar.gz.md5
-
-tar -pxvzf lookup_service_5.56-89.0.tar.gz
-rm lookup_service_5.56-89.0.tar.gz lookup_service_5.56-89.0.tar.gz.md5
-
-# Add vsearch and FragGeneScan to PATH (add to $HOME/.bashrc, change to other location if they're installed elsewhere)
-export PATH="/path/to/planet-microbe-functional-annotation/tools":$PATH
-export PATH="/path/to/planet-microbe-functional-annotation/tools/FragGeneScan1.31":$PATH
+sh install.sh
 ```
 
 ## Building the Bowtie Index
-The pipeline uses Bowtie2 to clean the datasets for human and phi-X174 contamination. To build the bowtie index, run `sh bash/create_bowtie_index.sh`
+## TODO Fix Bowtie2 script, currently hardcoded
+The pipeline uses Bowtie2 to clean the datasets for human and phi-X174 contamination. To build the bowtie index, run 
+`sh bash/create_bowtie_index.sh`
 
 ## Running the pipeline
-The pipeline runs SLURM jobs for each step. The file `config/cluster.yml` is used by Snakemake to submit SLURM jobs. Change `partition`, `group`, and `M` to your HPC's information. The config file `config/config.yml` contains settings and parameters for the various tools used in the pipeline, and the list of samples the pipeline will be ran on. Add your samples to the list. To submit your pipeline to the SLURM job scheduler, run `sh submit_snakemake.sh` which will submit a job for `run_snakemake.sh` which will run Snakemake on your samples.
+The pipeline runs SLURM jobs for each step. There are 3 files that users can/should make changes to.
 
-In `submit_snakemake.sh`, there is a `JOBNAME` variable you can rename to keep track of jobs.
+1. The file `config/cluster.yml` is used by Snakemake to submit SLURM jobs, so you will need to add your credentials to the file. Change `partition`, `group`, and `M` to your HPC's user information. 
 
-To submit the pipeline as a SLURM job, run
-`sh submit_snakemake.sh`
+2. The file `config/config.yml` contains settings and parameters for the various tools used in the pipeline, and importantly, the list of samples the pipeline will be ran on. Under `samples:`, add your sample names following the format of
+```
+ID1: "/path/to/ID1"
+ID2: "/path/to/ID2"
+```
+
+3. The file `submit_snakemake.sh` is used to submit the pipeline as a job to the HPC system. Line 6 contains a variable JOBNAME that can be changed to keep track of different jobs.
+
+
+To submit your pipeline to the SLURM job scheduler, run `sh submit_snakemake.sh`.
 
 The pipeline will output errors and outputs to files in the `err/` and `out/` directories. Some steps of the pipeline also output `log` files in their subdirectories that contain output/errors from the tool of that step.
 
+The pipeline will output results into the `results` directory, with each sample having their own subdirectory (e.g. `results/ID1`). Each step of the pipeline will have separate directories within `results` for their output. The final functional analysis results will be found at `results/ID/step_07_combine_tsv` and the final taxonomic classifications will be found at `results/ID/kraken`.
 
+## Contributors
+Kai Blumberg developed the initial idea, fixed bugs, and performed all of the data analysis using the pipeline.
 
+Matthew Miller developed the pipeline.
+
+# TODO Fix hardcoded paths for Kraken/Bracken
