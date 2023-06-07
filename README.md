@@ -86,7 +86,7 @@ The pipeline will output errors and outputs to files in the `err/` and `out/` di
 
 The pipeline will output results into the `results` directory, with each sample having their own subdirectory (e.g. `results/ID1`). Each step of the pipeline will have separate directories within `results` for their output. The final functional analysis results will be found at `results/ID/step_07_combine_tsv` and the final taxonomic classifications will be found at `results/ID/kraken`.
 
-## Example
+## Tutorial
 
 Below are instructions for running the pipeline with a small example file.
 
