@@ -8,21 +8,21 @@ This pipeline analyzes metagenomic datasets in a SLURM HPC environment using Sna
 
 ## Pipeline steps: 
 
-1) [Bowtie2](#http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for removing human contamination
+1) [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for removing human contamination
 
-2) [Trimmomatic](#http://www.usadellab.org/cms/?page=trimmomatic) for trimming
+2) [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) for trimming
 
-3) [vsearch](#https://github.com/torognes/vsearch) for QC
+3) [vsearch](https://github.com/torognes/vsearch) for QC
 
 (These next steps branch off from one another and are done separately, 4a -> 5a for taxonomic classification and 4b -> 5b for functional analysis)
 
-4a) [Kraken2](#https://ccb.jhu.edu/software/kraken2/)
+4a) [Kraken2](https://ccb.jhu.edu/software/kraken2/)
 
-5a) [Bracken](#https://ccb.jhu.edu/software/bracken/)
+5a) [Bracken](https://ccb.jhu.edu/software/bracken/)
 
-4b) [FragGeneScan](#https://sourceforge.net/projects/fraggenescan/files/)
+4b) [FragGeneScan](https://sourceforge.net/projects/fraggenescan/files/)
 
-5b) [InterProScan](#https://github.com/ebi-pf-team/interproscan)
+5b) [InterProScan](https://github.com/ebi-pf-team/interproscan)
 
 
 ## Required Software
@@ -96,7 +96,6 @@ cd data
 sh get_test_data.sh
 cd ..
 ```
-
 #### Edit the config file with the input file
 In `config/config.yml` under `samples:`, we will put `ERR771001_1: "data/ERR771001_1"`
 
