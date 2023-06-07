@@ -8,11 +8,11 @@ This pipeline analyzes metagenomic datasets in a SLURM HPC environment using Sna
 
 ## Pipeline steps: 
 
-1) [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for removing human contamination
+1) [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
-2) [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) for trimming
+2) [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
 
-3) [vsearch](https://github.com/torognes/vsearch) for QC
+3) [vsearch](https://github.com/torognes/vsearch)
 
 (These next steps branch off from one another and are done separately, 4a -> 5a for taxonomic classification and 4b -> 5b for functional analysis)
 
