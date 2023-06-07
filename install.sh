@@ -39,3 +39,8 @@ rm lookup_service_${VERSION}.tar.gz lookup_service_${VERSION}.tar.gz.md5
 # Add vsearch and FragGeneScan to PATH (add to $HOME/.bashrc, change to other location if they're installed elsewhere)
 #export PATH="/path/to/planet-microbe-functional-annotation/tools":$PATH
 #export PATH="/path/to/planet-microbe-functional-annotation/tools/FragGeneScan1.31":$PATH
+
+# Download the Kraken2 database
+wget https://genome-idx.s3.amazonaws.com/kraken/k2_pluspf_20230314.tar.gz
+tar -xvf k2_pluspf_20230314.tar.gz
+

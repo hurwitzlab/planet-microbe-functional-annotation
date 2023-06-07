@@ -93,7 +93,6 @@ class QCPipeline:
             "palindrome_clip_thresh"]
         self.trim_simple_clip_thresh = config["pipeline"]["simple_clip_thresh"]
         self.trim_min_adapter_length = config["pipeline"]["min_adapter_length"]
-        self.trim_keep_both_reads = config["pipeline"]["keep_both_reads"]
         self.trim_min_quality = config["pipeline"]["min_quality"]
         self.trim_min_len = config["pipeline"]["trim_min_length"]
         self.vsearch_filter_maxee = config["pipeline"]["vsearch_filter_maxee"]
@@ -189,8 +188,7 @@ class QCPipeline:
                                 f"{self.trim_seed_mismatches}:"
                                 f"{self.trim_palindrome_clip_thresh}:"
                                 f"{self.trim_simple_clip_thresh}:"
-                                f"{self.trim_min_adapter_length}:"
-                                f"{self.trim_keep_both_reads}")
+                                f"{self.trim_min_adapter_length}")
             leading_str = f"LEADING:{self.trim_min_quality}"
             trailing_str = f"TRAILING:{self.trim_min_quality}"
             minlen_str = f"MINLEN:{self.trim_min_len}"

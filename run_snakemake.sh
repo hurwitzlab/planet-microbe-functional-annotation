@@ -10,7 +10,14 @@ source activate pm_env
 cd $SLURM_SUBMIT_DIR
 #cd /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/planet-microbe-functional-annotation
 
-rm results/interproscan.txt results/killed_interproscan.txt
+if [ -f results/interproscan.txt ]; then
+    echo "removing interproscan.txt"
+    rm results/interproscan.txt 
+fi
+if [ -f results/killed_interproscan.txt ]; then
+    echo "removing killed_interproscan.txt"
+    rm results/killed_interproscan.txt  
+fi
 #dry run
 #snakemake -n
 

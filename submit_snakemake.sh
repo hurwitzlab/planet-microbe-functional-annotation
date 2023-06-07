@@ -19,7 +19,13 @@ ARGS="--partition=${PARTITION} --account=${ACCT}"
 # Make error and output directories
 export STDERR_DIR="./err"
 export STDOUT_DIR="./out"
-mkdir err out
+
+if [ ! -d "$STDERR_DIR" ]; then
+    mkdir "$STDERR_DIR"
+fi
+if [ ! -d "$STDOUT_DIR" ]; then
+    mkdir "$STDOUT_DIR"
+fi
 
 
 JOB_ID=`sbatch $ARGS --job-name=${JOBNAME} -e $STDERR_DIR/${JOBNAME}.err -o $STDOUT_DIR/${JOBNAME}.out ./run_snakemake.sh`

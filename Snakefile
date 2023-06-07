@@ -5,7 +5,7 @@ threads_big=config["snakemake"]["threads_big"]
 mem_big=config["snakemake"]["mem_big"]
 
 wildcard_constraints:
-    chunk="\d+"
+    chunk="\d+",
 
 rule all:
     input:
@@ -15,12 +15,14 @@ rule all:
         expand("results/{sample}/bracken/{sample}_profiles.txt", sample=config["samples"]),
         "results/killed_interproscan.txt",
 
+bowtie_cmd = 'bowtie2 -x {params.idx} -U {input} --un-gz {output} -p {threads}'
+bowtie_output = "results/{base}/bowtie/{base}.fastq.gz"
 
-rule bowtie_cleaning:
+rule bowtie_fastq:
     input:
-        "data/{base}.fastq.gz"
+        "data/{base}.fastq"
     output:
-        "results/{base}/bowtie/{base}.fastq.gz"
+        bowtie_output
     params:
         idx="data/bowtie_index/human+phiX",
         #image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
@@ -28,7 +30,52 @@ rule bowtie_cleaning:
     resources:
         mem_mb=mem_small
     shell:
-        "bowtie2 -x {params.idx} -U {input} --un-gz {output} -p {threads}"
+        bowtie_cmd
+
+
+rule bowtie_fastq_gz:
+    input:
+        "data/{base}.fastq.gz"
+    output:
+        bowtie_output
+    params:
+        idx="data/bowtie_index/human+phiX",
+        #image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+    threads: threads_small
+    resources:
+        mem_mb=mem_small
+    shell:
+        bowtie_cmd
+
+
+rule bowtie_fq:
+    input:
+        "data/{base}.fq"
+    output:
+        bowtie_output
+    params:
+        idx="data/bowtie_index/human+phiX",
+        #image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+    threads: threads_small
+    resources:
+        mem_mb=mem_small
+    shell:
+        bowtie_cmd
+
+
+rule bowtie_fq_gz:
+    input:
+        "data/{base}.fq.gz"
+    output:
+        bowtie_output
+    params:
+        idx="data/bowtie_index/human+phiX",
+        #image="singularity/bowtie.simg /bowtie2/bowtie2-2.4.2/bowtie2",
+    threads: threads_small
+    resources:
+        mem_mb=mem_small
+    shell:
+        bowtie_cmd
 
 
 rule start_server:
@@ -46,13 +93,17 @@ rule start_server:
 
 rule qc_pipeline:
     input:
+        #fa="results/{base}.{ext}/bowtie/{base}",
         fa="results/{base}/bowtie/{base}.fastq.gz",
     output:
+        #fa="results/{base}.{ext}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta",
+        #log="results/{base}.{ext}/step_02_qc_reads_with_vsearch/log",
         fa="results/{base}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta",
         log="results/{base}/step_02_qc_reads_with_vsearch/log"
     params:
         config="config/config.yml",
-        outdir="results/{base}/",
+        #outdir="results/{base}.{ext}/",
+        outdir="results/{base}/"
     threads: threads_small
     resources:
         mem_mb=mem_small
@@ -64,8 +115,10 @@ rule qc_pipeline:
 
 rule check_qc:
     input:
+        #"results/{base}.{ext}/step_02_qc_reads_with_vsearch/log"
         "results/{base}/step_02_qc_reads_with_vsearch/log"
     output:
+        #"results/{base}.{ext}/step_02_qc_reads_with_vsearch/logcheck"
         "results/{base}/step_02_qc_reads_with_vsearch/logcheck"
     threads: 1
     resources:
@@ -78,12 +131,16 @@ rule check_qc:
 
 rule kraken2:
     input:
+        #"results/{base}.{ext}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta"
         "results/{base}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta"
     output:
+        #cf="results/{base}.{ext}/kraken2/{base}_classified.fasta",
+        #rep="results/{base}.{ext}/kraken2/{base}_report.tsv"
         cf="results/{base}/kraken2/{base}_classified.fasta",
         rep="results/{base}/kraken2/{base}_report.tsv"
+
     params:
-        db="/xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_scripts/readbased_metagenomes_snakemake/PBS_pipeline/databases/k2_pluspf_20210127"
+        db="tools/k2_pluspf_20230314"
     threads: threads_big
     resources:
         mem_mb=mem_big
@@ -99,13 +156,17 @@ rule kraken2:
 
 rule bracken:
     input:
+        #rep="results/{base}.{ext}/kraken2/{base}_report.tsv",
         rep="results/{base}/kraken2/{base}_report.tsv",
     output:
+        #profiles="results/{base}.{ext}/bracken/{base}_profiles.txt",
+        #rep="results/{base}.{ext}/bracken/{base}_report.txt"
         profiles="results/{base}/bracken/{base}_profiles.txt",
         rep="results/{base}/bracken/{base}_report.txt"
+
     params:
         length=300,
-        db="/xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/my_scripts/readbased_metagenomes_snakemake/PBS_pipeline/databases/k2_pluspf_20210127"
+        db="tools/k2_pluspf_20230314"
     threads: threads_big
     resources:
         mem_mb=mem_big
@@ -121,16 +182,21 @@ rule bracken:
 
 rule run_pipeline:
     input:
+        #fa="results/{base}.{ext}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta",
         fa="results/{base}/step_02_qc_reads_with_vsearch/{base}_trimmed_qcd.fasta",
         ips="results/interproscan.txt",
+        #logcheck="results/{base}.{ext}/step_02_qc_reads_with_vsearch/logcheck",
         logcheck="results/{base}/step_02_qc_reads_with_vsearch/logcheck",
     output:
+        #"results/{base}.{ext}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
         "results/{base}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
-        #"results/{base}/step_05_chunk_reads/{base}_trimmed_qcd_frags_{chunk}.faa"
-        #"results/{base}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa"
+        #"results/{base}.{ext}/step_05_chunk_reads/{base}_trimmed_qcd_frags_{chunk}.faa"
+        #"results/{base}.{ext}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa"
     params:
+        #indir="results/{base}.{ext}/step_02_qc_reads_with_vsearch/",
         indir="results/{base}/step_02_qc_reads_with_vsearch/",
         config="config/config.yml",
+        #outdir="results/{base}.{ext}",
         outdir="results/{base}",
     threads: threads_small
     resources:
@@ -141,25 +207,6 @@ rule run_pipeline:
         python pipeline/pipeline.py -c {params.config} -i {params.indir} -o {params.outdir} -t {threads}
         """
 
-#rule interproscan:
-#    input:
-#        faa="results/{base}/step_04_get_gene_reads/{base}_trimmed_qcd_frags.faa",
-#        ips="results/interproscan.txt",
-#    output:
-#        "results/{base}/step_07_combine_tsv/{base}_trimmed_qcd_frags_interpro_combined.tsv"
-#    params:
-#        interproscan="/groups/bhurwitz/tools/interproscan-5.46-81.0/interproscan.sh",
-#        chunks_dir="results/{base}/step_05_chunk_reads/",
-#        ips_dir="results/{base}/step_06_get_orfs/",
-#    threads: 1
-#    resources:
-#        mem_mb=4000
-#    shell:
-#        """
-#        set -u
-#        echo "sh bash/run_interproscan.sh {input.faa} {output} {params.interproscan} {params.chunks_dir} {params.ips_dir}"
-#        sh bash/run_interproscan.sh {input.faa} {output} {params.interproscan} {params.chunks_dir} {params.ips_dir}
-#        """
 
 rule stop_server:
     input:

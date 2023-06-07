@@ -1,8 +1,5 @@
 samples:
-    ERR771001_1: "data/in_small/ERR771001_1"
-    #ERR771001_2: "data/ERR771001_2"
-    #SRR4831664: "data/SRR4831664"
-    #SRR1796116_1: "data/SRR1796116_1"
+    ERR771001_1: "data/ERR771001_1"
 
 run_settings:
     local_run: "false"
@@ -10,21 +7,18 @@ run_settings:
     scheduler: "sbatch"
 
 pipeline:
-    threads: 4
-    debug: 1
-    paired_ends: 0
-    adapter_fasta: "data/configs/TruSeq3-SE.fa"
-    seed_mismatches: 2
-    palindrome_clip_thresh: 30
-    simple_clip_thresh: 10
-    min_adapter_length: 2
-    keep_both_reads: "keepBothReads"
-    min_quality: 3
-    trim_min_length: 36
-    vsearch_filter_maxee: 20
-    vsearch_filter_minlen: 75
-    frag_train_file: "illumina_10"
-    delete_intermediates: 0
+    debug: 1 # Debugging message, set to 0 to turn off 
+    adapter_fasta: "data/configs/TruSeq3-SE.fa" # Adapter file for Trimmomatic
+    seed_mismatches: 2 # Max number of seed mismatches allowed for Trimmomatic
+    palindrome_clip_thresh: 30 # palindromeClipThreshold parameter for Trimmomatic
+    simple_clip_thresh: 10 # simpleClipThreshold parameter for Trimmomatic
+    min_adapter_length: 2 # Minimum length of a sequence that can be considered an adapter for Trimmomatic
+    min_quality: 3 # Minimum quality for leading and trailing bases, otherwise get trimmed, for Trimmomatic
+    trim_min_length: 36 # Minimum length of reads to be kept after trimming, shorter reads are discarded, for Trimmomatic
+    vsearch_filter_maxee: 20 # Discards sequences with more than specified number of errors, for vsearch
+    vsearch_filter_minlen: 75 # Discards sequences with less than specified number of bases, for vsearch
+    frag_train_file: "illumina_10" # File name that contains model parameters for FragGeneScan
+    delete_intermediates: 0 # Whether to keep intermediate results or delete them to save space (0 = keep, 1 = delete) 
 
 snakemake:
     threads_small: 4
