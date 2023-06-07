@@ -35,7 +35,7 @@ SLURM
 Snakemake
 ## Tool and Database Installation
 
-## WARNING: The InterProScan Lookup Service download will be very large (~2 TB). Ensure you have space for it. It will take a while to download as well depending on your download speeds.
+**WARNING: The InterProScan Lookup Service download will be very large (~2 TB). Ensure you have space for it. It will take a while to download as well depending on your download speeds.**
 This script will create all of the necessary conda environments, install the InterProScan software and its lookup service, and download/build the indices for Kraken2/Bracken and Bowtie2.
 Installation directions:
 ```
