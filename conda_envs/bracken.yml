@@ -1,6 +1,5 @@
 name: braken
 channels:
-  - kennethshang
   - bioconda
   - conda-forge
   - defaults
@@ -53,4 +52,4 @@ dependencies:
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h516909a_1010
   - zstd=1.4.9=ha95c52a_0
-prefix: /xdisk/bhurwitz/mig2020/rsgrps/bhurwitz/alise/tools/Miniconda3/envs/braken
+prefix: /home/u29/mattmiller899/miniconda3/envs/braken
