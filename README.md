@@ -2,11 +2,13 @@
 EBI Functional Annotation Pipeline For Planet Microbe
 Kai Blumberg, Matthew Miller, Alise Ponsero, Bonnie Hurwitz
 
+## Description
+
 Based on the EBI functional pipeline version 4.1 (https://www.ebi.ac.uk/metagenomics/pipelines/4.1)
 
 This pipeline analyzes metagenomic datasets in a SLURM HPC environment using Snakemake. It generates taxonomic classifications of reads using Kraken2 and Bracken and functional analyses of reads using InterProScan.
 
-## Pipeline steps: 
+### Pipeline steps: 
 
 1) [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
@@ -25,7 +27,7 @@ This pipeline analyzes metagenomic datasets in a SLURM HPC environment using Sna
 5b) [InterProScan](https://github.com/ebi-pf-team/interproscan)
 
 
-## Required Software
+## Requirements
 Python3.9
 
 Anaconda
@@ -33,7 +35,8 @@ Anaconda
 SLURM 
 
 Snakemake
-## Tool and Database Installation
+
+## Installation
 
 **WARNING: The InterProScan Lookup Service download will be very large (~2 TB). Ensure you have space for it. It will take a while to download as well depending on your download speeds.**
 This script will create all of the necessary conda environments, install the InterProScan software and its lookup service, and download/build the indices for Kraken2/Bracken and Bowtie2.
@@ -42,7 +45,9 @@ Installation directions:
 sh install.sh
 ```
 
-## Configuring the pipeline
+## Usage
+
+### Configuring the pipeline
 The pipeline runs SLURM jobs for each step. There are 3 files that users can/should make changes to.
 
 1. The file `config/cluster.yml` is used by Snakemake to submit SLURM jobs, so you will need to add your credentials to the file. Change `partition`, `group`, and `M` to your HPC's user information. 
@@ -78,7 +83,7 @@ Under `snakemake:` are memory and thread parameters for the jobs. Bowtie2, Trimm
 3. The file `submit_snakemake.sh` is used to submit the pipeline as a job to the HPC system. Line 6 contains a variable JOBNAME that can be changed to keep track of different jobs.
 
 
-## Running the pipeline
+### Running the pipeline
 
 To submit your pipeline to the SLURM job scheduler, run `sh submit_snakemake.sh`.
 
@@ -108,10 +113,8 @@ In `submit_snakemake.sh`, edit line 6 to change the job name, such as to `JOBNAM
 #### Submitting and running the pipeline
 Run the command `sh submit_snakemake.sh` to submit the job to your HPC.
 
-#### Results
 
-
-## Contributors
+## Contributions
 Matthew Miller developed the pipeline.
 
 Kai Blumberg developed the initial idea, fixed bugs, and performed all of the data analysis using the pipeline.
